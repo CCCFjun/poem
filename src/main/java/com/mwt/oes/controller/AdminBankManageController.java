@@ -1,7 +1,7 @@
 package com.mwt.oes.controller;
 
-import com.mwt.oes.service.TeacherBankManageService;
-import com.mwt.oes.service.TeacherPaperService;
+import com.mwt.oes.service.AdminBankManageService;
+import com.mwt.oes.service.AdminPaperService;
 import com.mwt.oes.util.QiniuCloudUtil;
 import com.mwt.oes.util.ServerResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,20 +16,20 @@ import java.util.UUID;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/api/teacher")
-public class TeacherBankManageController {
+@RequestMapping("/api/admin")
+public class AdminBankManageController {
     @Autowired
-    private TeacherPaperService teacherPaperService;
+    private AdminPaperService adminPaperService;
     @Autowired
-    private TeacherBankManageService teacherBankManageService;
+    private AdminBankManageService adminBankManageService;
 
     //    获取全部单选题信息
     @RequestMapping("/getSingleList")
     public ServerResponse getSingleList(){
         Map<String, Object> map = new HashMap<>();
-        List<Map<String, Object>> singleList = teacherBankManageService.getSingleList();
+        List<Map<String, Object>> singleList = adminBankManageService.getSingleList();
         map.put("singleList",singleList);
-        List<Map<String, Object>> langOptions = teacherPaperService.getLangOptions();
+        List<Map<String, Object>> langOptions = adminPaperService.getLangOptions();
         map.put("langOptions",langOptions);
         return ServerResponse.createBySuccess("获取全部单选题信息成功",map);
     }
@@ -39,7 +39,7 @@ public class TeacherBankManageController {
     public ServerResponse searchSingleList(@RequestParam("content")String content,
                                            @RequestParam("langId")Integer langId,
                                            @RequestParam("composeFlag")String composeFlag){
-        List<Map<String, Object>> resultList = teacherBankManageService.searchSingleList(content, langId, composeFlag);
+        List<Map<String, Object>> resultList = adminBankManageService.searchSingleList(content, langId, composeFlag);
         return ServerResponse.createBySuccess("获取搜索单选题信息成功",resultList);
     }
 
@@ -47,7 +47,7 @@ public class TeacherBankManageController {
     @RequestMapping(value = "/deleteSingle",method = RequestMethod.POST)
     public ServerResponse deleteSingle(@RequestBody Map<String, Object> obj){
         int singleId = (int) obj.get("singleId");
-        int result = teacherBankManageService.deleteSingle(singleId);
+        int result = adminBankManageService.deleteSingle(singleId);
         if(result > 0){
             return ServerResponse.createBySuccess("删除成功",null);
         } else {
@@ -78,7 +78,7 @@ public class TeacherBankManageController {
     // 添加单选题题目
     @RequestMapping(value = "/insertSingleInfo",method = RequestMethod.POST)
     public ServerResponse insertSingleInfo(@RequestBody Map<String, Object> obj) {
-        int result = teacherBankManageService.insertSingleInfo(obj);
+        int result = adminBankManageService.insertSingleInfo(obj);
         if (result > 0) {
             return ServerResponse.createBySuccess("添加成功",result);
         } else {
@@ -89,7 +89,7 @@ public class TeacherBankManageController {
     // 更新单选题题目
     @RequestMapping(value = "/updateSingleInfo",method = RequestMethod.POST)
     public ServerResponse updateSingleInfo(@RequestBody Map<String, Object> obj) {
-        int result = teacherBankManageService.updateSingleInfo(obj);
+        int result = adminBankManageService.updateSingleInfo(obj);
         if (result > 0) {
             return ServerResponse.createBySuccess("更新成功",result);
         } else {
@@ -101,7 +101,7 @@ public class TeacherBankManageController {
     @RequestMapping(value = "/insertSingleList",method = RequestMethod.POST)
     public ServerResponse insertSingleList(@RequestBody Map<String, Object> obj){
         List<Map<String, Object>> singleList = (List<Map<String, Object>>) obj.get("singleList");
-        int result = teacherBankManageService.insertSingleList(singleList);
+        int result = adminBankManageService.insertSingleList(singleList);
         return ServerResponse.createBySuccess("文件上传成功",result);
     }
 
@@ -110,9 +110,9 @@ public class TeacherBankManageController {
     @RequestMapping("/getMultipleList")
     public ServerResponse getMultipleList(){
         Map<String, Object> map = new HashMap<>();
-        List<Map<String, Object>> multipleList = teacherBankManageService.getMultipleList();
+        List<Map<String, Object>> multipleList = adminBankManageService.getMultipleList();
         map.put("multipleList",multipleList);
-        List<Map<String, Object>> langOptions = teacherPaperService.getLangOptions();
+        List<Map<String, Object>> langOptions = adminPaperService.getLangOptions();
         map.put("langOptions",langOptions);
         return ServerResponse.createBySuccess("获取全部多选题信息成功",map);
     }
@@ -122,7 +122,7 @@ public class TeacherBankManageController {
     public ServerResponse searchMultipleList(@RequestParam("content")String content,
                                            @RequestParam("langId")Integer langId,
                                            @RequestParam("composeFlag")String composeFlag){
-        List<Map<String, Object>> resultList = teacherBankManageService.searchMultipleList(content, langId, composeFlag);
+        List<Map<String, Object>> resultList = adminBankManageService.searchMultipleList(content, langId, composeFlag);
         return ServerResponse.createBySuccess("获取搜索多选题信息成功",resultList);
     }
 
@@ -130,7 +130,7 @@ public class TeacherBankManageController {
     @RequestMapping(value = "/deleteMultiple",method = RequestMethod.POST)
     public ServerResponse deleteMultiple(@RequestBody Map<String, Object> obj){
         int multipleId = (int) obj.get("multipleId");
-        int result = teacherBankManageService.deleteMultiple(multipleId);
+        int result = adminBankManageService.deleteMultiple(multipleId);
         if(result > 0){
             return ServerResponse.createBySuccess("删除成功",null);
         } else {
@@ -141,7 +141,7 @@ public class TeacherBankManageController {
     // 添加多选题题目
     @RequestMapping(value = "/insertMultipleInfo",method = RequestMethod.POST)
     public ServerResponse insertMultipleInfo(@RequestBody Map<String, Object> obj) {
-        int result = teacherBankManageService.insertMultipleInfo(obj);
+        int result = adminBankManageService.insertMultipleInfo(obj);
         if (result > 0) {
             return ServerResponse.createBySuccess("添加成功",result);
         } else {
@@ -152,7 +152,7 @@ public class TeacherBankManageController {
     // 更新多选题题目
     @RequestMapping(value = "/updateMultipleInfo",method = RequestMethod.POST)
     public ServerResponse updateMultipleInfo(@RequestBody Map<String, Object> obj) {
-        int result = teacherBankManageService.updateMultipleInfo(obj);
+        int result = adminBankManageService.updateMultipleInfo(obj);
         if (result > 0) {
             return ServerResponse.createBySuccess("更新成功",result);
         } else {
@@ -164,7 +164,7 @@ public class TeacherBankManageController {
     @RequestMapping(value = "/insertMultipleList",method = RequestMethod.POST)
     public ServerResponse insertMultipleList(@RequestBody Map<String, Object> obj){
         List<Map<String, Object>> multipleList = (List<Map<String, Object>>) obj.get("multipleList");
-        int result = teacherBankManageService.insertMultipleList(multipleList);
+        int result = adminBankManageService.insertMultipleList(multipleList);
         return ServerResponse.createBySuccess("文件上传成功",result);
     }
     // ----------------------------------------------------------------------------------
@@ -172,9 +172,9 @@ public class TeacherBankManageController {
     @RequestMapping("/getJudgeList")
     public ServerResponse getJudgeList(){
         Map<String, Object> map = new HashMap<>();
-        List<Map<String, Object>> judgeList = teacherBankManageService.getJudgeList();
+        List<Map<String, Object>> judgeList = adminBankManageService.getJudgeList();
         map.put("judgeList",judgeList);
-        List<Map<String, Object>> langOptions = teacherPaperService.getLangOptions();
+        List<Map<String, Object>> langOptions = adminPaperService.getLangOptions();
         map.put("langOptions",langOptions);
         return ServerResponse.createBySuccess("获取全部判断题信息成功",map);
     }
@@ -184,7 +184,7 @@ public class TeacherBankManageController {
     public ServerResponse searchJudgeList(@RequestParam("content")String content,
                                              @RequestParam("langId")Integer langId,
                                              @RequestParam("composeFlag")String composeFlag){
-        List<Map<String, Object>> resultList = teacherBankManageService.searchJudgeList(content, langId, composeFlag);
+        List<Map<String, Object>> resultList = adminBankManageService.searchJudgeList(content, langId, composeFlag);
         return ServerResponse.createBySuccess("获取搜索判断题信息成功",resultList);
     }
 
@@ -192,7 +192,7 @@ public class TeacherBankManageController {
     @RequestMapping(value = "/deleteJudge",method = RequestMethod.POST)
     public ServerResponse deleteJudge(@RequestBody Map<String, Object> obj){
         int judgeId = (int) obj.get("judgeId");
-        int result = teacherBankManageService.deleteJudge(judgeId);
+        int result = adminBankManageService.deleteJudge(judgeId);
         if(result > 0){
             return ServerResponse.createBySuccess("删除成功",null);
         } else {
@@ -203,7 +203,7 @@ public class TeacherBankManageController {
     // 添加判断题题目
     @RequestMapping(value = "/insertJudgeInfo",method = RequestMethod.POST)
     public ServerResponse insertJudgeInfo(@RequestBody Map<String, Object> obj) {
-        int result = teacherBankManageService.insertJudgeInfo(obj);
+        int result = adminBankManageService.insertJudgeInfo(obj);
         if (result > 0) {
             return ServerResponse.createBySuccess("添加成功",result);
         } else {
@@ -214,7 +214,7 @@ public class TeacherBankManageController {
     // 更新判断题题目
     @RequestMapping(value = "/updateJudgeInfo",method = RequestMethod.POST)
     public ServerResponse updateJudgeInfo(@RequestBody Map<String, Object> obj) {
-        int result = teacherBankManageService.updateJudgeInfo(obj);
+        int result = adminBankManageService.updateJudgeInfo(obj);
         if (result > 0) {
             return ServerResponse.createBySuccess("更新成功",result);
         } else {
@@ -225,7 +225,7 @@ public class TeacherBankManageController {
     @RequestMapping(value = "/insertJudgeList",method = RequestMethod.POST)
     public ServerResponse insertJudgeList(@RequestBody Map<String, Object> obj){
         List<Map<String, Object>> judgeList = (List<Map<String, Object>>) obj.get("judgeList");
-        int result = teacherBankManageService.insertJudgeList(judgeList);
+        int result = adminBankManageService.insertJudgeList(judgeList);
         return ServerResponse.createBySuccess("文件上传成功",result);
     }
     // ----------------------------------------------------------------------------------
@@ -233,9 +233,9 @@ public class TeacherBankManageController {
     @RequestMapping("/getFillList")
     public ServerResponse getFillList(){
         Map<String, Object> map = new HashMap<>();
-        List<Map<String, Object>> fillList = teacherBankManageService.getFillList();
+        List<Map<String, Object>> fillList = adminBankManageService.getFillList();
         map.put("fillList",fillList);
-        List<Map<String, Object>> langOptions = teacherPaperService.getLangOptions();
+        List<Map<String, Object>> langOptions = adminPaperService.getLangOptions();
         map.put("langOptions",langOptions);
         return ServerResponse.createBySuccess("获取全部填空题信息成功",map);
     }
@@ -245,7 +245,7 @@ public class TeacherBankManageController {
     public ServerResponse searchFillList(@RequestParam("content")String content,
                                           @RequestParam("langId")Integer langId,
                                           @RequestParam("composeFlag")String composeFlag){
-        List<Map<String, Object>> resultList = teacherBankManageService.searchFillList(content, langId, composeFlag);
+        List<Map<String, Object>> resultList = adminBankManageService.searchFillList(content, langId, composeFlag);
         return ServerResponse.createBySuccess("获取搜索填空题信息成功",resultList);
     }
 
@@ -253,7 +253,7 @@ public class TeacherBankManageController {
     @RequestMapping(value = "/deleteFill",method = RequestMethod.POST)
     public ServerResponse deleteFill(@RequestBody Map<String, Object> obj){
         int fillId = (int) obj.get("fillId");
-        int result = teacherBankManageService.deleteFill(fillId);
+        int result = adminBankManageService.deleteFill(fillId);
         if(result > 0){
             return ServerResponse.createBySuccess("删除成功",null);
         } else {
@@ -264,7 +264,7 @@ public class TeacherBankManageController {
     // 添加填空题题目
     @RequestMapping(value = "/insertFillInfo",method = RequestMethod.POST)
     public ServerResponse insertFillInfo(@RequestBody Map<String, Object> obj) {
-        int result = teacherBankManageService.insertFillInfo(obj);
+        int result = adminBankManageService.insertFillInfo(obj);
         if (result > 0) {
             return ServerResponse.createBySuccess("添加成功",result);
         } else {
@@ -275,7 +275,7 @@ public class TeacherBankManageController {
     // 更新填空题题目
     @RequestMapping(value = "/updateFillInfo",method = RequestMethod.POST)
     public ServerResponse updateFillInfo(@RequestBody Map<String, Object> obj) {
-        int result = teacherBankManageService.updateFillInfo(obj);
+        int result = adminBankManageService.updateFillInfo(obj);
         if (result > 0) {
             return ServerResponse.createBySuccess("更新成功",result);
         } else {
@@ -286,7 +286,7 @@ public class TeacherBankManageController {
     @RequestMapping(value = "/inserFillList",method = RequestMethod.POST)
     public ServerResponse inserFillList(@RequestBody Map<String, Object> obj){
         List<Map<String, Object>> fillList = (List<Map<String, Object>>) obj.get("fillList");
-        int result = teacherBankManageService.inserFillList(fillList);
+        int result = adminBankManageService.inserFillList(fillList);
         return ServerResponse.createBySuccess("文件上传成功",result);
     }
 }

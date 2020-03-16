@@ -3,7 +3,7 @@ package com.mwt.oes.service.impl;
 import com.mwt.oes.dao.*;
 import com.mwt.oes.domain.*;
 import com.mwt.oes.service.StudentHomeService;
-import com.mwt.oes.service.TeacherPaperService;
+import com.mwt.oes.service.AdminPaperService;
 import com.mwt.oes.util.FindContentWithImage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,10 +11,10 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 
 @Service
-public class TeacherPaperServiceImpl implements TeacherPaperService {
+public class AdminPaperServiceImpl implements AdminPaperService {
 
     @Autowired
-    ProgramingLanguageMapper programingLanguageMapper;
+    QuestionTypeMapper questionTypeMapper;
     @Autowired
     PaperMapper paperMapper;
     @Autowired
@@ -43,11 +43,6 @@ public class TeacherPaperServiceImpl implements TeacherPaperService {
             map.put("id", paperList.indexOf(paper) + 1);
             map.put("paperId", paper.getPaperId());
             map.put("paperName", paper.getPaperName());
-
-//            map.put("langId", paper.getLangId());
-//            ProgramingLanguage programingLanguage = programingLanguageMapper.selectByPrimaryKey(paper.getLangId());
-//            map.put("langName", programingLanguage.getLangName());
-//            map.put("langImgSrc", programingLanguage.getLangImgSrc());
 
             map.put("paperDuration", paper.getPaperDuration());
             map.put("paperDifficulty", paper.getPaperDifficulty());
@@ -81,28 +76,25 @@ public class TeacherPaperServiceImpl implements TeacherPaperService {
     @Override
     public List<Map<String, Object>> getLangOptions() {
         List<Map<String, Object>> resultList = new ArrayList<>();
-        ProgramingLanguageExample programingLanguageExample = new ProgramingLanguageExample();
-        programingLanguageExample.setOrderByClause("lang_id asc");
-        List<ProgramingLanguage> programingLanguageList = programingLanguageMapper.selectByExample(programingLanguageExample);
-        for (ProgramingLanguage programingLanguage : programingLanguageList) {
+        QuestionTypeExample questionTypeExample = new QuestionTypeExample();
+        questionTypeExample.setOrderByClause("lang_id asc");
+        List<QuestionType> questionTypeList = questionTypeMapper.selectByExample(questionTypeExample);
+        for (QuestionType questionType : questionTypeList) {
             Map<String, Object> map = new HashMap<>();
-            map.put("label",programingLanguage.getLangName());
-            map.put("key",programingLanguage.getLangId());
+            map.put("label", questionType.getLangName());
+            map.put("key", questionType.getLangId());
             resultList.add(map);
         }
         return resultList;
     }
 
     @Override
-    public List<Map<String, Object>> searchPapersList(String paperName, Integer langId, Integer paperType) {
+    public List<Map<String, Object>> searchPapersList(String paperName, Integer paperType) {
         List<Map<String, Object>> resultList = new ArrayList<>();
         PaperExample paperExample = new PaperExample();
         PaperExample.Criteria criteria = paperExample.createCriteria();
         if(!paperName.equals("undefined")) {
             criteria.andPaperNameLike("%" + paperName + "%");
-        }
-        if(langId != 0){
-            criteria.andLangIdEqualTo(langId);
         }
         if(paperType != 0){
             criteria.andPaperTypeEqualTo(paperType);
@@ -115,11 +107,6 @@ public class TeacherPaperServiceImpl implements TeacherPaperService {
             map.put("paperId", paper.getPaperId());
             map.put("paperName", paper.getPaperName());
 
-            map.put("langId", paper.getLangId());
-            ProgramingLanguage programingLanguage = programingLanguageMapper.selectByPrimaryKey(paper.getLangId());
-            map.put("langName", programingLanguage.getLangName());
-            map.put("langImgSrc", programingLanguage.getLangImgSrc());
-
             map.put("paperDuration", paper.getPaperDuration());
             map.put("paperDifficulty", paper.getPaperDifficulty());
             map.put("paperType", paper.getPaperType());
@@ -131,12 +118,12 @@ public class TeacherPaperServiceImpl implements TeacherPaperService {
 
             Map<String, Integer> queNum = studentHomeService.getPaperQueNumByPaperId(paper.getPaperId());
             int totalScore = queNum.get("singleNum")*paper.getSingleScore()
-                    + queNum.get("multipleNum")*paper.getMultipleScore()
+//                    + queNum.get("multipleNum")*paper.getMultipleScore()
                     + queNum.get("judgeNum")*paper.getJudgeScore()
                     + queNum.get("fillNum")*paper.getFillScore();
             map.put("totalScore", totalScore);
             map.put("singleNum", queNum.get("singleNum"));
-            map.put("multipleNum", queNum.get("multipleNum"));
+//            map.put("multipleNum", queNum.get("multipleNum"));
             map.put("judgeNum", queNum.get("judgeNum"));
             map.put("fillNum", queNum.get("fillNum"));
             map.put("totalNum", queNum.get("totalNum"));
@@ -177,9 +164,11 @@ public class TeacherPaperServiceImpl implements TeacherPaperService {
         List<Map<String, Object>> judgeOneData = new ArrayList<>();
         List<Map<String, Object>> fillOneData = new ArrayList<>();
         List<Map<String, Object>> fillTwoData = new ArrayList<>();
+//        System.out.println("1");
 
         // 获取百里挑一（单选题）问题列表
         List<BankSingleChoiceQue> singleChoiceQueList = bankSingleChoiceQueMapper.getSingleQueListByPaperIdAndLangId(paperId,12);
+        System.out.println("1");
         for (BankSingleChoiceQue bankSingleChoiceQue : singleChoiceQueList) {
             int singleIndex = singleChoiceQueList.indexOf(bankSingleChoiceQue);
             Map<String, Object> singleMap = new HashMap<>();
@@ -240,6 +229,7 @@ public class TeacherPaperServiceImpl implements TeacherPaperService {
         }
 
         int singleNum = singleChoiceQueList.size();
+
 
         // 获取多选题问题列表
 //        List<BankMultipleChoiceQue> multipleChoiceQueList = bankMultipleChoiceQueMapper.getMultipleQueListByPaperId(paperId);

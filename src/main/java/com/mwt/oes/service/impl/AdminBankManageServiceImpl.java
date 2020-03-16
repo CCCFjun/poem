@@ -2,7 +2,7 @@ package com.mwt.oes.service.impl;
 
 import com.mwt.oes.dao.*;
 import com.mwt.oes.domain.*;
-import com.mwt.oes.service.TeacherBankManageService;
+import com.mwt.oes.service.AdminBankManageService;
 import com.mwt.oes.util.FindContentWithImage;
 import com.mwt.oes.util.MultipleAnswersUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +14,9 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class TeacherBankManageServiceImpl implements TeacherBankManageService {
+public class AdminBankManageServiceImpl implements AdminBankManageService {
     @Autowired
-    ProgramingLanguageMapper programingLanguageMapper;
+    QuestionTypeMapper queTypeMapper;
     @Autowired
     BankSingleChoiceQueMapper bankSingleChoiceQueMapper;
     @Autowired
@@ -51,9 +51,9 @@ public class TeacherBankManageServiceImpl implements TeacherBankManageService {
             map.put("answerExplain", bankSingleChoiceQue.getAnswerExplain());
             int langId = bankSingleChoiceQue.getLangId();
             map.put("langId", langId);
-            ProgramingLanguage programingLanguage = programingLanguageMapper.selectByPrimaryKey(langId);
-            map.put("langName", programingLanguage.getLangName());
-            map.put("langImgSrc", programingLanguage.getLangImgSrc());
+            QuestionType questionType = queTypeMapper.selectByPrimaryKey(langId);
+            map.put("langName", questionType.getLangName());
+            map.put("langImgSrc", questionType.getLangImgSrc());
             resultList.add(map);
         }
         return resultList;
@@ -67,7 +67,7 @@ public class TeacherBankManageServiceImpl implements TeacherBankManageService {
         if (!content.equals("undefined")) {
             criteria.andSingleContentLike("%" + content + "%");
         }
-        if(langId != null) {
+        if(langId != 0) {
             criteria.andLangIdEqualTo(langId);
         }
         if (!composeFlag.equals("undefined")) {
@@ -94,9 +94,9 @@ public class TeacherBankManageServiceImpl implements TeacherBankManageService {
             map.put("answerExplain", bankSingleChoiceQue.getAnswerExplain());
             int allLangId = bankSingleChoiceQue.getLangId();
             map.put("langId", allLangId);
-            ProgramingLanguage programingLanguage = programingLanguageMapper.selectByPrimaryKey(allLangId);
-            map.put("langName", programingLanguage.getLangName());
-            map.put("langImgSrc", programingLanguage.getLangImgSrc());
+            QuestionType questionType = queTypeMapper.selectByPrimaryKey(allLangId);
+            map.put("langName", questionType.getLangName());
+            map.put("langImgSrc", questionType.getLangImgSrc());
             resultList.add(map);
         }
         return resultList;
@@ -231,9 +231,9 @@ public class TeacherBankManageServiceImpl implements TeacherBankManageService {
             map.put("answerExplain", bankMultipleChoiceQue.getAnswerExplain());
             int langId = bankMultipleChoiceQue.getLangId();
             map.put("langId", langId);
-            ProgramingLanguage programingLanguage = programingLanguageMapper.selectByPrimaryKey(langId);
-            map.put("langName", programingLanguage.getLangName());
-            map.put("langImgSrc", programingLanguage.getLangImgSrc());
+            QuestionType questionType = queTypeMapper.selectByPrimaryKey(langId);
+            map.put("langName", questionType.getLangName());
+            map.put("langImgSrc", questionType.getLangImgSrc());
             resultList.add(map);
         }
         return resultList;
@@ -275,9 +275,9 @@ public class TeacherBankManageServiceImpl implements TeacherBankManageService {
             map.put("composeFlag", bankMultipleChoiceQue.getComposeFlag());
             int allLangId = bankMultipleChoiceQue.getLangId();
             map.put("langId", allLangId);
-            ProgramingLanguage programingLanguage = programingLanguageMapper.selectByPrimaryKey(allLangId);
-            map.put("langName", programingLanguage.getLangName());
-            map.put("langImgSrc", programingLanguage.getLangImgSrc());
+            QuestionType questionType = queTypeMapper.selectByPrimaryKey(allLangId);
+            map.put("langName", questionType.getLangName());
+            map.put("langImgSrc", questionType.getLangImgSrc());
             resultList.add(map);
         }
         return resultList;
@@ -403,9 +403,9 @@ public class TeacherBankManageServiceImpl implements TeacherBankManageService {
             map.put("answerExplain", bankJudgeQue.getAnswerExplain());
             int langId = bankJudgeQue.getLangId();
             map.put("langId", langId);
-            ProgramingLanguage programingLanguage = programingLanguageMapper.selectByPrimaryKey(langId);
-            map.put("langName", programingLanguage.getLangName());
-            map.put("langImgSrc", programingLanguage.getLangImgSrc());
+            QuestionType questionType = queTypeMapper.selectByPrimaryKey(langId);
+            map.put("langName", questionType.getLangName());
+            map.put("langImgSrc", questionType.getLangImgSrc());
             resultList.add(map);
         }
         return resultList;
@@ -419,7 +419,7 @@ public class TeacherBankManageServiceImpl implements TeacherBankManageService {
         if (!content.equals("undefined")) {
             criteria.andJudgeContentLike("%" + content + "%");
         }
-        if(langId != null) {
+        if(langId != 0) {
             criteria.andLangIdEqualTo(langId);
         }
         if (!composeFlag.equals("undefined")) {
@@ -437,9 +437,9 @@ public class TeacherBankManageServiceImpl implements TeacherBankManageService {
             map.put("answerExplain", bankJudgeQue.getAnswerExplain());
             int allLangId = bankJudgeQue.getLangId();
             map.put("langId", allLangId);
-            ProgramingLanguage programingLanguage = programingLanguageMapper.selectByPrimaryKey(allLangId);
-            map.put("langName", programingLanguage.getLangName());
-            map.put("langImgSrc", programingLanguage.getLangImgSrc());
+            QuestionType questionType = queTypeMapper.selectByPrimaryKey(allLangId);
+            map.put("langName", questionType.getLangName());
+            map.put("langImgSrc", questionType.getLangImgSrc());
             resultList.add(map);
         }
         return resultList;
@@ -520,9 +520,9 @@ public class TeacherBankManageServiceImpl implements TeacherBankManageService {
             int langId = bankFillQue.getLangId();
             map.put("langId", langId);
             map.put("fillImgSrc", bankFillQue.getFillImgSrc());
-            ProgramingLanguage programingLanguage = programingLanguageMapper.selectByPrimaryKey(langId);
-            map.put("langName", programingLanguage.getLangName());
-            map.put("langImgSrc", programingLanguage.getLangImgSrc());
+            QuestionType questionType = queTypeMapper.selectByPrimaryKey(langId);
+            map.put("langName", questionType.getLangName());
+            map.put("langImgSrc", questionType.getLangImgSrc());
             resultList.add(map);
         }
         return resultList;
@@ -536,7 +536,7 @@ public class TeacherBankManageServiceImpl implements TeacherBankManageService {
         if (!content.equals("undefined")) {
             criteria.andFillContentLike("%" + content + "%");
         }
-        if(langId != null) {
+        if(langId != 0) {
             criteria.andLangIdEqualTo(langId);
         }
         if (!composeFlag.equals("undefined")) {
@@ -555,9 +555,9 @@ public class TeacherBankManageServiceImpl implements TeacherBankManageService {
             int allLangId = bankFillQue.getLangId();
             map.put("langId", allLangId);
             map.put("fillImgSrc", bankFillQue.getFillImgSrc());
-            ProgramingLanguage programingLanguage = programingLanguageMapper.selectByPrimaryKey(allLangId);
-            map.put("langName", programingLanguage.getLangName());
-            map.put("langImgSrc", programingLanguage.getLangImgSrc());
+            QuestionType questionType = queTypeMapper.selectByPrimaryKey(allLangId);
+            map.put("langName", questionType.getLangName());
+            map.put("langImgSrc", questionType.getLangImgSrc());
             resultList.add(map);
         }
         return resultList;

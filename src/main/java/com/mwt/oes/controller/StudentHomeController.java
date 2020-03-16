@@ -44,7 +44,7 @@ public class StudentHomeController {
      */
 //    @RequestMapping("/getLanguagesInfo")
 //    public ServerResponse getLanguagesInfo(){
-//        List<ProgramingLanguage> resultList = studentHomeService.getLanguagesInfo();
+//        List<QuestionType> resultList = studentHomeService.getLanguagesInfo();
 //        if(resultList != null && resultList.size() > 0){
 //            return ServerResponse.createBySuccess("编程语言信息获取成功",resultList);
 //        }
@@ -58,7 +58,7 @@ public class StudentHomeController {
      */
     @RequestMapping("/getPracticeKind")
     public ServerResponse getPracticeKind(){
-        List<ProgramingLanguage> resultList = studentHomeService.getPracticeKind();
+        List<QuestionType> resultList = studentHomeService.getPracticeKind();
         if(resultList != null && resultList.size() > 0){
             return ServerResponse.createBySuccess("练习题型分类获取成功",resultList);
         }
@@ -72,10 +72,10 @@ public class StudentHomeController {
      */
     @RequestMapping("/getLanguageInfoById")
     public ServerResponse getLanguageInfoById(@RequestParam("langId")Integer langId ){
-        ProgramingLanguage programingLanguage = studentHomeService.getLanguageInfoById(langId);
-        if(programingLanguage != null){
-//            log.info(programingLanguage.getLangImgSrc());
-            return ServerResponse.createBySuccess("编程语言id为" + langId + "的信息获取成功",programingLanguage);
+        QuestionType questionType = studentHomeService.getLanguageInfoById(langId);
+        if(questionType != null){
+//            log.info(questionType.getLangImgSrc());
+            return ServerResponse.createBySuccess("编程语言id为" + langId + "的信息获取成功", questionType);
         }
         else {
             return ServerResponse.createByError("编程语言id为" + langId + "的信息获取失败");
@@ -87,10 +87,10 @@ public class StudentHomeController {
      */
     @RequestMapping("/getKindInfoById")
     public ServerResponse getKindInfoById(@RequestParam("kindId")Integer kindId ){
-        ProgramingLanguage programingLanguage = studentHomeService.getKindInfoById(kindId);
-        if(programingLanguage != null){
-//            log.info(programingLanguage.getLangImgSrc());
-            return ServerResponse.createBySuccess("题型id为" + kindId + "的信息获取成功",programingLanguage);
+        QuestionType questionType = studentHomeService.getKindInfoById(kindId);
+        if(questionType != null){
+//            log.info(questionType.getLangImgSrc());
+            return ServerResponse.createBySuccess("题型id为" + kindId + "的信息获取成功", questionType);
         }
         else {
             return ServerResponse.createByError("题型id为" + kindId + "的信息获取失败");

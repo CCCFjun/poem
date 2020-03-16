@@ -1,7 +1,7 @@
 package com.mwt.oes.controller;
 
 import com.mwt.oes.domain.Paper;
-import com.mwt.oes.domain.ProgramingLanguage;
+import com.mwt.oes.domain.QuestionType;
 import com.mwt.oes.domain.StudentPaperAnswer;
 import com.mwt.oes.service.StudentHomeService;
 import com.mwt.oes.service.StudentWrongService;
@@ -36,19 +36,19 @@ public class StudentWrongController {
      */
     @RequestMapping("/getWrongLanguagesInfo")
     public ServerResponse getSearchPapers(){
-        List<ProgramingLanguage> programingLanguageList = studentHomeService.getLanguagesInfo();
+        List<QuestionType> questionTypeList = studentHomeService.getLanguagesInfo();
         List<Map<String, Object>> resultList = new ArrayList<>();
         Map<String, Object> mapAll = new HashMap<>();
         mapAll.put("langId",0);
         mapAll.put("langName","全部");
         resultList.add(mapAll);
-        for (ProgramingLanguage programingLanguage : programingLanguageList){
+        for (QuestionType questionType : questionTypeList){
             Map<String, Object> map = new HashMap<>();
-            map.put("langId",programingLanguage.getLangId());
-            map.put("langName",programingLanguage.getLangName());
+            map.put("langId", questionType.getLangId());
+            map.put("langName", questionType.getLangName());
             resultList.add(map);
         }
-        if(programingLanguageList != null && programingLanguageList.size() > 0){
+        if(questionTypeList != null && questionTypeList.size() > 0){
             return ServerResponse.createBySuccess("获取错题页面全部编程语言信息成功",resultList);
         }
         else {
@@ -74,32 +74,6 @@ public class StudentWrongController {
         return ServerResponse.createBySuccess("获取错题页面指定语言错题试卷成功",resultList);
     }
 
-    /*
-       通过sno和paperId获取错题试卷及单选题、多选题、判断题和填空题信息
-    */
-//    @RequestMapping("/getPapersInfoByWrongPaperId")
-//    public ServerResponse getPapersInfoByWrongPaperId(@RequestParam("sno")String sno,
-//                                                      @RequestParam("paperId")Integer paperId ){
-//        Paper paper = studentHomeService.getPapersInfoByPaperId(paperId);
-//        Map<String, Integer> numObj = studentHomeService.getPaperQueNumByPaperId(paperId);
-//        List<Map<String, Object>> singleQueList = studentWrongService.getSingleQueListByWrongPaperId(sno, paperId);
-//        List<Map<String, Object>> multipleQueList = studentWrongService.getMultipleQueListByWrongPaperId(sno, paperId);
-//        List<Map<String, Object>> judgeQueList = studentWrongService.getJudgeQueListByWrongPaperId(sno, paperId);
-//        List<Map<String, Object>> fillQueList = studentWrongService.getFillQueListByWrongPaperId(sno, paperId);
-//        if(paper != null && numObj != null){
-//            Map<String, Object> map = new HashMap<>();
-//            map.put("paperInfo",paper);
-//            map.put("queNumInfo",numObj);
-//            map.put("singleQueList",singleQueList);
-//            map.put("multipleQueList",multipleQueList);
-//            map.put("judgeQueList",judgeQueList);
-//            map.put("fillQueList",fillQueList);
-//            return ServerResponse.createBySuccess("错题试卷id为" + paperId + "的试卷信息获取成功",map);
-//        }
-//        else {
-//            return ServerResponse.createByError("错题试卷id为" + paperId + "的试卷信息获取失败");
-//        }
-//    }
     /*
        通过userPhone和paperId获取错题试卷及单选题、多选题、判断题和填空题信息
     */

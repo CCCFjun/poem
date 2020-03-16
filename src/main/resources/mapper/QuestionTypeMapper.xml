@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.mwt.oes.dao.ProgramingLanguageMapper" >
-  <resultMap id="BaseResultMap" type="com.mwt.oes.domain.ProgramingLanguage" >
+<mapper namespace="com.mwt.oes.dao.QuestionTypeMapper" >
+  <resultMap id="BaseResultMap" type="com.mwt.oes.domain.QuestionType" >
     <id column="lang_id" property="langId" jdbcType="INTEGER" />
     <result column="lang_name" property="langName" jdbcType="VARCHAR" />
     <result column="lang_desc" property="langDesc" jdbcType="VARCHAR" />
@@ -74,13 +74,13 @@
     lang_id, lang_name, lang_desc, lang_img_src, lang_create_time, lang_created_by, lang_change_time, 
     lang_last_changer, is_recommend
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mwt.oes.domain.ProgramingLanguageExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mwt.oes.domain.QuestionTypeExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from programing_language
+    from question_type
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -91,21 +91,21 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from programing_language
+    from question_type
     where lang_id = #{langId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from programing_language
+    delete from question_type
     where lang_id = #{langId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.mwt.oes.domain.ProgramingLanguageExample" >
-    delete from programing_language
+  <delete id="deleteByExample" parameterType="com.mwt.oes.domain.QuestionTypeExample" >
+    delete from question_type
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.mwt.oes.domain.ProgramingLanguage" >
-    insert into programing_language (lang_id, lang_name, lang_desc, 
+  <insert id="insert" parameterType="com.mwt.oes.domain.QuestionType" >
+    insert into question_type (lang_id, lang_name, lang_desc, 
       lang_img_src, lang_create_time, lang_created_by, 
       lang_change_time, lang_last_changer, is_recommend
       )
@@ -114,8 +114,8 @@
       #{langChangeTime,jdbcType=TIMESTAMP}, #{langLastChanger,jdbcType=VARCHAR}, #{isRecommend,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.mwt.oes.domain.ProgramingLanguage" >
-    insert into programing_language
+  <insert id="insertSelective" parameterType="com.mwt.oes.domain.QuestionType" >
+    insert into question_type
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="langId != null" >
         lang_id,
@@ -175,14 +175,14 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.mwt.oes.domain.ProgramingLanguageExample" resultType="java.lang.Integer" >
-    select count(*) from programing_language
+  <select id="countByExample" parameterType="com.mwt.oes.domain.QuestionTypeExample" resultType="java.lang.Integer" >
+    select count(*) from question_type
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update programing_language
+    update question_type
     <set >
       <if test="record.langId != null" >
         lang_id = #{record.langId,jdbcType=INTEGER},
@@ -217,7 +217,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update programing_language
+    update question_type
     set lang_id = #{record.langId,jdbcType=INTEGER},
       lang_name = #{record.langName,jdbcType=VARCHAR},
       lang_desc = #{record.langDesc,jdbcType=VARCHAR},
@@ -231,8 +231,8 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.mwt.oes.domain.ProgramingLanguage" >
-    update programing_language
+  <update id="updateByPrimaryKeySelective" parameterType="com.mwt.oes.domain.QuestionType" >
+    update question_type
     <set >
       <if test="langName != null" >
         lang_name = #{langName,jdbcType=VARCHAR},
@@ -261,8 +261,8 @@
     </set>
     where lang_id = #{langId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.mwt.oes.domain.ProgramingLanguage" >
-    update programing_language
+  <update id="updateByPrimaryKey" parameterType="com.mwt.oes.domain.QuestionType" >
+    update question_type
     set lang_name = #{langName,jdbcType=VARCHAR},
       lang_desc = #{langDesc,jdbcType=VARCHAR},
       lang_img_src = #{langImgSrc,jdbcType=VARCHAR},

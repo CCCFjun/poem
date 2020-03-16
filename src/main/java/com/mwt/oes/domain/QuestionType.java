@@ -2,7 +2,7 @@ package com.mwt.oes.domain;
 
 import java.util.Date;
 
-public class ProgramingLanguage {
+public class QuestionType {
     private Integer langId;
 
     private String langName;

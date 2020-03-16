@@ -105,7 +105,7 @@
     insert into paper_que (que_id, que_type, single_id, 
       multiple_id, judge_id, fill_id, 
       paper_id)
-    values (#{queId,jdbcType=INTEGER}, #{queType,jdbcType=INTEGER}, #{singleId,jdbcType=INTEGER}, 
+    values (#{queId,jdbcType=INTEGER}, #{queType,jdbcType=INTEGER}, #{singleId,jdbcType=INTEGER},
       #{multipleId,jdbcType=INTEGER}, #{judgeId,jdbcType=INTEGER}, #{fillId,jdbcType=INTEGER}, 
       #{paperId,jdbcType=INTEGER})
   </insert>

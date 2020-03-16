@@ -3,7 +3,7 @@ package com.mwt.oes.service;
 import java.util.List;
 import java.util.Map;
 
-public interface TeacherBankManageService {
+public interface AdminBankManageService {
     public List<Map<String, Object>> getSingleList();
     public List<Map<String, Object>> searchSingleList(String content, Integer langId, String composeFlag);
     public int deleteSingle(Integer singleId);

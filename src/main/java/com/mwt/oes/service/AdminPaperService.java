@@ -3,10 +3,10 @@ package com.mwt.oes.service;
 import java.util.List;
 import java.util.Map;
 
-public interface TeacherPaperService {
+public interface AdminPaperService {
     public List<Map<String, Object>> getPapersList();
     public List<Map<String, Object>> getLangOptions();
-    public List<Map<String, Object>> searchPapersList(String paperName, Integer langId, Integer paperType);
+    public List<Map<String, Object>> searchPapersList(String paperName, Integer paperType);
     public int selectPaperScoreByPaperId(Integer paperId);
     public int deletePaper(Integer paperId);
     public Map<String, Object> getPaperQueDetailByPaperId(Integer paperId, Integer totalNum);

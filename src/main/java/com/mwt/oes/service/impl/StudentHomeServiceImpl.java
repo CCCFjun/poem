@@ -4,7 +4,6 @@ import com.mwt.oes.dao.*;
 import com.mwt.oes.domain.*;
 import com.mwt.oes.service.StudentHomeService;
 import com.mwt.oes.util.FindContentWithImage;
-import com.mwt.oes.util.MultipleAnswersUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +15,7 @@ public class StudentHomeServiceImpl implements StudentHomeService {
     @Autowired
     StudentHomeRotationImgMapper studentHomeRotationImgMapper;
     @Autowired
-    ProgramingLanguageMapper programingLanguageMapper;
+    QuestionTypeMapper queTypeMapper;
     @Autowired
     PaperMapper paperMapper;
     @Autowired
@@ -50,10 +49,10 @@ public class StudentHomeServiceImpl implements StudentHomeService {
         获取学生首页全部编程语言信息
      */
     @Override
-    public List<ProgramingLanguage> getLanguagesInfo() {
-        ProgramingLanguageExample example = new ProgramingLanguageExample();
+    public List<QuestionType> getLanguagesInfo() {
+        QuestionTypeExample example = new QuestionTypeExample();
         example.setOrderByClause("lang_id asc");
-        List<ProgramingLanguage> result = programingLanguageMapper.selectByExample(example);
+        List<QuestionType> result = queTypeMapper.selectByExample(example);
         return result;
     }
 
@@ -61,10 +60,10 @@ public class StudentHomeServiceImpl implements StudentHomeService {
         获取全部练习题型分类
      */
     @Override
-    public List<ProgramingLanguage> getPracticeKind() {
-        ProgramingLanguageExample example = new ProgramingLanguageExample();
+    public List<QuestionType> getPracticeKind() {
+        QuestionTypeExample example = new QuestionTypeExample();
         example.setOrderByClause("lang_id asc");
-        List<ProgramingLanguage> result = programingLanguageMapper.selectByExample(example);
+        List<QuestionType> result = queTypeMapper.selectByExample(example);
         return result;
     }
 
@@ -72,18 +71,18 @@ public class StudentHomeServiceImpl implements StudentHomeService {
         通过langId获取编程语言信息
      */
     @Override
-    public ProgramingLanguage getLanguageInfoById(Integer langId) {
-        ProgramingLanguage programingLanguage = programingLanguageMapper.selectByPrimaryKey(langId);
-        return programingLanguage;
+    public QuestionType getLanguageInfoById(Integer langId) {
+        QuestionType questionType = queTypeMapper.selectByPrimaryKey(langId);
+        return questionType;
     }
 
     /*
         通过langId获取题型信息
      */
     @Override
-    public ProgramingLanguage getKindInfoById(Integer kindId) {
-        ProgramingLanguage programingLanguage = programingLanguageMapper.selectByPrimaryKey(kindId);
-        return programingLanguage;
+    public QuestionType getKindInfoById(Integer kindId) {
+        QuestionType questionType = queTypeMapper.selectByPrimaryKey(kindId);
+        return questionType;
     }
 
     /*
@@ -547,7 +546,7 @@ public class StudentHomeServiceImpl implements StudentHomeService {
 
         List<Map<String, Object>> chartDataBarCorrect = new ArrayList<>();
         StudentPaperAnswer studentPaperAnswerCorrect = new StudentPaperAnswer();
-        studentPaperAnswerCorrect.setSno(sno);
+//        studentPaperAnswerCorrect.setSno(sno);
         studentPaperAnswerCorrect.setPaperId(paperId);
         Map<String, Object> singleCorrectMap = new HashMap<>();
         singleCorrectMap.put("name","单选题" + queNum.get("singleNum") + "道");

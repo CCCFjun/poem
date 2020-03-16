@@ -66,7 +66,7 @@ public class StudentWrongServiceImpl implements StudentWrongService {
             map.put("totalNum",queNum.get("totalNum"));
 
             StudentPaperAnswer studentPaperAnswerCorrect = new StudentPaperAnswer();
-            studentPaperAnswerCorrect.setSno(sno);
+//            studentPaperAnswerCorrect.setSno(sno);
             studentPaperAnswerCorrect.setPaperId(paper.getPaperId());
             map.put("singleErrorNum",queNum.get("singleNum") - studentPaperAnswerMapper.selectSingleCorrectCount(studentPaperAnswerCorrect));
             map.put("multipleErrorNum",queNum.get("multipleNum") - studentPaperAnswerMapper.selectMultipleCorrectCount(studentPaperAnswerCorrect));
@@ -114,7 +114,7 @@ public class StudentWrongServiceImpl implements StudentWrongService {
                 map.put("totalNum",queNum.get("totalNum"));
 
                 StudentPaperAnswer studentPaperAnswerCorrect = new StudentPaperAnswer();
-                studentPaperAnswerCorrect.setSno(sno);
+//                studentPaperAnswerCorrect.setSno(sno);
                 studentPaperAnswerCorrect.setPaperId(paper.getPaperId());
                 map.put("singleErrorNum",queNum.get("singleNum") - studentPaperAnswerMapper.selectSingleCorrectCount(studentPaperAnswerCorrect));
                 map.put("multipleErrorNum",queNum.get("multipleNum") - studentPaperAnswerMapper.selectMultipleCorrectCount(studentPaperAnswerCorrect));
@@ -160,6 +160,7 @@ public class StudentWrongServiceImpl implements StudentWrongService {
             criteria1.andQueIdEqualTo(queId);
             criteria1.andUserPhoneEqualTo(userPhone);
             List<StudentPaperAnswer> studentPaperAnswerList = studentPaperAnswerMapper.selectByExample(studentPaperAnswerExample);
+
             StudentPaperAnswer studentPaperAnswer = studentPaperAnswerList.get(0);
             map.put("answerId",studentPaperAnswer.getAnswerId());
             map.put("stuAnswer",studentPaperAnswer.getStuAnswer());
@@ -249,7 +250,7 @@ public class StudentWrongServiceImpl implements StudentWrongService {
             StudentPaperAnswerExample studentPaperAnswerExample = new StudentPaperAnswerExample();
             StudentPaperAnswerExample.Criteria criteria1 = studentPaperAnswerExample.createCriteria();
             criteria1.andQueIdEqualTo(queId);
-            criteria1.andSnoEqualTo(sno);
+//            criteria1.andSnoEqualTo(sno);
             List<StudentPaperAnswer> studentPaperAnswerList = studentPaperAnswerMapper.selectByExample(studentPaperAnswerExample);
             StudentPaperAnswer studentPaperAnswer = studentPaperAnswerList.get(0);
             map.put("answerId",studentPaperAnswer.getAnswerId());
@@ -526,7 +527,7 @@ public class StudentWrongServiceImpl implements StudentWrongService {
 
         StudentPaperAnswerExample studentPaperAnswerExample = new StudentPaperAnswerExample();
         StudentPaperAnswerExample.Criteria criteria = studentPaperAnswerExample.createCriteria();
-        criteria.andSnoEqualTo(sno);
+//        criteria.andSnoEqualTo(sno);
         criteria.andIscollectEqualTo("1");
         List<StudentPaperAnswer> studentPaperAnswerList = studentPaperAnswerMapper.selectByExample(studentPaperAnswerExample);
         for (StudentPaperAnswer studentPaperAnswer : studentPaperAnswerList){

@@ -20,7 +20,7 @@ public class AdminSystemController {
     private AdminSystemService adminSystemService;
 
     /*
-        校验教师登录
+        校验管理员登录
      */
     @RequestMapping(value = "/adminLogin", method = RequestMethod.POST)
     public ServerResponse adminLogin(@RequestBody(required = false)Admin admin,

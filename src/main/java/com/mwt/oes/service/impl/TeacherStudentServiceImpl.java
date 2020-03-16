@@ -117,7 +117,7 @@ public class TeacherStudentServiceImpl  implements TeacherStudentService {
         // 删除paper_answer表该学生该试卷信息
         StudentPaperAnswerExample studentPaperAnswerExample = new StudentPaperAnswerExample();
         StudentPaperAnswerExample.Criteria criteria1 = studentPaperAnswerExample.createCriteria();
-        criteria1.andSnoEqualTo(sno);
+//        criteria1.andSnoEqualTo(sno);
         criteria1.andPaperIdEqualTo(paperId);
         int answerResult = studentPaperAnswerMapper.deleteByExample(studentPaperAnswerExample);
         //  删除paper_score表该学生试卷信息
@@ -220,7 +220,7 @@ public class TeacherStudentServiceImpl  implements TeacherStudentService {
             int score = 0;
             if(studentPaperScore.getScore() != null){
                 StudentPaperAnswer studentPaperAnswerCorrect = new StudentPaperAnswer();
-                studentPaperAnswerCorrect.setSno(sno);
+//                studentPaperAnswerCorrect.setSno(sno);
                 studentPaperAnswerCorrect.setPaperId(paperId);
                 single = studentPaperAnswerMapper.selectSingleCorrectCount(studentPaperAnswerCorrect)*paper.getSingleScore();
                 multiple = studentPaperAnswerMapper.selectMultipleCorrectCount(studentPaperAnswerCorrect)*paper.getMultipleScore();

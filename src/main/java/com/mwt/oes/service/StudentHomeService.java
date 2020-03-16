@@ -1,7 +1,7 @@
 package com.mwt.oes.service;
 
 import com.mwt.oes.domain.Paper;
-import com.mwt.oes.domain.ProgramingLanguage;
+import com.mwt.oes.domain.QuestionType;
 import com.mwt.oes.domain.StudentHomeRotationImg;
 import com.mwt.oes.domain.StudentPaperScore;
 
@@ -10,10 +10,10 @@ import java.util.Map;
 
 public interface StudentHomeService {
     public List<StudentHomeRotationImg> getRotationImages();
-    public List<ProgramingLanguage> getLanguagesInfo();
-    public List<ProgramingLanguage> getPracticeKind();
-    public ProgramingLanguage getLanguageInfoById(Integer langId);
-    public ProgramingLanguage getKindInfoById(Integer langId);
+    public List<QuestionType> getLanguagesInfo();
+    public List<QuestionType> getPracticeKind();
+    public QuestionType getLanguageInfoById(Integer langId);
+    public QuestionType getKindInfoById(Integer langId);
     public List<Paper> getPapersInfo(Integer langId);
     public Paper getPapersInfoByPaperId(Integer paperId);
     public Map<String, Integer> getPaperQueNumByPaperId(Integer paperId);

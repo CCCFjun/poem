@@ -18,16 +18,16 @@
             <property name="forceBigDecimals" value="false"/>  
         </javaTypeResolver>  
         <!-- 生成模型的包名和位置-->  
-        <javaModelGenerator targetPackage="com.mwt.oes.domain" targetProject="E:\就先备着\考试系统4\onlineexam-system-backend\src\main\java">
+        <javaModelGenerator targetPackage="com.mwt.oes.domain" targetProject="E:\poemSystem\poem\src\main\java">
             <property name="enableSubPackages" value="true"/>  
             <property name="trimStrings" value="true"/>  
         </javaModelGenerator>  
         <!-- 生成映射文件的包名和位置-->  
-        <sqlMapGenerator targetPackage="mapper" targetProject="E:\就先备着\考试系统4\onlineexam-system-backend\src\main\resources">
+        <sqlMapGenerator targetPackage="mapper" targetProject="E:\poemSystem\poem\src\main\resources">
             <property name="enableSubPackages" value="true"/>  
         </sqlMapGenerator>  
         <!-- 生成DAO的包名和位置-->  
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.mwt.oes.dao" targetProject="E:\就先备着\考试系统4\onlineexam-system-backend\src\main\java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.mwt.oes.dao" targetProject="E:\poemSystem\poem\src\main\java">
             <property name="enableSubPackages" value="true"/>  
         </javaClientGenerator>  
         <!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名-->  
@@ -38,7 +38,7 @@
 		<table tableName="bank_single_choice_que" domainObjectName="BankSingleChoiceQue"></table>
 		<table tableName="paper" domainObjectName="Paper"></table>
 		<table tableName="paper_que" domainObjectName="PaperQue"></table>
-		<table tableName="programing_language" domainObjectName="ProgramingLanguage"></table>
+		<table tableName="que_type" domainObjectName="QueType"></table>
 		<table tableName="student" domainObjectName="Student"></table>
 		<table tableName="student_feedback" domainObjectName="StudentFeedback"></table>
 		<table tableName="student_home_rotation_img" domainObjectName="StudentHomeRotationImg"></table>
