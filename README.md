@@ -34,4 +34,6 @@
 ##3月16日
 ###步骤
 1. 整理代码
-    - studentPaperAnswer表中删除sno，重命名userPaperAnswer
+    - studentPaperAnswer表中删除sno，重命名userPaperAnswer,会出现一堆错误，改不过来，先放着
+    - 科举部分，使用UserExamController
+    - 收藏题目，UserCollectingController

@@ -7,7 +7,6 @@
     <result column="isCorrect" property="iscorrect" jdbcType="VARCHAR" />
     <result column="que_id" property="queId" jdbcType="INTEGER" />
     <result column="paper_id" property="paperId" jdbcType="INTEGER" />
-    <result column="sno" property="sno" jdbcType="CHAR" />
     <result column="isCollect" property="iscollect" jdbcType="VARCHAR" />
     <result column="user_phone" property="userPhone" jdbcType="CHAR" />
   </resultMap>
@@ -70,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    answer_id, stu_answer, isCorrect, que_id, paper_id, sno, isCollect, user_phone
+    answer_id, stu_answer, isCorrect, que_id, paper_id, isCollect, user_phone
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mwt.oes.domain.StudentPaperAnswerExample" >
     select
@@ -87,43 +86,43 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from student_paper_answer
     where answer_id = #{answerId,jdbcType=INTEGER}
   </select>
 
-  <select id="selectSingleCorrectCount" resultType="java.lang.Integer" parameterType="com.mwt.oes.domain.StudentPaperAnswer">
-    SELECT
-    COUNT(*)
-    FROM paper_que p,student_paper_answer s
-    WHERE p.que_type = 1 AND p.que_id = s.que_id AND s.sno = #{sno,jdbcType=CHAR}
-    AND s.paper_id = #{paperId,jdbcType=INTEGER} AND s.isCorrect = 1
-  </select>
+  <!--<select id="selectSingleCorrectCount" resultType="java.lang.Integer" parameterType="com.mwt.oes.domain.StudentPaperAnswer">-->
+    <!--SELECT-->
+    <!--COUNT(*)-->
+    <!--FROM paper_que p,student_paper_answer s-->
+    <!--WHERE p.que_type = 1 AND p.que_id = s.que_id AND s.sno = #{sno,jdbcType=CHAR}-->
+    <!--AND s.paper_id = #{paperId,jdbcType=INTEGER} AND s.isCorrect = 1-->
+  <!--</select>-->
 
-  <select id="selectMultipleCorrectCount" resultType="java.lang.Integer" parameterType="com.mwt.oes.domain.StudentPaperAnswer">
-    SELECT
-    COUNT(*)
-    FROM paper_que p,student_paper_answer s
-    WHERE p.que_type = 2 AND p.que_id = s.que_id AND s.sno = #{sno,jdbcType=CHAR}
-    AND s.paper_id = #{paperId,jdbcType=INTEGER} AND s.isCorrect = 1
-  </select>
+  <!--<select id="selectMultipleCorrectCount" resultType="java.lang.Integer" parameterType="com.mwt.oes.domain.StudentPaperAnswer">-->
+    <!--SELECT-->
+    <!--COUNT(*)-->
+    <!--FROM paper_que p,student_paper_answer s-->
+    <!--WHERE p.que_type = 2 AND p.que_id = s.que_id AND s.sno = #{sno,jdbcType=CHAR}-->
+    <!--AND s.paper_id = #{paperId,jdbcType=INTEGER} AND s.isCorrect = 1-->
+  <!--</select>-->
 
-  <select id="selectJudgeCorrectCount" resultType="java.lang.Integer" parameterType="com.mwt.oes.domain.StudentPaperAnswer">
-    SELECT
-    COUNT(*)
-    FROM paper_que p,student_paper_answer s
-    WHERE p.que_type = 3 AND p.que_id = s.que_id AND s.sno = #{sno,jdbcType=CHAR}
-    AND s.paper_id = #{paperId,jdbcType=INTEGER} AND s.isCorrect = 1
-  </select>
+  <!--<select id="selectJudgeCorrectCount" resultType="java.lang.Integer" parameterType="com.mwt.oes.domain.StudentPaperAnswer">-->
+    <!--SELECT-->
+    <!--COUNT(*)-->
+    <!--FROM paper_que p,student_paper_answer s-->
+    <!--WHERE p.que_type = 3 AND p.que_id = s.que_id AND s.sno = #{sno,jdbcType=CHAR}-->
+    <!--AND s.paper_id = #{paperId,jdbcType=INTEGER} AND s.isCorrect = 1-->
+  <!--</select>-->
 
-  <select id="selectFillCorrectCount" resultType="java.lang.Integer" parameterType="com.mwt.oes.domain.StudentPaperAnswer">
-    SELECT
-    COUNT(*)
-    FROM paper_que p,student_paper_answer s
-    WHERE p.que_type = 4 AND p.que_id = s.que_id AND s.sno = #{sno,jdbcType=CHAR}
-    AND s.paper_id = #{paperId,jdbcType=INTEGER} AND s.isCorrect = 1
-  </select>
+  <!--<select id="selectFillCorrectCount" resultType="java.lang.Integer" parameterType="com.mwt.oes.domain.StudentPaperAnswer">-->
+    <!--SELECT-->
+    <!--COUNT(*)-->
+    <!--FROM paper_que p,student_paper_answer s-->
+    <!--WHERE p.que_type = 4 AND p.que_id = s.que_id AND s.sno = #{sno,jdbcType=CHAR}-->
+    <!--AND s.paper_id = #{paperId,jdbcType=INTEGER} AND s.isCorrect = 1-->
+  <!--</select>-->
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from student_paper_answer
@@ -136,11 +135,11 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.mwt.oes.domain.StudentPaperAnswer" >
-    insert into student_paper_answer (answer_id, stu_answer, isCorrect, 
-      que_id, paper_id, sno, isCollect
+    insert into student_paper_answer (answer_id, stu_answer, isCorrect,
+      que_id, paper_id, isCollect
       )
-    values (#{answerId,jdbcType=INTEGER}, #{stuAnswer,jdbcType=VARCHAR}, #{iscorrect,jdbcType=VARCHAR}, 
-      #{queId,jdbcType=INTEGER}, #{paperId,jdbcType=INTEGER}, #{sno,jdbcType=CHAR}, #{iscollect,jdbcType=VARCHAR}
+    values (#{answerId,jdbcType=INTEGER}, #{stuAnswer,jdbcType=VARCHAR}, #{iscorrect,jdbcType=VARCHAR},
+      #{queId,jdbcType=INTEGER}, #{paperId,jdbcType=INTEGER}, #{iscollect,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.mwt.oes.domain.StudentPaperAnswer" >
@@ -216,9 +215,6 @@
       <if test="record.paperId != null" >
         paper_id = #{record.paperId,jdbcType=INTEGER},
       </if>
-      <if test="record.sno != null" >
-        sno = #{record.sno,jdbcType=CHAR},
-      </if>
       <if test="record.iscollect != null" >
         isCollect = #{record.iscollect,jdbcType=VARCHAR},
       </if>
@@ -234,7 +230,6 @@
       isCorrect = #{record.iscorrect,jdbcType=VARCHAR},
       que_id = #{record.queId,jdbcType=INTEGER},
       paper_id = #{record.paperId,jdbcType=INTEGER},
-      sno = #{record.sno,jdbcType=CHAR},
       isCollect = #{record.iscollect,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -255,9 +250,6 @@
       <if test="paperId != null" >
         paper_id = #{paperId,jdbcType=INTEGER},
       </if>
-      <if test="sno != null" >
-        sno = #{sno,jdbcType=CHAR},
-      </if>
       <if test="iscollect != null" >
         isCollect = #{iscollect,jdbcType=VARCHAR},
       </if>
@@ -270,7 +262,6 @@
       isCorrect = #{iscorrect,jdbcType=VARCHAR},
       que_id = #{queId,jdbcType=INTEGER},
       paper_id = #{paperId,jdbcType=INTEGER},
-      sno = #{sno,jdbcType=CHAR},
       isCollect = #{iscollect,jdbcType=VARCHAR}
     where answer_id = #{answerId,jdbcType=INTEGER}
   </update>

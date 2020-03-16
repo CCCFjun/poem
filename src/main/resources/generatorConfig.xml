@@ -42,7 +42,7 @@
 		<table tableName="student" domainObjectName="Student"></table>
 		<table tableName="student_feedback" domainObjectName="StudentFeedback"></table>
 		<table tableName="student_home_rotation_img" domainObjectName="StudentHomeRotationImg"></table>
-		<table tableName="student_paper_answer" domainObjectName="StudentPaperAnswer"></table>
+		<table tableName="user_paper_answer" domainObjectName="UserPaperAnswer"></table>
 		<table tableName="student_paper_score" domainObjectName="StudentPaperScore"></table>
 		<table tableName="teacher" domainObjectName="Teacher"></table>
 		<table tableName="teacher_notice" domainObjectName="TeacherNotice"></table>

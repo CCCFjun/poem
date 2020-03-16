@@ -25,7 +25,7 @@ import java.util.Map;
 public class UserSystemController {
 
     /*
-        学生系统控制器：包含根据学号查找学生信息,学生登录校验，学生注册，学生找回密码，学生密码修改，学生个人信息修改，学生退出登录
+        用户系统控制器：包含根据学号查找用户信息,用户登录校验，用户注册，用户找回密码，用户密码修改，用户个人信息修改，用户退出登录
      */
 
     @Autowired
@@ -36,7 +36,7 @@ public class UserSystemController {
 
 
     /*
-        校验学生登录
+        校验用户登录
      */
     @RequestMapping(value = "/checkUserLogin", method = RequestMethod.POST)
     public ServerResponse checkUserLogin(@RequestBody(required = false)User user,
@@ -50,7 +50,7 @@ public class UserSystemController {
         if(userPhone.equals(""))
             return ServerResponse.createByError("手机号为空");
 
-        //判断学号存在与否
+        //判断手机号存在与否
         boolean isUserPhoneFlag = userSystemService.userPhoneIsExist(userPhone);
         if (!isUserPhoneFlag)
             return ServerResponse.createByError("手机号不存在");
@@ -60,7 +60,7 @@ public class UserSystemController {
         //判断学号密码是否匹配
         List<User> resultList = userSystemService.checkUserPsw(userPhone, userPsw);
         if (resultList != null && resultList.size() > 0){
-            //将登录成功后的学生信息存入session
+            //将登录成功后的用户信息存入session
             session.setAttribute("userObj",resultList.get(0));
             //返回给前台json数据
             return ServerResponse.createBySuccess("登录成功",resultList.get(0));
@@ -71,7 +71,7 @@ public class UserSystemController {
     }
 
     /*
-        学生注册
+        用户注册
      */
     @RequestMapping(value = "/userRegister", method = RequestMethod.POST)
     public ServerResponse userRegister(@RequestBody Map<String, String> obj){
@@ -118,7 +118,7 @@ public class UserSystemController {
     }
 
     /*
-       学生个人信息修改
+       用户个人信息修改
     */
     @RequestMapping(value = "/userInfoChange", method = RequestMethod.POST)
     public ServerResponse userInfoChange(MultipartFile userImgSrc,
@@ -166,7 +166,7 @@ public class UserSystemController {
     }
 
     /*
-        学生密码修改
+        用户密码修改
      */
     @RequestMapping(value = "/userPswChange", method = RequestMethod.POST)
     public ServerResponse userPswChange(@RequestBody Map<String, String> jsonObject, HttpServletRequest request){
@@ -218,7 +218,7 @@ public class UserSystemController {
     }
    
     /*
-        学生退出登录
+        用户退出登录
      */
     @RequestMapping("/userLoginOut")
     public ServerResponse userLoginOut(HttpServletRequest request){

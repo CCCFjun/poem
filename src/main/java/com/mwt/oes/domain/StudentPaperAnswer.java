@@ -11,8 +11,6 @@ public class StudentPaperAnswer {
 
     private Integer paperId;
 
-    private String sno;
-
     private String iscollect;
 
     private String userPhone;
@@ -55,14 +53,6 @@ public class StudentPaperAnswer {
 
     public void setPaperId(Integer paperId) {
         this.paperId = paperId;
-    }
-
-    public String getSno() {
-        return sno;
-    }
-
-    public void setSno(String sno) {
-        this.sno = sno == null ? null : sno.trim();
     }
 
     public String getIscollect() {

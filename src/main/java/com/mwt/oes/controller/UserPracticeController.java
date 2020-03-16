@@ -1,5 +1,6 @@
 package com.mwt.oes.controller;
 
+import com.mwt.oes.domain.StudentHomeRotationImg;
 import com.mwt.oes.service.UserPracticeService;
 import com.mwt.oes.util.ServerResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,20 @@ public class UserPracticeController {
 
     @Autowired
     private UserPracticeService userPracticeService;
+
+    /*
+        获取学生首页轮播图数据
+     */
+    @RequestMapping("/getRotationImages")
+    public ServerResponse getRotationImages(){
+        List<StudentHomeRotationImg> resultList = userPracticeService.getRotationImages();
+        if(resultList != null && resultList.size() > 0){
+            return ServerResponse.createBySuccess("轮播图数据获取成功",resultList);
+        }
+        else {
+            return ServerResponse.createByError("轮播图数据获取失败");
+        }
+    }
 
     //  选择题请求随机出题
     @RequestMapping(value = "/getSinglePractice")

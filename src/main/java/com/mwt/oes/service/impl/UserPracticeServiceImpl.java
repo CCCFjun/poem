@@ -20,6 +20,19 @@ public class UserPracticeServiceImpl implements UserPracticeService {
     BankJudgeQueMapper bankJudgeQueMapper;
     @Autowired
     BankFillQueMapper bankFillQueMapper;
+    @Autowired
+    StudentHomeRotationImgMapper studentHomeRotationImgMapper;
+
+    /*
+        获取轮播图数据
+     */
+    @Override
+    public List<StudentHomeRotationImg> getRotationImages() {
+        StudentHomeRotationImgExample example = new StudentHomeRotationImgExample();
+        example.setOrderByClause("img_id asc");
+        List<StudentHomeRotationImg> result = studentHomeRotationImgMapper.selectByExample(example);
+        return result;
+    }
 
     @Override
     public List<Map<String, Object>> getRandomSingleList() {
