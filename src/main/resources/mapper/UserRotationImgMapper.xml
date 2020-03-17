@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.mwt.oes.dao.StudentHomeRotationImgMapper" >
-  <resultMap id="BaseResultMap" type="com.mwt.oes.domain.StudentHomeRotationImg" >
+<mapper namespace="com.mwt.oes.dao.UserRotationImgMapper" >
+  <resultMap id="BaseResultMap" type="com.mwt.oes.domain.UserRotationImg" >
     <id column="img_id" property="imgId" jdbcType="INTEGER" />
     <result column="img_title" property="imgTitle" jdbcType="VARCHAR" />
     <result column="img_src" property="imgSrc" jdbcType="VARCHAR" />
@@ -70,13 +70,13 @@
   <sql id="Base_Column_List" >
     img_id, img_title, img_src, img_create_time, ano, adm_name
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mwt.oes.domain.StudentHomeRotationImgExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mwt.oes.domain.UserRotationImgExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from student_home_rotation_img
+    from user_rotation_img
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -87,29 +87,29 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from student_home_rotation_img
+    from user_rotation_img
     where img_id = #{imgId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from student_home_rotation_img
+    delete from user_rotation_img
     where img_id = #{imgId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.mwt.oes.domain.StudentHomeRotationImgExample" >
-    delete from student_home_rotation_img
+  <delete id="deleteByExample" parameterType="com.mwt.oes.domain.UserRotationImgExample" >
+    delete from user_rotation_img
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.mwt.oes.domain.StudentHomeRotationImg" >
-    insert into student_home_rotation_img (img_id, img_title, img_src, 
+  <insert id="insert" parameterType="com.mwt.oes.domain.UserRotationImg" >
+    insert into user_rotation_img (img_id, img_title, img_src, 
       img_create_time, ano, adm_name
       )
     values (#{imgId,jdbcType=INTEGER}, #{imgTitle,jdbcType=VARCHAR}, #{imgSrc,jdbcType=VARCHAR}, 
       #{imgCreateTime,jdbcType=TIMESTAMP}, #{ano,jdbcType=INTEGER}, #{admName,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.mwt.oes.domain.StudentHomeRotationImg" >
-    insert into student_home_rotation_img
+  <insert id="insertSelective" parameterType="com.mwt.oes.domain.UserRotationImg" >
+    insert into user_rotation_img
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="imgId != null" >
         img_id,
@@ -151,14 +151,14 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.mwt.oes.domain.StudentHomeRotationImgExample" resultType="java.lang.Integer" >
-    select count(*) from student_home_rotation_img
+  <select id="countByExample" parameterType="com.mwt.oes.domain.UserRotationImgExample" resultType="java.lang.Integer" >
+    select count(*) from user_rotation_img
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update student_home_rotation_img
+    update user_rotation_img
     <set >
       <if test="record.imgId != null" >
         img_id = #{record.imgId,jdbcType=INTEGER},
@@ -184,7 +184,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update student_home_rotation_img
+    update user_rotation_img
     set img_id = #{record.imgId,jdbcType=INTEGER},
       img_title = #{record.imgTitle,jdbcType=VARCHAR},
       img_src = #{record.imgSrc,jdbcType=VARCHAR},
@@ -195,8 +195,8 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.mwt.oes.domain.StudentHomeRotationImg" >
-    update student_home_rotation_img
+  <update id="updateByPrimaryKeySelective" parameterType="com.mwt.oes.domain.UserRotationImg" >
+    update user_rotation_img
     <set >
       <if test="imgTitle != null" >
         img_title = #{imgTitle,jdbcType=VARCHAR},
@@ -216,8 +216,8 @@
     </set>
     where img_id = #{imgId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.mwt.oes.domain.StudentHomeRotationImg" >
-    update student_home_rotation_img
+  <update id="updateByPrimaryKey" parameterType="com.mwt.oes.domain.UserRotationImg" >
+    update user_rotation_img
     set img_title = #{imgTitle,jdbcType=VARCHAR},
       img_src = #{imgSrc,jdbcType=VARCHAR},
       img_create_time = #{imgCreateTime,jdbcType=TIMESTAMP},

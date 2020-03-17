@@ -1,6 +1,6 @@
 package com.mwt.oes.controller;
 
-import com.mwt.oes.domain.StudentHomeRotationImg;
+import com.mwt.oes.domain.UserRotationImg;
 import com.mwt.oes.service.AdminRotationImgService;
 import com.mwt.oes.util.ServerResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,8 +33,8 @@ public class AdminRotationImgController {
 
     //    添加轮播图信息
     @RequestMapping(value = "/insertRotationImgInfo",method = RequestMethod.POST)
-    public ServerResponse insertRotationImgInfo(@RequestBody(required = false)StudentHomeRotationImg studentHomeRotationImg){
-        int result = adminRotationImgService.insertRotationImgInfo(studentHomeRotationImg);
+    public ServerResponse insertRotationImgInfo(@RequestBody(required = false) UserRotationImg userRotationImg){
+        int result = adminRotationImgService.insertRotationImgInfo(userRotationImg);
         if (result > 0){
             return ServerResponse.createBySuccess("添加轮播图信息成功",null);
         }
@@ -45,8 +45,8 @@ public class AdminRotationImgController {
 
     //    更新轮播图信息
     @RequestMapping(value = "/updateRotationImgInfo",method = RequestMethod.POST)
-    public ServerResponse updateRotationImgInfo(@RequestBody(required = false)StudentHomeRotationImg studentHomeRotationImg){
-        int result = adminRotationImgService.updateRotationImgInfo(studentHomeRotationImg);
+    public ServerResponse updateRotationImgInfo(@RequestBody(required = false) UserRotationImg userRotationImg){
+        int result = adminRotationImgService.updateRotationImgInfo(userRotationImg);
         if (result > 0){
             return ServerResponse.createBySuccess("更新轮播图信息成功",null);
         }

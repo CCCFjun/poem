@@ -21,17 +21,27 @@ public class UserPracticeServiceImpl implements UserPracticeService {
     @Autowired
     BankFillQueMapper bankFillQueMapper;
     @Autowired
-    StudentHomeRotationImgMapper studentHomeRotationImgMapper;
+    QuestionTypeMapper questionTypeMapper;
+
 
     /*
-        获取轮播图数据
+            获取全部练习题型分类
+         */
+    @Override
+    public List<QuestionType> getPracticeKind() {
+        QuestionTypeExample example = new QuestionTypeExample();
+        example.setOrderByClause("lang_id asc");
+        List<QuestionType> result = questionTypeMapper.selectByExample(example);
+        return result;
+    }
+
+    /*
+        通过langId获取题型信息
      */
     @Override
-    public List<StudentHomeRotationImg> getRotationImages() {
-        StudentHomeRotationImgExample example = new StudentHomeRotationImgExample();
-        example.setOrderByClause("img_id asc");
-        List<StudentHomeRotationImg> result = studentHomeRotationImgMapper.selectByExample(example);
-        return result;
+    public QuestionType getKindInfoById(Integer kindId) {
+        QuestionType questionType = questionTypeMapper.selectByPrimaryKey(kindId);
+        return questionType;
     }
 
     @Override
@@ -104,17 +114,18 @@ public class UserPracticeServiceImpl implements UserPracticeService {
     @Override
     public List<Map<String, Object>> getRandomJudgeList() {
         List<Map<String, Object>> resultList = new ArrayList<>();
-        List<BankJudgeQue> bankJudgeQueList = bankJudgeQueMapper.getRandomJudgeByCountAndLangId(2,13);
+        List<BankJudgeQue> bankJudgeQueList = bankJudgeQueMapper.getRandomJudgeByCountAndLangId(5,13);
         for (BankJudgeQue bankJudgeQue : bankJudgeQueList) {
             Map<String, Object> map = new HashMap<>();
             map.put("id", bankJudgeQueList.indexOf(bankJudgeQue) + 1);
             map.put("judgeId", bankJudgeQue.getJudgeId());
             map.put("content", bankJudgeQue.getJudgeContent());
-            if(bankJudgeQue.getJudgeAnswer() == "T"){
-                map.put("judgeAnswer", "正确");
-            }else{
-                map.put("judgeAnswer", "错误");
-            }
+//            if(bankJudgeQue.getJudgeAnswer() == "T"){
+//                map.put("judgeAnswer", "正确");
+//            }else{
+//                map.put("judgeAnswer", "错误");
+//            }
+            map.put("judgeAnswer", bankJudgeQue.getJudgeAnswer());
 
             map.put("composeFlag", bankJudgeQue.getComposeFlag());
             map.put("answerExplain", bankJudgeQue.getAnswerExplain());

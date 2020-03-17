@@ -2,7 +2,7 @@ package com.mwt.oes.domain;
 
 import java.util.Date;
 
-public class StudentHomeRotationImg {
+public class UserRotationImg {
     private Integer imgId;
 
     private String imgTitle;

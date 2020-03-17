@@ -2,14 +2,14 @@ package com.mwt.oes.service;
 
 import com.mwt.oes.domain.Paper;
 import com.mwt.oes.domain.QuestionType;
-import com.mwt.oes.domain.StudentHomeRotationImg;
+import com.mwt.oes.domain.UserRotationImg;
 import com.mwt.oes.domain.StudentPaperScore;
 
 import java.util.List;
 import java.util.Map;
 
 public interface StudentHomeService {
-    public List<StudentHomeRotationImg> getRotationImages();
+    public List<UserRotationImg> getRotationImages();
     public List<QuestionType> getLanguagesInfo();
     public List<QuestionType> getPracticeKind();
     public QuestionType getLanguageInfoById(Integer langId);

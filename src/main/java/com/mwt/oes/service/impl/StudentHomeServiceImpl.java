@@ -13,7 +13,7 @@ import java.util.*;
 public class StudentHomeServiceImpl implements StudentHomeService {
 
     @Autowired
-    StudentHomeRotationImgMapper studentHomeRotationImgMapper;
+    UserRotationImgMapper userRotationImgMapper;
     @Autowired
     QuestionTypeMapper queTypeMapper;
     @Autowired
@@ -38,10 +38,10 @@ public class StudentHomeServiceImpl implements StudentHomeService {
         获取学生首页全部轮播图数据
      */
     @Override
-    public List<StudentHomeRotationImg> getRotationImages() {
-        StudentHomeRotationImgExample example = new StudentHomeRotationImgExample();
+    public List<UserRotationImg> getRotationImages() {
+        UserRotationImgExample example = new UserRotationImgExample();
         example.setOrderByClause("img_id asc");
-        List<StudentHomeRotationImg> result = studentHomeRotationImgMapper.selectByExample(example);
+        List<UserRotationImg> result = userRotationImgMapper.selectByExample(example);
         return result;
     }
 

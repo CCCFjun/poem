@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class StudentHomeRotationImgExample {
+public class UserRotationImgExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public StudentHomeRotationImgExample() {
+    public UserRotationImgExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 

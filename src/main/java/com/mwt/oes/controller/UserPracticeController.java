@@ -1,6 +1,6 @@
 package com.mwt.oes.controller;
 
-import com.mwt.oes.domain.StudentHomeRotationImg;
+import com.mwt.oes.domain.QuestionType;
 import com.mwt.oes.service.UserPracticeService;
 import com.mwt.oes.util.ServerResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,16 +18,31 @@ public class UserPracticeController {
     private UserPracticeService userPracticeService;
 
     /*
-        获取学生首页轮播图数据
+        获取全部练习题型分类
      */
-    @RequestMapping("/getRotationImages")
-    public ServerResponse getRotationImages(){
-        List<StudentHomeRotationImg> resultList = userPracticeService.getRotationImages();
+    @RequestMapping("/getPracticeKind")
+    public ServerResponse getPracticeKind(){
+        List<QuestionType> resultList = userPracticeService.getPracticeKind();
         if(resultList != null && resultList.size() > 0){
-            return ServerResponse.createBySuccess("轮播图数据获取成功",resultList);
+            return ServerResponse.createBySuccess("练习题型分类获取成功",resultList);
         }
         else {
-            return ServerResponse.createByError("轮播图数据获取失败");
+            return ServerResponse.createByError("练习题型分类获取失败");
+        }
+    }
+
+    /*
+        通过langId获取题型信息
+     */
+    @RequestMapping("/getKindInfoById")
+    public ServerResponse getKindInfoById(@RequestParam("kindId")Integer kindId ){
+        QuestionType questionType = userPracticeService.getKindInfoById(kindId);
+        if(questionType != null){
+//            log.info(questionType.getLangImgSrc());
+            return ServerResponse.createBySuccess("题型id为" + kindId + "的信息获取成功", questionType);
+        }
+        else {
+            return ServerResponse.createByError("题型id为" + kindId + "的信息获取失败");
         }
     }
 

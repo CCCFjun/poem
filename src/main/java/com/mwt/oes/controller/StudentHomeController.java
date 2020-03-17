@@ -30,7 +30,7 @@ public class StudentHomeController {
      */
     @RequestMapping("/getRotationImages")
     public ServerResponse getRotationImages(){
-        List<StudentHomeRotationImg> resultList = studentHomeService.getRotationImages();
+        List<UserRotationImg> resultList = studentHomeService.getRotationImages();
         if(resultList != null && resultList.size() > 0){
             return ServerResponse.createBySuccess("轮播图数据获取成功",resultList);
         }
