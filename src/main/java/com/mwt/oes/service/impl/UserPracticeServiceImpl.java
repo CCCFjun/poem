@@ -45,9 +45,9 @@ public class UserPracticeServiceImpl implements UserPracticeService {
     }
 
     @Override
-    public List<Map<String, Object>> getRandomSingleList() {
+    public List<Map<String, Object>> getRandomSingleList(Integer num) {
         List<Map<String, Object>> resultList = new ArrayList<>();
-        List<BankSingleChoiceQue> bankSingleChoiceQueList = bankSingleChoiceQueMapper.getRandomSingleByCountAndLangId(5,12);
+        List<BankSingleChoiceQue> bankSingleChoiceQueList = bankSingleChoiceQueMapper.getRandomSingleByCountAndLangId(num,12);
         for (BankSingleChoiceQue bankSingleChoiceQue : bankSingleChoiceQueList) {
             Map<String, Object> map = new HashMap<>();
             map.put("id", bankSingleChoiceQueList.indexOf(bankSingleChoiceQue) + 1);
@@ -112,9 +112,9 @@ public class UserPracticeServiceImpl implements UserPracticeService {
     }
 
     @Override
-    public List<Map<String, Object>> getRandomJudgeList() {
+    public List<Map<String, Object>> getRandomJudgeList(Integer num) {
         List<Map<String, Object>> resultList = new ArrayList<>();
-        List<BankJudgeQue> bankJudgeQueList = bankJudgeQueMapper.getRandomJudgeByCountAndLangId(5,13);
+        List<BankJudgeQue> bankJudgeQueList = bankJudgeQueMapper.getRandomJudgeByCountAndLangId(num,13);
         for (BankJudgeQue bankJudgeQue : bankJudgeQueList) {
             Map<String, Object> map = new HashMap<>();
             map.put("id", bankJudgeQueList.indexOf(bankJudgeQue) + 1);
@@ -148,9 +148,9 @@ public class UserPracticeServiceImpl implements UserPracticeService {
     }
 
     @Override
-    public List<Map<String, Object>> getRandomFillList() {
+    public List<Map<String, Object>> getRandomFillList(Integer num) {
         List<Map<String, Object>> resultList = new ArrayList<>();
-        List<BankFillQue> bankFillQueList = bankFillQueMapper.getRandomFillByCountAndLangId(5,10);
+        List<BankFillQue> bankFillQueList = bankFillQueMapper.getRandomFillByCountAndLangId(num,10);
         for (BankFillQue bankFillQue : bankFillQueList) {
             Map<String, Object> map = new HashMap<>();
             map.put("id", bankFillQueList.indexOf(bankFillQue) + 1);
@@ -165,9 +165,9 @@ public class UserPracticeServiceImpl implements UserPracticeService {
     }
 
     @Override
-    public List<Map<String, Object>> getRandomFillTwoList() {
+    public List<Map<String, Object>> getRandomFillTwoList(Integer num) {
         List<Map<String, Object>> resultList = new ArrayList<>();
-        List<BankFillQue> bankFillQueList = bankFillQueMapper.getRandomFillByCountAndLangId(1,11);
+        List<BankFillQue> bankFillQueList = bankFillQueMapper.getRandomFillByCountAndLangId(num,11);
         for (BankFillQue bankFillQue : bankFillQueList) {
             Map<String, Object> map = new HashMap<>();
             map.put("id", bankFillQueList.indexOf(bankFillQue) + 1);

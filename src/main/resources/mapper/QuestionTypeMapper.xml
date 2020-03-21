@@ -10,7 +10,7 @@
     <result column="lang_created_by" property="langCreatedBy" jdbcType="VARCHAR" />
     <result column="lang_change_time" property="langChangeTime" jdbcType="TIMESTAMP" />
     <result column="lang_last_changer" property="langLastChanger" jdbcType="VARCHAR" />
-    <result column="is_recommend" property="isRecommend" jdbcType="VARCHAR" />
+    <result column="lang_en_name" property="langEnName" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -72,7 +72,7 @@
   </sql>
   <sql id="Base_Column_List" >
     lang_id, lang_name, lang_desc, lang_img_src, lang_create_time, lang_created_by, lang_change_time, 
-    lang_last_changer, is_recommend
+    lang_last_changer, lang_en_name
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mwt.oes.domain.QuestionTypeExample" >
     select
@@ -107,11 +107,11 @@
   <insert id="insert" parameterType="com.mwt.oes.domain.QuestionType" >
     insert into question_type (lang_id, lang_name, lang_desc, 
       lang_img_src, lang_create_time, lang_created_by, 
-      lang_change_time, lang_last_changer, is_recommend
+      lang_change_time, lang_last_changer, lang_en_name
       )
     values (#{langId,jdbcType=INTEGER}, #{langName,jdbcType=VARCHAR}, #{langDesc,jdbcType=VARCHAR}, 
       #{langImgSrc,jdbcType=VARCHAR}, #{langCreateTime,jdbcType=TIMESTAMP}, #{langCreatedBy,jdbcType=VARCHAR}, 
-      #{langChangeTime,jdbcType=TIMESTAMP}, #{langLastChanger,jdbcType=VARCHAR}, #{isRecommend,jdbcType=VARCHAR}
+      #{langChangeTime,jdbcType=TIMESTAMP}, #{langLastChanger,jdbcType=VARCHAR}, #{langEnName,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.mwt.oes.domain.QuestionType" >
@@ -141,8 +141,8 @@
       <if test="langLastChanger != null" >
         lang_last_changer,
       </if>
-      <if test="isRecommend != null" >
-        is_recommend,
+      <if test="langEnName != null" >
+        lang_en_name,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -170,8 +170,8 @@
       <if test="langLastChanger != null" >
         #{langLastChanger,jdbcType=VARCHAR},
       </if>
-      <if test="isRecommend != null" >
-        #{isRecommend,jdbcType=VARCHAR},
+      <if test="langEnName != null" >
+        #{langEnName,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -208,8 +208,8 @@
       <if test="record.langLastChanger != null" >
         lang_last_changer = #{record.langLastChanger,jdbcType=VARCHAR},
       </if>
-      <if test="record.isRecommend != null" >
-        is_recommend = #{record.isRecommend,jdbcType=VARCHAR},
+      <if test="record.langEnName != null" >
+        lang_en_name = #{record.langEnName,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -226,7 +226,7 @@
       lang_created_by = #{record.langCreatedBy,jdbcType=VARCHAR},
       lang_change_time = #{record.langChangeTime,jdbcType=TIMESTAMP},
       lang_last_changer = #{record.langLastChanger,jdbcType=VARCHAR},
-      is_recommend = #{record.isRecommend,jdbcType=VARCHAR}
+      lang_en_name = #{record.langEnName,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -255,8 +255,8 @@
       <if test="langLastChanger != null" >
         lang_last_changer = #{langLastChanger,jdbcType=VARCHAR},
       </if>
-      <if test="isRecommend != null" >
-        is_recommend = #{isRecommend,jdbcType=VARCHAR},
+      <if test="langEnName != null" >
+        lang_en_name = #{langEnName,jdbcType=VARCHAR},
       </if>
     </set>
     where lang_id = #{langId,jdbcType=INTEGER}
@@ -270,7 +270,7 @@
       lang_created_by = #{langCreatedBy,jdbcType=VARCHAR},
       lang_change_time = #{langChangeTime,jdbcType=TIMESTAMP},
       lang_last_changer = #{langLastChanger,jdbcType=VARCHAR},
-      is_recommend = #{isRecommend,jdbcType=VARCHAR}
+      lang_en_name = #{langEnName,jdbcType=VARCHAR}
     where lang_id = #{langId,jdbcType=INTEGER}
   </update>
 </mapper>

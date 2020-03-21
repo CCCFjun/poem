@@ -635,73 +635,73 @@ public class QuestionTypeExample {
             return (Criteria) this;
         }
 
-        public Criteria andIsRecommendIsNull() {
-            addCriterion("is_recommend is null");
+        public Criteria andLangEnNameIsNull() {
+            addCriterion("lang_en_name is null");
             return (Criteria) this;
         }
 
-        public Criteria andIsRecommendIsNotNull() {
-            addCriterion("is_recommend is not null");
+        public Criteria andLangEnNameIsNotNull() {
+            addCriterion("lang_en_name is not null");
             return (Criteria) this;
         }
 
-        public Criteria andIsRecommendEqualTo(String value) {
-            addCriterion("is_recommend =", value, "isRecommend");
+        public Criteria andLangEnNameEqualTo(String value) {
+            addCriterion("lang_en_name =", value, "langEnName");
             return (Criteria) this;
         }
 
-        public Criteria andIsRecommendNotEqualTo(String value) {
-            addCriterion("is_recommend <>", value, "isRecommend");
+        public Criteria andLangEnNameNotEqualTo(String value) {
+            addCriterion("lang_en_name <>", value, "langEnName");
             return (Criteria) this;
         }
 
-        public Criteria andIsRecommendGreaterThan(String value) {
-            addCriterion("is_recommend >", value, "isRecommend");
+        public Criteria andLangEnNameGreaterThan(String value) {
+            addCriterion("lang_en_name >", value, "langEnName");
             return (Criteria) this;
         }
 
-        public Criteria andIsRecommendGreaterThanOrEqualTo(String value) {
-            addCriterion("is_recommend >=", value, "isRecommend");
+        public Criteria andLangEnNameGreaterThanOrEqualTo(String value) {
+            addCriterion("lang_en_name >=", value, "langEnName");
             return (Criteria) this;
         }
 
-        public Criteria andIsRecommendLessThan(String value) {
-            addCriterion("is_recommend <", value, "isRecommend");
+        public Criteria andLangEnNameLessThan(String value) {
+            addCriterion("lang_en_name <", value, "langEnName");
             return (Criteria) this;
         }
 
-        public Criteria andIsRecommendLessThanOrEqualTo(String value) {
-            addCriterion("is_recommend <=", value, "isRecommend");
+        public Criteria andLangEnNameLessThanOrEqualTo(String value) {
+            addCriterion("lang_en_name <=", value, "langEnName");
             return (Criteria) this;
         }
 
-        public Criteria andIsRecommendLike(String value) {
-            addCriterion("is_recommend like", value, "isRecommend");
+        public Criteria andLangEnNameLike(String value) {
+            addCriterion("lang_en_name like", value, "langEnName");
             return (Criteria) this;
         }
 
-        public Criteria andIsRecommendNotLike(String value) {
-            addCriterion("is_recommend not like", value, "isRecommend");
+        public Criteria andLangEnNameNotLike(String value) {
+            addCriterion("lang_en_name not like", value, "langEnName");
             return (Criteria) this;
         }
 
-        public Criteria andIsRecommendIn(List<String> values) {
-            addCriterion("is_recommend in", values, "isRecommend");
+        public Criteria andLangEnNameIn(List<String> values) {
+            addCriterion("lang_en_name in", values, "langEnName");
             return (Criteria) this;
         }
 
-        public Criteria andIsRecommendNotIn(List<String> values) {
-            addCriterion("is_recommend not in", values, "isRecommend");
+        public Criteria andLangEnNameNotIn(List<String> values) {
+            addCriterion("lang_en_name not in", values, "langEnName");
             return (Criteria) this;
         }
 
-        public Criteria andIsRecommendBetween(String value1, String value2) {
-            addCriterion("is_recommend between", value1, value2, "isRecommend");
+        public Criteria andLangEnNameBetween(String value1, String value2) {
+            addCriterion("lang_en_name between", value1, value2, "langEnName");
             return (Criteria) this;
         }
 
-        public Criteria andIsRecommendNotBetween(String value1, String value2) {
-            addCriterion("is_recommend not between", value1, value2, "isRecommend");
+        public Criteria andLangEnNameNotBetween(String value1, String value2) {
+            addCriterion("lang_en_name not between", value1, value2, "langEnName");
             return (Criteria) this;
         }
     }

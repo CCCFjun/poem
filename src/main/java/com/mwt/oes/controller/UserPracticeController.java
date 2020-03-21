@@ -48,29 +48,29 @@ public class UserPracticeController {
 
     //  选择题请求随机出题
     @RequestMapping(value = "/getSinglePractice")
-    public ServerResponse getSinglePractice(){
-        List<Map<String, Object>> resultList = userPracticeService.getRandomSingleList();
+    public ServerResponse getSinglePractice(@RequestParam("queNum")Integer num){
+        List<Map<String, Object>> resultList = userPracticeService.getRandomSingleList(num);
         return ServerResponse.createBySuccess("题目发布成功",resultList);
     }
 
     //  判断题请求随机出题
     @RequestMapping(value = "/getJudgePractice")
-    public ServerResponse getJudgePractice(){
-        List<Map<String, Object>> resultList = userPracticeService.getRandomJudgeList();
+    public ServerResponse getJudgePractice(@RequestParam("queNum")Integer num){
+        List<Map<String, Object>> resultList = userPracticeService.getRandomJudgeList(num);
         return ServerResponse.createBySuccess("题目发布成功",resultList);
     }
 
     //  填空题请求随机出题
     @RequestMapping(value = "/getFillPractice")
-    public ServerResponse getFillPractice(){
-        List<Map<String, Object>> resultList = userPracticeService.getRandomFillList();
+    public ServerResponse getFillPractice(@RequestParam("queNum")Integer num){
+        List<Map<String, Object>> resultList = userPracticeService.getRandomFillList(num);
         return ServerResponse.createBySuccess("题目发布成功",resultList);
     }
 
     //  填空题二请求随机出题
     @RequestMapping(value = "/getFillTwoPractice")
-    public ServerResponse getFillTwoPractice(){
-        List<Map<String, Object>> resultList = userPracticeService.getRandomFillTwoList();
+    public ServerResponse getFillTwoPractice(@RequestParam("queNum")Integer num){
+        List<Map<String, Object>> resultList = userPracticeService.getRandomFillTwoList(num);
         return ServerResponse.createBySuccess("题目发布成功",resultList);
     }
 }

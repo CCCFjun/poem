@@ -39,7 +39,7 @@ public class AdminTypeServiceImpl implements AdminTypeService {
             map.put("langCreatedBy", questionType.getLangCreatedBy());
             map.put("langChangeTime", questionType.getLangChangeTime());
             map.put("langLastChanger", questionType.getLangLastChanger());
-            map.put("isRecommend", questionType.getIsRecommend());
+            map.put("langEnName", questionType.getLangEnName());
 //            PaperExample paperExample = new PaperExample();
 //            PaperExample.Criteria criteria = paperExample.createCriteria();
 //            criteria.andLangIdEqualTo(questionType.getLangId());
@@ -81,7 +81,7 @@ public class AdminTypeServiceImpl implements AdminTypeService {
             criteria.andLangNameLike("%" + langName + "%");
         }
         if (!isRecommend.equals("undefined")) {
-            criteria.andIsRecommendEqualTo(isRecommend);
+            criteria.andLangEnNameEqualTo(isRecommend);
         }
         questionTypeExample.setOrderByClause("lang_id asc");
         List<QuestionType> questionTypeList = queTypeMapper.selectByExample(questionTypeExample);
@@ -96,7 +96,7 @@ public class AdminTypeServiceImpl implements AdminTypeService {
             map.put("langImgSrc", questionType.getLangImgSrc());
             map.put("langChangeTime", questionType.getLangChangeTime());
             map.put("langLastChanger", questionType.getLangLastChanger());
-            map.put("isRecommend", questionType.getIsRecommend());
+            map.put("isRecommend", questionType.getLangEnName());
             PaperExample paperExample = new PaperExample();
             PaperExample.Criteria criteria2 = paperExample.createCriteria();
             criteria2.andLangIdEqualTo(questionType.getLangId());

@@ -19,7 +19,7 @@ public class QuestionType {
 
     private String langLastChanger;
 
-    private String isRecommend;
+    private String langEnName;
 
     public Integer getLangId() {
         return langId;
@@ -85,11 +85,11 @@ public class QuestionType {
         this.langLastChanger = langLastChanger == null ? null : langLastChanger.trim();
     }
 
-    public String getIsRecommend() {
-        return isRecommend;
+    public String getLangEnName() {
+        return langEnName;
     }
 
-    public void setIsRecommend(String isRecommend) {
-        this.isRecommend = isRecommend == null ? null : isRecommend.trim();
+    public void setLangEnName(String langEnName) {
+        this.langEnName = langEnName == null ? null : langEnName.trim();
     }
 }
