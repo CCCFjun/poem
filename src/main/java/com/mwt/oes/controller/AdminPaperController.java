@@ -2,6 +2,8 @@ package com.mwt.oes.controller;
 
 import com.mwt.oes.service.AdminPaperService;
 import com.mwt.oes.util.ServerResponse;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,12 +14,14 @@ import java.util.Map;
 @CrossOrigin
 @RestController
 @RequestMapping("/api/admin")
+@Api(tags = {"管理员试卷管理Api文档"})
 public class AdminPaperController {
     @Autowired
     private AdminPaperService adminPaperService;
 
     //    获取试卷列表信息
     @RequestMapping("/getAdminPapersList")
+    @ApiOperation(value = "获取试卷列表信息")
     public ServerResponse getAdminPapersList(){
         Map<String, Object> map = new HashMap<>();
         List<Map<String, Object>> papersList = adminPaperService.getPapersList();
