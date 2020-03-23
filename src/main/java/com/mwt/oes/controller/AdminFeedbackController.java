@@ -1,6 +1,6 @@
 package com.mwt.oes.controller;
 
-import com.mwt.oes.domain.StudentFeedback;
+import com.mwt.oes.domain.Feedback;
 import com.mwt.oes.service.AdminFeedbackService;
 import com.mwt.oes.util.ServerResponse;
 import com.mwt.oes.websocket.WebSocketDemo;
@@ -23,7 +23,7 @@ public class AdminFeedbackController {
     @RequestMapping("/getFeedbacksList")
     public ServerResponse getFeedbacksList(){
         List<Map<String, Object>> resultList = adminFeedbackService.getFeedbacksList();
-        return ServerResponse.createBySuccess("获取全部轮播图信息成功",resultList);
+        return ServerResponse.createBySuccess("获取全部留言信息成功",resultList);
     }
 
     //    获取未回复留言条数
@@ -36,11 +36,11 @@ public class AdminFeedbackController {
     //    获取全部留言信息
     @RequestMapping("/searchFeedbacksList")
     public ServerResponse searchFeedbacksList(@RequestParam("feedbackContent")String feedbackContent,
-                                              @RequestParam("stuName")String stuName,
+                                              @RequestParam("userName")String userName,
                                               @RequestParam("admAnswer")String admAnswer,
                                               @RequestParam("admName")String admName,
                                               @RequestParam("feedbackStatus")String feedbackStatus){
-        List<Map<String, Object>> resultList = adminFeedbackService.searchFeedbacksList(feedbackContent, stuName, admAnswer, admName, feedbackStatus);
+        List<Map<String, Object>> resultList = adminFeedbackService.searchFeedbacksList(feedbackContent, userName, admAnswer, admName, feedbackStatus);
         return ServerResponse.createBySuccess("获取全部轮播图信息成功",resultList);
     }
 
@@ -58,13 +58,13 @@ public class AdminFeedbackController {
 
     // 回复留言
     @RequestMapping(value = "/replyFeedback",method = RequestMethod.POST)
-    public ServerResponse replyFeedback(@RequestBody(required = false)StudentFeedback studentFeedback) throws IOException {
-        int result = adminFeedbackService.replyFeedback(studentFeedback);
+    public ServerResponse replyFeedback(@RequestBody(required = false) Feedback feedback) throws IOException {
+        int result = adminFeedbackService.replyFeedback(feedback);
         if(result > 0){
-            String sno = studentFeedback.getSno();
+            String userPhone = feedback.getUserPhone();
             ConcurrentHashMap<String, WebSocketDemo> webSocketSet = WebSocketDemo.getWebSocketDemo();
-            if(webSocketSet.get(sno) != null) {
-                webSocketSet.get(sno).sendMessage("留言");
+            if(webSocketSet.get(userPhone) != null) {
+                webSocketSet.get(userPhone).sendMessage("留言");
             }
             for (String key : webSocketSet.keySet()) {
                 if (key.length() == 6) {

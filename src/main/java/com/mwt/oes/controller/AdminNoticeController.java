@@ -1,7 +1,7 @@
 package com.mwt.oes.controller;
 
-import com.mwt.oes.domain.TeacherNotice;
-import com.mwt.oes.service.TeacherNoticeService;
+import com.mwt.oes.domain.Notice;
+import com.mwt.oes.service.AdminNoticeService;
 import com.mwt.oes.util.ServerResponse;
 import com.mwt.oes.websocket.WebSocketDemo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,30 +15,30 @@ import java.util.concurrent.ConcurrentHashMap;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/api/teacher")
-public class TeacherNoticeController {
+@RequestMapping("/api/admin")
+public class AdminNoticeController {
     @Autowired
-    private TeacherNoticeService teacherNoticeService;
+    private AdminNoticeService adminNoticeService;
 
     //    获取公告列表信息
     @RequestMapping("/getNoticesList")
     public ServerResponse getNoticesList(){
-        List<Map<String, Object>> resultList = teacherNoticeService.getNoticesList();
+        List<Map<String, Object>> resultList = adminNoticeService.getNoticesList();
         return ServerResponse.createBySuccess("获取全部公告信息成功",resultList);
     }
 
     //    获取搜索公告列表信息
     @RequestMapping("/searchNoticesList")
     public ServerResponse searchNoticesList(@RequestParam("noticeContent")String noticeContent,
-                                            @RequestParam("teaName")String teaName){
-        List<Map<String, Object>> resultList = teacherNoticeService.searchNoticeInfo(noticeContent, teaName);
+                                            @RequestParam("adminName")String adminName){
+        List<Map<String, Object>> resultList = adminNoticeService.searchNoticeInfo(noticeContent, adminName);
         return ServerResponse.createBySuccess("获取搜索公告信息成功",resultList);
     }
 
     //    更新公告信息
     @RequestMapping(value = "/updateNoticeInfo",method = RequestMethod.POST)
-    public ServerResponse updateNoticeInfo(@RequestBody(required = false)TeacherNotice teacherNotice){
-        int result = teacherNoticeService.updateNoticeInfo(teacherNotice);
+    public ServerResponse updateNoticeInfo(@RequestBody(required = false) Notice notice){
+        int result = adminNoticeService.updateNoticeInfo(notice);
         if (result > 0){
             return ServerResponse.createBySuccess("更新公告信息成功",null);
         }
@@ -49,16 +49,16 @@ public class TeacherNoticeController {
 
     //    添加公告信息
     @RequestMapping(value = "/insertNoticeInfo",method = RequestMethod.POST)
-    public ServerResponse insertNoticeInfo(@RequestBody(required = false)TeacherNotice teacherNotice) throws IOException {
-        boolean noticeContentIsExist = teacherNoticeService.noticeContentIsExist(teacherNotice.getNoticeContent());
+    public ServerResponse insertNoticeInfo(@RequestBody(required = false) Notice notice) throws IOException {
+        boolean noticeContentIsExist = adminNoticeService.noticeContentIsExist(notice.getNoticeContent());
         if(noticeContentIsExist){
             return ServerResponse.createByError("此公告内容已存在，请创新新的公告内容");
         }
 
-        teacherNotice.setNoticeCreateTime(new Date());
-        int result = teacherNoticeService.insertNoticeInfo(teacherNotice);
+        notice.setNoticeCreateTime(new Date());
+        int result = adminNoticeService.insertNoticeInfo(notice);
         if (result > 0){
-            // 插入公告时向学生推送消息
+            // 插入公告时向用户推送消息
             ConcurrentHashMap<String, WebSocketDemo> webSocketSet = WebSocketDemo.getWebSocketDemo();
             for (String key : webSocketSet.keySet()) {
                 if (key.length() == 12) {
@@ -76,9 +76,9 @@ public class TeacherNoticeController {
     @RequestMapping(value = "/deleteNotice",method = RequestMethod.POST)
     public ServerResponse deleteScore(@RequestBody Map<String, Object> obj) throws IOException {
         Integer noticeId = (Integer) obj.get("noticeId");
-        int result = teacherNoticeService.deleteNotice(noticeId);
+        int result = adminNoticeService.deleteNotice(noticeId);
         if(result > 0){
-            // 删除公告时向学生推送消息
+            // 删除公告时向用户推送消息
             ConcurrentHashMap<String, WebSocketDemo> webSocketSet = WebSocketDemo.getWebSocketDemo();
             for (String key : webSocketSet.keySet()) {
                 if (key.length() == 12) {

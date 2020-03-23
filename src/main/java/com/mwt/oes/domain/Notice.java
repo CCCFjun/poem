@@ -2,20 +2,16 @@ package com.mwt.oes.domain;
 
 import java.util.Date;
 
-public class TeacherNotice {
+public class Notice {
     private Integer noticeId;
 
     private String noticeContent;
 
     private Date noticeCreateTime;
 
-    private String teaName;
+    private String adminName;
 
-    private String tno;
-
-    private String sno;
-
-    private String isSee;
+    private String ano;
 
     public Integer getNoticeId() {
         return noticeId;
@@ -41,35 +37,19 @@ public class TeacherNotice {
         this.noticeCreateTime = noticeCreateTime;
     }
 
-    public String getTeaName() {
-        return teaName;
+    public String getAdminName() {
+        return adminName;
     }
 
-    public void setTeaName(String teaName) {
-        this.teaName = teaName == null ? null : teaName.trim();
+    public void setAdminName(String adminName) {
+        this.adminName = adminName == null ? null : adminName.trim();
     }
 
-    public String getTno() {
-        return tno;
+    public String getAno() {
+        return ano;
     }
 
-    public void setTno(String tno) {
-        this.tno = tno == null ? null : tno.trim();
-    }
-
-    public String getSno() {
-        return sno;
-    }
-
-    public void setSno(String sno) {
-        this.sno = sno == null ? null : sno.trim();
-    }
-
-    public String getIsSee() {
-        return isSee;
-    }
-
-    public void setIsSee(String isSee) {
-        this.isSee = isSee == null ? null : isSee.trim();
+    public void setAno(String ano) {
+        this.ano = ano == null ? null : ano.trim();
     }
 }

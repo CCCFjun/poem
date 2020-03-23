@@ -1,6 +1,5 @@
 package com.mwt.oes;
 
-import com.mwt.oes.service.StudentProfileService;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,8 +12,6 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @SpringBootTest
 @WebAppConfiguration
 public class OesApplicationTests {
-
-	StudentProfileService studentProfileService;
 
 	@Before
 	public void init(){

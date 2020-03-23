@@ -2,16 +2,16 @@ package com.mwt.oes.domain;
 
 import java.util.Date;
 
-public class StudentFeedback {
+public class Feedback {
     private Integer feedbackId;
 
     private String feedbackContent;
 
     private Date feedbackCreateTime;
 
-    private String sno;
+    private String userPhone;
 
-    private String stuName;
+    private String userName;
 
     private String admAnswer;
 
@@ -47,20 +47,20 @@ public class StudentFeedback {
         this.feedbackCreateTime = feedbackCreateTime;
     }
 
-    public String getSno() {
-        return sno;
+    public String getUserPhone() {
+        return userPhone;
     }
 
-    public void setSno(String sno) {
-        this.sno = sno == null ? null : sno.trim();
+    public void setUserPhone(String userPhone) {
+        this.userPhone = userPhone == null ? null : userPhone.trim();
     }
 
-    public String getStuName() {
-        return stuName;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setStuName(String stuName) {
-        this.stuName = stuName == null ? null : stuName.trim();
+    public void setUserName(String userName) {
+        this.userName = userName == null ? null : userName.trim();
     }
 
     public String getAdmAnswer() {

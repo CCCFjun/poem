@@ -2,6 +2,7 @@ package com.mwt.oes.controller;
 
 import com.mwt.oes.domain.Paper;
 import com.mwt.oes.domain.StudentPaperScore;
+import com.mwt.oes.service.AdminPaperService;
 import com.mwt.oes.service.UserExamService;
 import com.mwt.oes.util.ServerResponse;
 import org.slf4j.Logger;
@@ -22,9 +23,19 @@ public class UserExamController {
 
     @Autowired
     private UserExamService userExamService;
+    private AdminPaperService adminPaperService;
 
     //Log4j日志处理
     public static Logger log = LoggerFactory.getLogger(StudentSystemController.class);
+
+    //    获取试卷列表信息
+    @RequestMapping("/getUserPapersList")
+    public ServerResponse getUserPapersList(){
+        Map<String, Object> map = new HashMap<>();
+        List<Map<String, Object>> papersList = adminPaperService.getPapersList();
+        map.put("papersList",papersList);
+        return ServerResponse.createBySuccess("获取全部试卷信息成功",map);
+    }
 
     /*
        通过paperId获取试卷及各题型题目

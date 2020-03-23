@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.mwt.oes.dao.StudentFeedbackMapper" >
-  <resultMap id="BaseResultMap" type="com.mwt.oes.domain.StudentFeedback" >
+<mapper namespace="com.mwt.oes.dao.FeedbackMapper" >
+  <resultMap id="BaseResultMap" type="com.mwt.oes.domain.Feedback" >
     <id column="feedback_id" property="feedbackId" jdbcType="INTEGER" />
     <result column="feedback_content" property="feedbackContent" jdbcType="VARCHAR" />
     <result column="feedback_create_time" property="feedbackCreateTime" jdbcType="TIMESTAMP" />
-    <result column="sno" property="sno" jdbcType="CHAR" />
-    <result column="stu_name" property="stuName" jdbcType="VARCHAR" />
+    <result column="user_phone" property="userPhone" jdbcType="CHAR" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
     <result column="adm_answer" property="admAnswer" jdbcType="VARCHAR" />
     <result column="ano" property="ano" jdbcType="CHAR" />
     <result column="adm_name" property="admName" jdbcType="VARCHAR" />
@@ -72,16 +72,16 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    feedback_id, feedback_content, feedback_create_time, sno, stu_name, adm_answer, ano, 
+    feedback_id, feedback_content, feedback_create_time, user_phone, user_name, adm_answer, ano, 
     adm_name, feedback_status, reply_time
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mwt.oes.domain.StudentFeedbackExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mwt.oes.domain.FeedbackExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from student_feedback
+    from feedback
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -92,31 +92,31 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from student_feedback
+    from feedback
     where feedback_id = #{feedbackId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from student_feedback
+    delete from feedback
     where feedback_id = #{feedbackId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.mwt.oes.domain.StudentFeedbackExample" >
-    delete from student_feedback
+  <delete id="deleteByExample" parameterType="com.mwt.oes.domain.FeedbackExample" >
+    delete from feedback
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.mwt.oes.domain.StudentFeedback" >
-    insert into student_feedback (feedback_id, feedback_content, feedback_create_time, 
-      sno, stu_name, adm_answer, 
+  <insert id="insert" parameterType="com.mwt.oes.domain.Feedback" >
+    insert into feedback (feedback_id, feedback_content, feedback_create_time, 
+      user_phone, user_name, adm_answer, 
       ano, adm_name, feedback_status, 
       reply_time)
     values (#{feedbackId,jdbcType=INTEGER}, #{feedbackContent,jdbcType=VARCHAR}, #{feedbackCreateTime,jdbcType=TIMESTAMP}, 
-      #{sno,jdbcType=CHAR}, #{stuName,jdbcType=VARCHAR}, #{admAnswer,jdbcType=VARCHAR}, 
+      #{userPhone,jdbcType=CHAR}, #{userName,jdbcType=VARCHAR}, #{admAnswer,jdbcType=VARCHAR}, 
       #{ano,jdbcType=CHAR}, #{admName,jdbcType=VARCHAR}, #{feedbackStatus,jdbcType=CHAR}, 
       #{replyTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.mwt.oes.domain.StudentFeedback" >
-    insert into student_feedback
+  <insert id="insertSelective" parameterType="com.mwt.oes.domain.Feedback" >
+    insert into feedback
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="feedbackId != null" >
         feedback_id,
@@ -127,11 +127,11 @@
       <if test="feedbackCreateTime != null" >
         feedback_create_time,
       </if>
-      <if test="sno != null" >
-        sno,
+      <if test="userPhone != null" >
+        user_phone,
       </if>
-      <if test="stuName != null" >
-        stu_name,
+      <if test="userName != null" >
+        user_name,
       </if>
       <if test="admAnswer != null" >
         adm_answer,
@@ -159,11 +159,11 @@
       <if test="feedbackCreateTime != null" >
         #{feedbackCreateTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="sno != null" >
-        #{sno,jdbcType=CHAR},
+      <if test="userPhone != null" >
+        #{userPhone,jdbcType=CHAR},
       </if>
-      <if test="stuName != null" >
-        #{stuName,jdbcType=VARCHAR},
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
       </if>
       <if test="admAnswer != null" >
         #{admAnswer,jdbcType=VARCHAR},
@@ -182,14 +182,14 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.mwt.oes.domain.StudentFeedbackExample" resultType="java.lang.Integer" >
-    select count(*) from student_feedback
+  <select id="countByExample" parameterType="com.mwt.oes.domain.FeedbackExample" resultType="java.lang.Integer" >
+    select count(*) from feedback
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update student_feedback
+    update feedback
     <set >
       <if test="record.feedbackId != null" >
         feedback_id = #{record.feedbackId,jdbcType=INTEGER},
@@ -200,11 +200,11 @@
       <if test="record.feedbackCreateTime != null" >
         feedback_create_time = #{record.feedbackCreateTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.sno != null" >
-        sno = #{record.sno,jdbcType=CHAR},
+      <if test="record.userPhone != null" >
+        user_phone = #{record.userPhone,jdbcType=CHAR},
       </if>
-      <if test="record.stuName != null" >
-        stu_name = #{record.stuName,jdbcType=VARCHAR},
+      <if test="record.userName != null" >
+        user_name = #{record.userName,jdbcType=VARCHAR},
       </if>
       <if test="record.admAnswer != null" >
         adm_answer = #{record.admAnswer,jdbcType=VARCHAR},
@@ -227,12 +227,12 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update student_feedback
+    update feedback
     set feedback_id = #{record.feedbackId,jdbcType=INTEGER},
       feedback_content = #{record.feedbackContent,jdbcType=VARCHAR},
       feedback_create_time = #{record.feedbackCreateTime,jdbcType=TIMESTAMP},
-      sno = #{record.sno,jdbcType=CHAR},
-      stu_name = #{record.stuName,jdbcType=VARCHAR},
+      user_phone = #{record.userPhone,jdbcType=CHAR},
+      user_name = #{record.userName,jdbcType=VARCHAR},
       adm_answer = #{record.admAnswer,jdbcType=VARCHAR},
       ano = #{record.ano,jdbcType=CHAR},
       adm_name = #{record.admName,jdbcType=VARCHAR},
@@ -242,8 +242,8 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.mwt.oes.domain.StudentFeedback" >
-    update student_feedback
+  <update id="updateByPrimaryKeySelective" parameterType="com.mwt.oes.domain.Feedback" >
+    update feedback
     <set >
       <if test="feedbackContent != null" >
         feedback_content = #{feedbackContent,jdbcType=VARCHAR},
@@ -251,11 +251,11 @@
       <if test="feedbackCreateTime != null" >
         feedback_create_time = #{feedbackCreateTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="sno != null" >
-        sno = #{sno,jdbcType=CHAR},
+      <if test="userPhone != null" >
+        user_phone = #{userPhone,jdbcType=CHAR},
       </if>
-      <if test="stuName != null" >
-        stu_name = #{stuName,jdbcType=VARCHAR},
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
       </if>
       <if test="admAnswer != null" >
         adm_answer = #{admAnswer,jdbcType=VARCHAR},
@@ -275,12 +275,12 @@
     </set>
     where feedback_id = #{feedbackId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.mwt.oes.domain.StudentFeedback" >
-    update student_feedback
+  <update id="updateByPrimaryKey" parameterType="com.mwt.oes.domain.Feedback" >
+    update feedback
     set feedback_content = #{feedbackContent,jdbcType=VARCHAR},
       feedback_create_time = #{feedbackCreateTime,jdbcType=TIMESTAMP},
-      sno = #{sno,jdbcType=CHAR},
-      stu_name = #{stuName,jdbcType=VARCHAR},
+      user_phone = #{userPhone,jdbcType=CHAR},
+      user_name = #{userName,jdbcType=VARCHAR},
       adm_answer = #{admAnswer,jdbcType=VARCHAR},
       ano = #{ano,jdbcType=CHAR},
       adm_name = #{admName,jdbcType=VARCHAR},
