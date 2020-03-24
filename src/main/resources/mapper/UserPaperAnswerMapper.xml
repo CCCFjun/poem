@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.mwt.oes.dao.StudentPaperScoreMapper" >
-  <resultMap id="BaseResultMap" type="com.mwt.oes.domain.StudentPaperScore" >
-    <id column="score_id" property="scoreId" jdbcType="INTEGER" />
-    <result column="score" property="score" jdbcType="INTEGER" />
-    <result column="time_used" property="timeUsed" jdbcType="INTEGER" />
-    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
-    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
-    <result column="sno" property="sno" jdbcType="CHAR" />
+<mapper namespace="com.mwt.oes.dao.UserPaperAnswerMapper" >
+  <resultMap id="BaseResultMap" type="com.mwt.oes.domain.UserPaperAnswer" >
+    <id column="answer_id" property="answerId" jdbcType="INTEGER" />
+    <result column="stu_answer" property="stuAnswer" jdbcType="VARCHAR" />
+    <result column="isCorrect" property="iscorrect" jdbcType="VARCHAR" />
+    <result column="que_id" property="queId" jdbcType="INTEGER" />
     <result column="paper_id" property="paperId" jdbcType="INTEGER" />
+    <result column="isCollect" property="iscollect" jdbcType="VARCHAR" />
     <result column="user_phone" property="userPhone" jdbcType="CHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -70,15 +69,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    score_id, score, time_used, start_time, end_time, sno, paper_id, user_phone
+    answer_id, stu_answer, isCorrect, que_id, paper_id, isCollect, user_phone
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mwt.oes.domain.StudentPaperScoreExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mwt.oes.domain.UserPaperAnswerExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from student_paper_score
+    from user_paper_answer
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -87,113 +86,105 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
+    select
     <include refid="Base_Column_List" />
-    from student_paper_score
-    where score_id = #{scoreId,jdbcType=INTEGER}
+    from user_paper_answer
+    where answer_id = #{answerId,jdbcType=INTEGER}
   </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from student_paper_score
-    where score_id = #{scoreId,jdbcType=INTEGER}
+    delete from user_paper_answer
+    where answer_id = #{answerId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.mwt.oes.domain.StudentPaperScoreExample" >
-    delete from student_paper_score
+  <delete id="deleteByExample" parameterType="com.mwt.oes.domain.UserPaperAnswerExample" >
+    delete from user_paper_answer
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.mwt.oes.domain.StudentPaperScore" >
-    insert into student_paper_score (score_id, score, time_used, 
-      start_time, end_time, sno, 
-      paper_id)
-    values (#{scoreId,jdbcType=INTEGER}, #{score,jdbcType=INTEGER}, #{timeUsed,jdbcType=INTEGER}, 
-      #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{sno,jdbcType=CHAR}, 
-      #{paperId,jdbcType=INTEGER})
+  <insert id="insert" parameterType="com.mwt.oes.domain.UserPaperAnswer" >
+    insert into user_paper_answer (answer_id, stu_answer, isCorrect,
+      que_id, paper_id, isCollect
+      )
+    values (#{answerId,jdbcType=INTEGER}, #{stuAnswer,jdbcType=VARCHAR}, #{iscorrect,jdbcType=VARCHAR},
+      #{queId,jdbcType=INTEGER}, #{paperId,jdbcType=INTEGER}, #{iscollect,jdbcType=VARCHAR}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.mwt.oes.domain.StudentPaperScore" >
-    insert into student_paper_score
+  <insert id="insertSelective" parameterType="com.mwt.oes.domain.UserPaperAnswer" >
+    insert into user_paper_answer
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="scoreId != null" >
-        score_id,
+      <if test="answerId != null" >
+        answer_id,
       </if>
-      <if test="score != null" >
-        score,
+      <if test="stuAnswer != null" >
+        stu_answer,
       </if>
-      <if test="timeUsed != null" >
-        time_used,
+      <if test="iscorrect != null" >
+        isCorrect,
       </if>
-      <if test="startTime != null" >
-        start_time,
-      </if>
-      <if test="endTime != null" >
-        end_time,
-      </if>
-      <if test="sno != null" >
-        sno,
+      <if test="queId != null" >
+        que_id,
       </if>
       <if test="paperId != null" >
         paper_id,
+      </if>
+      <if test="iscollect != null" >
+        isCollect,
       </if>
         <if test="userPhone != null" >
             user_phone,
         </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="scoreId != null" >
-        #{scoreId,jdbcType=INTEGER},
+      <if test="answerId != null" >
+        #{answerId,jdbcType=INTEGER},
       </if>
-      <if test="score != null" >
-        #{score,jdbcType=INTEGER},
+      <if test="stuAnswer != null" >
+        #{stuAnswer,jdbcType=VARCHAR},
       </if>
-      <if test="timeUsed != null" >
-        #{timeUsed,jdbcType=INTEGER},
+      <if test="iscorrect != null" >
+        #{iscorrect,jdbcType=VARCHAR},
       </if>
-      <if test="startTime != null" >
-        #{startTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="endTime != null" >
-        #{endTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="sno != null" >
-        #{sno,jdbcType=CHAR},
+      <if test="queId != null" >
+        #{queId,jdbcType=INTEGER},
       </if>
       <if test="paperId != null" >
         #{paperId,jdbcType=INTEGER},
+      </if>
+      <if test="iscollect != null" >
+        #{iscollect,jdbcType=VARCHAR},
       </if>
         <if test="userPhone != null" >
             #{userPhone,jdbcType=CHAR},
         </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.mwt.oes.domain.StudentPaperScoreExample" resultType="java.lang.Integer" >
-    select count(*) from student_paper_score
+  <select id="countByExample" parameterType="com.mwt.oes.domain.UserPaperAnswerExample" resultType="java.lang.Integer" >
+    select count(*) from user_paper_answer
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update student_paper_score
+    update user_paper_answer
     <set >
-      <if test="record.scoreId != null" >
-        score_id = #{record.scoreId,jdbcType=INTEGER},
+      <if test="record.answerId != null" >
+        answer_id = #{record.answerId,jdbcType=INTEGER},
       </if>
-      <if test="record.score != null" >
-        score = #{record.score,jdbcType=INTEGER},
+      <if test="record.stuAnswer != null" >
+        stu_answer = #{record.stuAnswer,jdbcType=VARCHAR},
       </if>
-      <if test="record.timeUsed != null" >
-        time_used = #{record.timeUsed,jdbcType=INTEGER},
+      <if test="record.iscorrect != null" >
+        isCorrect = #{record.iscorrect,jdbcType=VARCHAR},
       </if>
-      <if test="record.startTime != null" >
-        start_time = #{record.startTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.endTime != null" >
-        end_time = #{record.endTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.sno != null" >
-        sno = #{record.sno,jdbcType=CHAR},
+      <if test="record.queId != null" >
+        que_id = #{record.queId,jdbcType=INTEGER},
       </if>
       <if test="record.paperId != null" >
         paper_id = #{record.paperId,jdbcType=INTEGER},
+      </if>
+      <if test="record.iscollect != null" >
+        isCollect = #{record.iscollect,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -201,50 +192,45 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update student_paper_score
-    set score_id = #{record.scoreId,jdbcType=INTEGER},
-      score = #{record.score,jdbcType=INTEGER},
-      time_used = #{record.timeUsed,jdbcType=INTEGER},
-      start_time = #{record.startTime,jdbcType=TIMESTAMP},
-      end_time = #{record.endTime,jdbcType=TIMESTAMP},
-      sno = #{record.sno,jdbcType=CHAR},
-      paper_id = #{record.paperId,jdbcType=INTEGER}
+    update user_paper_answer
+    set answer_id = #{record.answerId,jdbcType=INTEGER},
+      stu_answer = #{record.stuAnswer,jdbcType=VARCHAR},
+      isCorrect = #{record.iscorrect,jdbcType=VARCHAR},
+      que_id = #{record.queId,jdbcType=INTEGER},
+      paper_id = #{record.paperId,jdbcType=INTEGER},
+      isCollect = #{record.iscollect,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.mwt.oes.domain.StudentPaperScore" >
-    update student_paper_score
+  <update id="updateByPrimaryKeySelective" parameterType="com.mwt.oes.domain.UserPaperAnswer" >
+    update user_paper_answer
     <set >
-      <if test="score != null" >
-        score = #{score,jdbcType=INTEGER},
+      <if test="stuAnswer != null" >
+        stu_answer = #{stuAnswer,jdbcType=VARCHAR},
       </if>
-      <if test="timeUsed != null" >
-        time_used = #{timeUsed,jdbcType=INTEGER},
+      <if test="iscorrect != null" >
+        isCorrect = #{iscorrect,jdbcType=VARCHAR},
       </if>
-      <if test="startTime != null" >
-        start_time = #{startTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="endTime != null" >
-        end_time = #{endTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="sno != null" >
-        sno = #{sno,jdbcType=CHAR},
+      <if test="queId != null" >
+        que_id = #{queId,jdbcType=INTEGER},
       </if>
       <if test="paperId != null" >
         paper_id = #{paperId,jdbcType=INTEGER},
       </if>
+      <if test="iscollect != null" >
+        isCollect = #{iscollect,jdbcType=VARCHAR},
+      </if>
     </set>
-    where score_id = #{scoreId,jdbcType=INTEGER}
+    where answer_id = #{answerId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.mwt.oes.domain.StudentPaperScore" >
-    update student_paper_score
-    set score = #{score,jdbcType=INTEGER},
-      time_used = #{timeUsed,jdbcType=INTEGER},
-      start_time = #{startTime,jdbcType=TIMESTAMP},
-      end_time = #{endTime,jdbcType=TIMESTAMP},
-      sno = #{sno,jdbcType=CHAR},
-      paper_id = #{paperId,jdbcType=INTEGER}
-    where score_id = #{scoreId,jdbcType=INTEGER}
+  <update id="updateByPrimaryKey" parameterType="com.mwt.oes.domain.UserPaperAnswer" >
+    update user_paper_answer
+    set stu_answer = #{stuAnswer,jdbcType=VARCHAR},
+      isCorrect = #{iscorrect,jdbcType=VARCHAR},
+      que_id = #{queId,jdbcType=INTEGER},
+      paper_id = #{paperId,jdbcType=INTEGER},
+      isCollect = #{iscollect,jdbcType=VARCHAR}
+    where answer_id = #{answerId,jdbcType=INTEGER}
   </update>
 </mapper>

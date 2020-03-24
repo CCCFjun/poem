@@ -9,11 +9,6 @@
     <result column="paper_difficulty" property="paperDifficulty" jdbcType="INTEGER" />
     <result column="paper_attention" property="paperAttention" jdbcType="VARCHAR" />
     <result column="paper_type" property="paperType" jdbcType="INTEGER" />
-    <result column="single_score" property="singleScore" jdbcType="INTEGER" />
-    <result column="multiple_score" property="multipleScore" jdbcType="INTEGER" />
-    <result column="judge_score" property="judgeScore" jdbcType="INTEGER" />
-    <result column="fill_score" property="fillScore" jdbcType="INTEGER" />
-    <result column="lang_id" property="langId" jdbcType="INTEGER" />
     <result column="participate_num" property="participateNum" jdbcType="INTEGER" />
     <result column="paper_img_src" property="paperImgSrc" jdbcType="VARCHAR" />
   </resultMap>
@@ -77,7 +72,7 @@
   </sql>
   <sql id="Base_Column_List" >
     paper_id, paper_name, paper_create_time, paper_duration, paper_difficulty, paper_attention, 
-    paper_type, single_score, multiple_score, judge_score, fill_score, lang_id, participate_num,paper_img_src
+    paper_type, participate_num,paper_img_src
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mwt.oes.domain.PaperExample" >
     select
@@ -117,13 +112,11 @@
   <insert id="insert" parameterType="com.mwt.oes.domain.Paper" >
     insert into paper (paper_id, paper_name, paper_create_time, 
       paper_duration, paper_difficulty, paper_attention, 
-      paper_type, single_score, multiple_score, 
-      judge_score, fill_score,
+      paper_type,
       participate_num)
     values (#{paperId,jdbcType=INTEGER}, #{paperName,jdbcType=VARCHAR}, #{paperCreateTime,jdbcType=TIMESTAMP}, 
       #{paperDuration,jdbcType=INTEGER}, #{paperDifficulty,jdbcType=INTEGER}, #{paperAttention,jdbcType=VARCHAR}, 
-      #{paperType,jdbcType=INTEGER}, #{singleScore,jdbcType=INTEGER}, #{multipleScore,jdbcType=INTEGER}, 
-      #{judgeScore,jdbcType=INTEGER}, #{fillScore,jdbcType=INTEGER},
+      #{paperType,jdbcType=INTEGER},
       #{participateNum,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.mwt.oes.domain.Paper" >
@@ -150,18 +143,6 @@
       <if test="paperType != null" >
         paper_type,
       </if>
-      <if test="singleScore != null" >
-        single_score,
-      </if>
-      <if test="multipleScore != null" >
-        multiple_score,
-      </if>
-      <if test="judgeScore != null" >
-        judge_score,
-      </if>
-      <if test="fillScore != null" >
-        fill_score,
-      </if>
       <if test="participateNum != null" >
         participate_num,
       </if>
@@ -187,18 +168,6 @@
       </if>
       <if test="paperType != null" >
         #{paperType,jdbcType=INTEGER},
-      </if>
-      <if test="singleScore != null" >
-        #{singleScore,jdbcType=INTEGER},
-      </if>
-      <if test="multipleScore != null" >
-        #{multipleScore,jdbcType=INTEGER},
-      </if>
-      <if test="judgeScore != null" >
-        #{judgeScore,jdbcType=INTEGER},
-      </if>
-      <if test="fillScore != null" >
-        #{fillScore,jdbcType=INTEGER},
       </if>
       <if test="participateNum != null" >
         #{participateNum,jdbcType=INTEGER},
@@ -235,21 +204,6 @@
       <if test="record.paperType != null" >
         paper_type = #{record.paperType,jdbcType=INTEGER},
       </if>
-      <if test="record.singleScore != null" >
-        single_score = #{record.singleScore,jdbcType=INTEGER},
-      </if>
-      <if test="record.multipleScore != null" >
-        multiple_score = #{record.multipleScore,jdbcType=INTEGER},
-      </if>
-      <if test="record.judgeScore != null" >
-        judge_score = #{record.judgeScore,jdbcType=INTEGER},
-      </if>
-      <if test="record.fillScore != null" >
-        fill_score = #{record.fillScore,jdbcType=INTEGER},
-      </if>
-      <if test="record.langId != null" >
-        lang_id = #{record.langId,jdbcType=INTEGER},
-      </if>
       <if test="record.participateNum != null" >
         participate_num = #{record.participateNum,jdbcType=INTEGER},
       </if>
@@ -267,11 +221,6 @@
       paper_difficulty = #{record.paperDifficulty,jdbcType=INTEGER},
       paper_attention = #{record.paperAttention,jdbcType=VARCHAR},
       paper_type = #{record.paperType,jdbcType=INTEGER},
-      single_score = #{record.singleScore,jdbcType=INTEGER},
-      multiple_score = #{record.multipleScore,jdbcType=INTEGER},
-      judge_score = #{record.judgeScore,jdbcType=INTEGER},
-      fill_score = #{record.fillScore,jdbcType=INTEGER},
-      lang_id = #{record.langId,jdbcType=INTEGER},
       participate_num = #{record.participateNum,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -298,21 +247,6 @@
       <if test="paperType != null" >
         paper_type = #{paperType,jdbcType=INTEGER},
       </if>
-      <if test="singleScore != null" >
-        single_score = #{singleScore,jdbcType=INTEGER},
-      </if>
-      <if test="multipleScore != null" >
-        multiple_score = #{multipleScore,jdbcType=INTEGER},
-      </if>
-      <if test="judgeScore != null" >
-        judge_score = #{judgeScore,jdbcType=INTEGER},
-      </if>
-      <if test="fillScore != null" >
-        fill_score = #{fillScore,jdbcType=INTEGER},
-      </if>
-      <if test="langId != null" >
-        lang_id = #{langId,jdbcType=INTEGER},
-      </if>
       <if test="participateNum != null" >
         participate_num = #{participateNum,jdbcType=INTEGER},
       </if>
@@ -327,11 +261,6 @@
       paper_difficulty = #{paperDifficulty,jdbcType=INTEGER},
       paper_attention = #{paperAttention,jdbcType=VARCHAR},
       paper_type = #{paperType,jdbcType=INTEGER},
-      single_score = #{singleScore,jdbcType=INTEGER},
-      multiple_score = #{multipleScore,jdbcType=INTEGER},
-      judge_score = #{judgeScore,jdbcType=INTEGER},
-      fill_score = #{fillScore,jdbcType=INTEGER},
-      lang_id = #{langId,jdbcType=INTEGER},
       participate_num = #{participateNum,jdbcType=INTEGER}
     where paper_id = #{paperId,jdbcType=INTEGER}
   </update>

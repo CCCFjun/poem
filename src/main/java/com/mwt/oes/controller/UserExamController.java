@@ -1,7 +1,7 @@
 package com.mwt.oes.controller;
 
 import com.mwt.oes.domain.Paper;
-import com.mwt.oes.domain.StudentPaperScore;
+import com.mwt.oes.domain.UserPaperScore;
 import com.mwt.oes.service.AdminPaperService;
 import com.mwt.oes.service.UserExamService;
 import com.mwt.oes.util.ServerResponse;
@@ -23,10 +23,11 @@ public class UserExamController {
 
     @Autowired
     private UserExamService userExamService;
+    @Autowired
     private AdminPaperService adminPaperService;
 
     //Log4j日志处理
-    public static Logger log = LoggerFactory.getLogger(StudentSystemController.class);
+    public static Logger log = LoggerFactory.getLogger(UserExamController.class);
 
     //    获取试卷列表信息
     @RequestMapping("/getUserPapersList")
@@ -67,10 +68,10 @@ public class UserExamController {
         请求获取当前试卷状态，即是否已完成
      */
     @RequestMapping(value = "/getCurrentPaperStatus", method = RequestMethod.POST)
-    public ServerResponse getCurrentPaperStatus(@RequestBody(required = false)StudentPaperScore studentPaperScore){
-        String userPhone = studentPaperScore.getUserPhone();
-        Integer paperId = studentPaperScore.getPaperId();
-        List<StudentPaperScore> resultList = userExamService.getCurrentPaperStatus(userPhone, paperId);
+    public ServerResponse getCurrentPaperStatus(@RequestBody(required = false) UserPaperScore userPaperScore){
+        String userPhone = userPaperScore.getUserPhone();
+        Integer paperId = userPaperScore.getPaperId();
+        List<UserPaperScore> resultList = userExamService.getCurrentPaperStatus(userPhone, paperId);
         if(resultList != null && resultList.size() > 0){
             return ServerResponse.createBySuccess("当前试卷已完成",resultList);
         }
@@ -83,13 +84,13 @@ public class UserExamController {
         插入用户成绩表成绩信息，包含三个字段，考试开始时间、手机号和试卷id
      */
     @RequestMapping(value = "/insertStudentPaperScore", method = RequestMethod.POST)
-    public ServerResponse insertStudentPaperScore(@RequestBody(required = false)StudentPaperScore studentPaperScore){
-        studentPaperScore.setStartTime(new Date());
-        int result = userExamService.insertStudentPaperScore(studentPaperScore);
+    public ServerResponse insertStudentPaperScore(@RequestBody(required = false) UserPaperScore userPaperScore){
+        userPaperScore.setStartTime(new Date());
+        int result = userExamService.insertStudentPaperScore(userPaperScore);
         if(result == 0)
             return ServerResponse.createByError("数据库错误，插入学生成绩表失败");
         else
-            return ServerResponse.createBySuccess("账号" + studentPaperScore.getUserPhone() + "试卷id" + studentPaperScore.getPaperId() + "初始化插入学生成绩表信息成功",null);
+            return ServerResponse.createBySuccess("账号" + userPaperScore.getUserPhone() + "试卷id" + userPaperScore.getPaperId() + "初始化插入学生成绩表信息成功",null);
     }
 
     /*

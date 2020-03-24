@@ -1,6 +1,7 @@
 package com.mwt.oes.controller;
 
 import com.mwt.oes.domain.QuestionType;
+import com.mwt.oes.service.AdminRotationImgService;
 import com.mwt.oes.service.UserPracticeService;
 import com.mwt.oes.util.ServerResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,15 @@ public class UserPracticeController {
 
     @Autowired
     private UserPracticeService userPracticeService;
+    @Autowired
+    private AdminRotationImgService adminRotationImgService;
+
+    //    获取全部轮播图信息
+    @RequestMapping("/getRotationImgsList")
+    public ServerResponse getRotationImgsList(){
+        List<Map<String, Object>> resultList = adminRotationImgService.getRotationImgsList();
+        return ServerResponse.createBySuccess("获取全部轮播图信息成功",resultList);
+    }
 
     /*
         获取全部练习题型分类

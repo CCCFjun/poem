@@ -17,16 +17,6 @@ public class Paper {
 
     private Integer paperType;
 
-    private Integer singleScore;
-
-    private Integer multipleScore;
-
-    private Integer judgeScore;
-
-    private Integer fillScore;
-
-    private Integer langId;
-
     private Integer participateNum;
 
     private String paperImgSrc;
@@ -85,46 +75,6 @@ public class Paper {
 
     public void setPaperType(Integer paperType) {
         this.paperType = paperType;
-    }
-
-    public Integer getSingleScore() {
-        return singleScore;
-    }
-
-    public void setSingleScore(Integer singleScore) {
-        this.singleScore = singleScore;
-    }
-
-    public Integer getMultipleScore() {
-        return multipleScore;
-    }
-
-    public void setMultipleScore(Integer multipleScore) {
-        this.multipleScore = multipleScore;
-    }
-
-    public Integer getJudgeScore() {
-        return judgeScore;
-    }
-
-    public void setJudgeScore(Integer judgeScore) {
-        this.judgeScore = judgeScore;
-    }
-
-    public Integer getFillScore() {
-        return fillScore;
-    }
-
-    public void setFillScore(Integer fillScore) {
-        this.fillScore = fillScore;
-    }
-
-    public Integer getLangId() {
-        return langId;
-    }
-
-    public void setLangId(Integer langId) {
-        this.langId = langId;
     }
 
     public Integer getParticipateNum() {

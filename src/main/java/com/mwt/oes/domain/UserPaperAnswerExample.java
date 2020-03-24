@@ -3,14 +3,14 @@ package com.mwt.oes.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StudentPaperAnswerExample {
+public class UserPaperAnswerExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public StudentPaperAnswerExample() {
+    public UserPaperAnswerExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 

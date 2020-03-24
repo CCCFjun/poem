@@ -1,7 +1,6 @@
 /*
 package com.mwt.oes.util;
 
-import com.mwt.oes.controller.StudentSystemController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.MultipartFile;
@@ -18,7 +17,6 @@ public class TempProfileImageSavaUtil {
     public static final String WINDOWS_PROFILES_PATH = "D:\\onlineexam-system-backend\\src\\main\\resources\\static\\tempProfiles\\";
     public static final String LINUX_PROFILES_PATH = "/root/super_meeting/tempProfiles/";
 
-    public static Logger log = LoggerFactory.getLogger(StudentSystemController.class);
 
     public static String imageSava(MultipartFile newProfile,String oldImgSrc){
         // 根据Windows和Linux配置不同的头像保存路径

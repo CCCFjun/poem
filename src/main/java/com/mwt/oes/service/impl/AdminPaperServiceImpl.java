@@ -2,8 +2,8 @@ package com.mwt.oes.service.impl;
 
 import com.mwt.oes.dao.*;
 import com.mwt.oes.domain.*;
-import com.mwt.oes.service.StudentHomeService;
 import com.mwt.oes.service.AdminPaperService;
+import com.mwt.oes.service.UserExamService;
 import com.mwt.oes.util.FindContentWithImage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,9 +18,9 @@ public class AdminPaperServiceImpl implements AdminPaperService {
     @Autowired
     PaperMapper paperMapper;
     @Autowired
-    StudentHomeService studentHomeService;
+    UserExamService userExamService;
     @Autowired
-    StudentPaperScoreMapper studentPaperScoreMapper;
+    UserPaperScoreMapper userPaperScoreMapper;
     @Autowired
     PaperQueMapper paperQueMapper;
     @Autowired
@@ -43,23 +43,13 @@ public class AdminPaperServiceImpl implements AdminPaperService {
             map.put("id", paperList.indexOf(paper) + 1);
             map.put("paperId", paper.getPaperId());
             map.put("paperName", paper.getPaperName());
-
             map.put("paperDuration", paper.getPaperDuration());
             map.put("paperDifficulty", paper.getPaperDifficulty());
             map.put("paperAttention", paper.getPaperAttention());
             map.put("paperType", paper.getPaperType());
-            map.put("singleScore", paper.getSingleScore());
-//            map.put("multipleScore", paper.getMultipleScore());
-            map.put("judgeScore", paper.getJudgeScore());
-            map.put("fillScore", paper.getFillScore());
             map.put("paperImgSrc", paper.getPaperImgSrc());
 
-            Map<String, Integer> queNum = studentHomeService.getPaperQueNumByPaperId(paper.getPaperId());
-            int totalScore = queNum.get("singleNum")*1
-//                    + queNum.get("multipleNum")*paper.getMultipleScore()
-                    + queNum.get("judgeNum")*1
-                    + queNum.get("fillNum")*1;
-            map.put("totalScore", totalScore);
+            Map<String, Integer> queNum = userExamService.getPaperQueNumByPaperId(paper.getPaperId());
             map.put("singleNum", queNum.get("singleNum"));
 //            map.put("multipleNum", queNum.get("multipleNum"));
             map.put("judgeNum", queNum.get("judgeNum"));
@@ -111,17 +101,8 @@ public class AdminPaperServiceImpl implements AdminPaperService {
             map.put("paperDifficulty", paper.getPaperDifficulty());
             map.put("paperType", paper.getPaperType());
             map.put("paperAttention", paper.getPaperAttention());
-            map.put("singleScore", paper.getSingleScore());
-            map.put("multipleScore", paper.getMultipleScore());
-            map.put("judgeScore", paper.getJudgeScore());
-            map.put("fillScore", paper.getFillScore());
 
-            Map<String, Integer> queNum = studentHomeService.getPaperQueNumByPaperId(paper.getPaperId());
-            int totalScore = queNum.get("singleNum")*paper.getSingleScore()
-//                    + queNum.get("multipleNum")*paper.getMultipleScore()
-                    + queNum.get("judgeNum")*paper.getJudgeScore()
-                    + queNum.get("fillNum")*paper.getFillScore();
-            map.put("totalScore", totalScore);
+            Map<String, Integer> queNum = userExamService.getPaperQueNumByPaperId(paper.getPaperId());
             map.put("singleNum", queNum.get("singleNum"));
 //            map.put("multipleNum", queNum.get("multipleNum"));
             map.put("judgeNum", queNum.get("judgeNum"));
@@ -137,10 +118,10 @@ public class AdminPaperServiceImpl implements AdminPaperService {
 
     @Override
     public int selectPaperScoreByPaperId(Integer paperId) {
-        StudentPaperScoreExample studentPaperScoreExample = new StudentPaperScoreExample();
-        StudentPaperScoreExample.Criteria criteria = studentPaperScoreExample.createCriteria();
+        UserPaperScoreExample userPaperScoreExample = new UserPaperScoreExample();
+        UserPaperScoreExample.Criteria criteria = userPaperScoreExample.createCriteria();
         criteria.andPaperIdEqualTo(paperId);
-        List<StudentPaperScore> resultList = studentPaperScoreMapper.selectByExample(studentPaperScoreExample);
+        List<UserPaperScore> resultList = userPaperScoreMapper.selectByExample(userPaperScoreExample);
         return resultList.size();
     }
 
@@ -375,26 +356,15 @@ public class AdminPaperServiceImpl implements AdminPaperService {
         Integer paperDuration = (Integer) obj.get("paperDuration");
         Integer paperDifficulty = (Integer) obj.get("paperDifficulty");
         String paperAttention = (String) obj.get("paperAttention");
-//        Integer singleScore = (Integer) obj.get("singleScore");
         Integer singleNum = (Integer) obj.get("singleNum");
-//        Integer multipleScore = (Integer) obj.get("multipleScore");
-//        Integer multipleNum = (Integer) obj.get("multipleNum");
-//        Integer judgeScore = (Integer) obj.get("judgeScore");
         Integer judgeNum = (Integer) obj.get("judgeNum");
-//        Integer fillScore = (Integer) obj.get("fillScore");
         Integer fillNum = (Integer) obj.get("fillNum");
         Integer fillTwoNum = (Integer) obj.get("fillTwoNum");
-//        Integer langId = (Integer) obj.get("langId");
         Paper paper = new Paper();
         paper.setPaperName(paperName);
         paper.setPaperDuration(paperDuration);
         paper.setPaperDifficulty(paperDifficulty);
         paper.setPaperAttention(paperAttention);
-        paper.setSingleScore(1);
-//        paper.setMultipleScore(multipleScore);
-        paper.setJudgeScore(1);
-        paper.setFillScore(1);
-//        paper.setLangId(langId);
         paper.setPaperCreateTime(new Date());
         paper.setPaperType(1);
         int paperId = paperMapper.selectMaxPaperId() + 1;
@@ -597,13 +567,8 @@ public class AdminPaperServiceImpl implements AdminPaperService {
         Integer paperDuration = (Integer) obj.get("paperDuration");
         Integer paperDifficulty = (Integer) obj.get("paperDifficulty");
         String paperAttention = (String) obj.get("paperAttention");
-        Integer singleScore = 1;
         List<Integer> singleNum = (List<Integer>) obj.get("singleNum");
-        Integer multipleScore = (Integer) obj.get("multipleScore");
-//        List<Integer> multipleNum = (List<Integer>) obj.get("multipleNum");
-        Integer judgeScore = 1;
         List<Integer> judgeNum = (List<Integer>) obj.get("judgeNum");
-        Integer fillScore = 1;
         List<Integer> fillNum = (List<Integer>) obj.get("fillNum");
         List<Integer> fillTwoNum = (List<Integer>) obj.get("fillTwoNum");
 //        Integer langId = (Integer) obj.get("langId");
@@ -612,11 +577,6 @@ public class AdminPaperServiceImpl implements AdminPaperService {
         paper.setPaperDuration(paperDuration);
         paper.setPaperDifficulty(paperDifficulty);
         paper.setPaperAttention(paperAttention);
-        paper.setSingleScore(singleScore);
-//        paper.setMultipleScore(multipleScore);
-        paper.setJudgeScore(judgeScore);
-        paper.setFillScore(fillScore);
-//        paper.setLangId(langId);
         paper.setPaperCreateTime(new Date());
         paper.setPaperType(2);
         int paperId = paperMapper.selectMaxPaperId() + 1;

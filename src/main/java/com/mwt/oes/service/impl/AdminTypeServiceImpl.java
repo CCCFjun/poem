@@ -73,15 +73,12 @@ public class AdminTypeServiceImpl implements AdminTypeService {
     }
 
     @Override
-    public List<Map<String, Object>> searchTypesList(String langName, String isRecommend) {
+    public List<Map<String, Object>> searchTypesList(String langName) {
         List<Map<String, Object>> resultList = new ArrayList<>();
         QuestionTypeExample questionTypeExample = new QuestionTypeExample();
         QuestionTypeExample.Criteria criteria = questionTypeExample.createCriteria();
         if (!langName.equals("undefined")) {
             criteria.andLangNameLike("%" + langName + "%");
-        }
-        if (!isRecommend.equals("undefined")) {
-            criteria.andLangEnNameEqualTo(isRecommend);
         }
         questionTypeExample.setOrderByClause("lang_id asc");
         List<QuestionType> questionTypeList = queTypeMapper.selectByExample(questionTypeExample);
@@ -96,12 +93,27 @@ public class AdminTypeServiceImpl implements AdminTypeService {
             map.put("langImgSrc", questionType.getLangImgSrc());
             map.put("langChangeTime", questionType.getLangChangeTime());
             map.put("langLastChanger", questionType.getLangLastChanger());
-            map.put("isRecommend", questionType.getLangEnName());
-            PaperExample paperExample = new PaperExample();
-            PaperExample.Criteria criteria2 = paperExample.createCriteria();
+            BankFillQueExample bankFillQueExample = new BankFillQueExample();
+            BankFillQueExample.Criteria criteria1 = bankFillQueExample.createCriteria();
+            criteria1.andLangIdEqualTo(questionType.getLangId());
+            int queFillCount = bankFillQueMapper.countByExample(bankFillQueExample);
+            BankJudgeQueExample bankJudgeQueExample = new BankJudgeQueExample();
+            BankJudgeQueExample.Criteria criteria2 = bankJudgeQueExample.createCriteria();
             criteria2.andLangIdEqualTo(questionType.getLangId());
-            int paperCount = paperMapper.countByExample(paperExample);
-            map.put("paperCount", paperCount);
+            int queJudgeCount = bankJudgeQueMapper.countByExample(bankJudgeQueExample);
+            BankSingleChoiceQueExample bankSingleChoiceQueExample = new BankSingleChoiceQueExample();
+            BankSingleChoiceQueExample.Criteria criteria3 = bankSingleChoiceQueExample.createCriteria();
+            criteria3.andLangIdEqualTo(questionType.getLangId());
+            int queSingleCount = bankSingleChoiceQueMapper.countByExample(bankSingleChoiceQueExample);
+            if(queFillCount != 0){
+                map.put("queCount", queFillCount);
+            }else if(queJudgeCount != 0){
+                map.put("queCount", queJudgeCount);
+            }else if(queSingleCount != 0){
+                map.put("queCount", queSingleCount);
+            }else{
+                map.put("queCount", 0);
+            }
             resultList.add(map);
         }
         return resultList;

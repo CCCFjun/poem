@@ -23,13 +23,12 @@ public class AdminTypeController {
         return ServerResponse.createBySuccess("获取全部题型信息成功",resultList);
     }
 
-    //    获取搜索题型信息
-//    @RequestMapping("/searchTypesList")
-//    public ServerResponse searchTypesList(@RequestParam("langName")String langName,
-//                                             @RequestParam("isRecommend")String isRecommend){
-//        List<Map<String, Object>> resultList = adminTypeService.searchTypesList(langName, isRecommend);
-//        return ServerResponse.createBySuccess("获取搜索题型信息成功",resultList);
-//    }
+    //获取搜索题型信息
+    @RequestMapping("/searchTypesList")
+    public ServerResponse searchTypesList(@RequestParam("langName")String langName){
+        List<Map<String, Object>> resultList = adminTypeService.searchTypesList(langName);
+        return ServerResponse.createBySuccess("获取搜索题型信息成功",resultList);
+    }
 
     //    添加题型信息
     @RequestMapping(value = "/insertTypeInfo",method = RequestMethod.POST)

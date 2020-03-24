@@ -1,8 +1,6 @@
 package com.mwt.oes.util;
 
-import com.mwt.oes.controller.StudentSystemController;
 import com.mwt.oes.controller.UserSystemController;
-import com.mwt.oes.domain.Student;
 import com.mwt.oes.domain.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,7 +20,6 @@ import java.util.UUID;
 //    public static final String WINDOWS_PROFILES_PATH = "D:\\onlineexam-system-backend\\src\\main\\resources\\static\\profiles\\";
 //    public static final String LINUX_PROFILES_PATH = "/root/super_meeting/profiles/";
 //
-//    public static Logger log = LoggerFactory.getLogger(StudentSystemController.class);
 //
 //    public static String imageSave(MultipartFile newProfile, Student student){
 //        // 根据Windows和Linux配置不同的头像保存路径

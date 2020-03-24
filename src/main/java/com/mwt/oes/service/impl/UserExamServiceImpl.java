@@ -23,9 +23,9 @@ public class UserExamServiceImpl implements UserExamService {
     @Autowired
     BankFillQueMapper bankFillQueMapper;
     @Autowired
-    StudentPaperScoreMapper studentPaperScoreMapper;
+    UserPaperScoreMapper userPaperScoreMapper;
     @Autowired
-    StudentPaperAnswerMapper studentPaperAnswerMapper;
+    UserPaperAnswerMapper userPaperAnswerMapper;
     @Autowired
     UserMapper userMapper;
 
@@ -231,12 +231,12 @@ public class UserExamServiceImpl implements UserExamService {
     /*
         请求获取当前试卷状态，即是否已完成
     */
-    public List<StudentPaperScore> getCurrentPaperStatus(String userPhone, Integer paperId){
-        StudentPaperScoreExample studentPaperScoreExample = new StudentPaperScoreExample();
-        StudentPaperScoreExample.Criteria criteria = studentPaperScoreExample.createCriteria();
+    public List<UserPaperScore> getCurrentPaperStatus(String userPhone, Integer paperId){
+        UserPaperScoreExample userPaperScoreExample = new UserPaperScoreExample();
+        UserPaperScoreExample.Criteria criteria = userPaperScoreExample.createCriteria();
         criteria.andUserPhoneEqualTo(userPhone);
         criteria.andPaperIdEqualTo(paperId);
-        List<StudentPaperScore> listResult = studentPaperScoreMapper.selectByExample(studentPaperScoreExample);
+        List<UserPaperScore> listResult = userPaperScoreMapper.selectByExample(userPaperScoreExample);
         return listResult;
     }
 
@@ -244,10 +244,10 @@ public class UserExamServiceImpl implements UserExamService {
         初始化插入用户成绩表数据，包括考试开始时间、手机号和试卷id
      */
     @Override
-    public int insertStudentPaperScore(StudentPaperScore studentPaperScore) {
-        int result = studentPaperScoreMapper.insertSelective(studentPaperScore);
+    public int insertStudentPaperScore(UserPaperScore userPaperScore) {
+        int result = userPaperScoreMapper.insertSelective(userPaperScore);
         // 更新paper表已参加人数
-        Paper paper = paperMapper.selectByPrimaryKey(studentPaperScore.getPaperId());
+        Paper paper = paperMapper.selectByPrimaryKey(userPaperScore.getPaperId());
         int participateNum = paper.getParticipateNum() + 1;
         paper.setParticipateNum(participateNum);
         paperMapper.updateByPrimaryKeySelective(paper);
@@ -274,13 +274,13 @@ public class UserExamServiceImpl implements UserExamService {
                 score++;
                 isCorrect = "1";
             }
-            StudentPaperAnswer studentPaperAnswer = new StudentPaperAnswer();
-            studentPaperAnswer.setStuAnswer(singleAnswers.get(i));
-            studentPaperAnswer.setIscorrect(isCorrect);
-            studentPaperAnswer.setQueId(singleChoiceQueList.get(i).getPaperQue().getQueId());
-            studentPaperAnswer.setPaperId(paperId);
-            studentPaperAnswer.setUserPhone(userPhone);
-            int insertResult = studentPaperAnswerMapper.insertSelective(studentPaperAnswer);
+            UserPaperAnswer userPaperAnswer = new UserPaperAnswer();
+            userPaperAnswer.setStuAnswer(singleAnswers.get(i));
+            userPaperAnswer.setIscorrect(isCorrect);
+            userPaperAnswer.setQueId(singleChoiceQueList.get(i).getPaperQue().getQueId());
+            userPaperAnswer.setPaperId(paperId);
+            userPaperAnswer.setUserPhone(userPhone);
+            int insertResult = userPaperAnswerMapper.insertSelective(userPaperAnswer);
         }
 
         //计算判断题分数
@@ -291,13 +291,13 @@ public class UserExamServiceImpl implements UserExamService {
                 score++;
                 isCorrect = "1";
             }
-            StudentPaperAnswer studentPaperAnswer = new StudentPaperAnswer();
-            studentPaperAnswer.setStuAnswer(judgeAnswers.get(i));
-            studentPaperAnswer.setIscorrect(isCorrect);
-            studentPaperAnswer.setQueId(judgeQueList.get(i).getPaperQue().getQueId());
-            studentPaperAnswer.setPaperId(paperId);
-            studentPaperAnswer.setUserPhone(userPhone);
-            int insertResult = studentPaperAnswerMapper.insertSelective(studentPaperAnswer);
+            UserPaperAnswer userPaperAnswer = new UserPaperAnswer();
+            userPaperAnswer.setStuAnswer(judgeAnswers.get(i));
+            userPaperAnswer.setIscorrect(isCorrect);
+            userPaperAnswer.setQueId(judgeQueList.get(i).getPaperQue().getQueId());
+            userPaperAnswer.setPaperId(paperId);
+            userPaperAnswer.setUserPhone(userPhone);
+            int insertResult = userPaperAnswerMapper.insertSelective(userPaperAnswer);
         }
 
         //计算填空题分数
@@ -310,13 +310,13 @@ public class UserExamServiceImpl implements UserExamService {
                     isCorrect = "1";
                 }
             }
-            StudentPaperAnswer studentPaperAnswer = new StudentPaperAnswer();
-            studentPaperAnswer.setStuAnswer(fillAnswers.get(i));
-            studentPaperAnswer.setIscorrect(isCorrect);
-            studentPaperAnswer.setQueId(fillQueList.get(i).getPaperQue().getQueId());
-            studentPaperAnswer.setPaperId(paperId);
-            studentPaperAnswer.setUserPhone(userPhone);
-            int insertResult = studentPaperAnswerMapper.insertSelective(studentPaperAnswer);
+            UserPaperAnswer userPaperAnswer = new UserPaperAnswer();
+            userPaperAnswer.setStuAnswer(fillAnswers.get(i));
+            userPaperAnswer.setIscorrect(isCorrect);
+            userPaperAnswer.setQueId(fillQueList.get(i).getPaperQue().getQueId());
+            userPaperAnswer.setPaperId(paperId);
+            userPaperAnswer.setUserPhone(userPhone);
+            int insertResult = userPaperAnswerMapper.insertSelective(userPaperAnswer);
         }
 
         //计算填空题er分数
@@ -329,25 +329,25 @@ public class UserExamServiceImpl implements UserExamService {
                     isCorrect = "1";
                 }
             }
-            StudentPaperAnswer studentPaperAnswer = new StudentPaperAnswer();
-            studentPaperAnswer.setStuAnswer(fillTwoAnswers.get(i));
-            studentPaperAnswer.setIscorrect(isCorrect);
-            studentPaperAnswer.setQueId(fillTwoQueList.get(i).getPaperQue().getQueId());
-            studentPaperAnswer.setPaperId(paperId);
-            studentPaperAnswer.setUserPhone(userPhone);
-            int insertResult = studentPaperAnswerMapper.insertSelective(studentPaperAnswer);
+            UserPaperAnswer userPaperAnswer = new UserPaperAnswer();
+            userPaperAnswer.setStuAnswer(fillTwoAnswers.get(i));
+            userPaperAnswer.setIscorrect(isCorrect);
+            userPaperAnswer.setQueId(fillTwoQueList.get(i).getPaperQue().getQueId());
+            userPaperAnswer.setPaperId(paperId);
+            userPaperAnswer.setUserPhone(userPhone);
+            int insertResult = userPaperAnswerMapper.insertSelective(userPaperAnswer);
         }
 
         //更新用户成绩表数据
-        StudentPaperScoreExample studentPaperScoreExample = new StudentPaperScoreExample();
-        StudentPaperScoreExample.Criteria criteria = studentPaperScoreExample.createCriteria();
+        UserPaperScoreExample userPaperScoreExample = new UserPaperScoreExample();
+        UserPaperScoreExample.Criteria criteria = userPaperScoreExample.createCriteria();
         criteria.andUserPhoneEqualTo(userPhone);
         criteria.andPaperIdEqualTo(paperId);
-        StudentPaperScore studentPaperScore = new StudentPaperScore();
-        studentPaperScore.setScore(score);
-        studentPaperScore.setTimeUsed(timeUsed);
-        studentPaperScore.setEndTime(new Date());
-        int updateResult = studentPaperScoreMapper.updateByExampleSelective(studentPaperScore, studentPaperScoreExample);
+        UserPaperScore userPaperScore = new UserPaperScore();
+        userPaperScore.setScore(score);
+        userPaperScore.setTimeUsed(timeUsed);
+        userPaperScore.setEndTime(new Date());
+        int updateResult = userPaperScoreMapper.updateByExampleSelective(userPaperScore, userPaperScoreExample);
         return updateResult;
     }
 
@@ -375,17 +375,17 @@ public class UserExamServiceImpl implements UserExamService {
             Integer queId = paperQue.getQueId();
 
             //通过queId获取试卷答案信息
-            StudentPaperAnswerExample studentPaperAnswerExample = new StudentPaperAnswerExample();
-            StudentPaperAnswerExample.Criteria criteria1 = studentPaperAnswerExample.createCriteria();
+            UserPaperAnswerExample userPaperAnswerExample = new UserPaperAnswerExample();
+            UserPaperAnswerExample.Criteria criteria1 = userPaperAnswerExample.createCriteria();
             criteria1.andQueIdEqualTo(queId);
             criteria1.andUserPhoneEqualTo(userPhone);
-            List<StudentPaperAnswer> studentPaperAnswerList = studentPaperAnswerMapper.selectByExample(studentPaperAnswerExample);
+            List<UserPaperAnswer> userPaperAnswerList = userPaperAnswerMapper.selectByExample(userPaperAnswerExample);
 
-            StudentPaperAnswer studentPaperAnswer = studentPaperAnswerList.get(0);
-            map.put("answerId",studentPaperAnswer.getAnswerId());
-            map.put("stuAnswer",studentPaperAnswer.getStuAnswer());
-            map.put("isCollect",studentPaperAnswer.getIscollect());
-            map.put("isCorrect",studentPaperAnswer.getIscorrect());
+            UserPaperAnswer userPaperAnswer = userPaperAnswerList.get(0);
+            map.put("answerId", userPaperAnswer.getAnswerId());
+            map.put("stuAnswer", userPaperAnswer.getStuAnswer());
+            map.put("isCollect", userPaperAnswer.getIscollect());
+            map.put("isCorrect", userPaperAnswer.getIscorrect());
 
             //获取单选题题目内容
             Map<String, String> singleContentMap = FindContentWithImage.findContentWithImage(bankSingleChoiceQue.getSingleContent());
@@ -465,16 +465,16 @@ public class UserExamServiceImpl implements UserExamService {
             Integer queId = paperQue.getQueId();
 
             //通过queId获取试卷答案信息
-            StudentPaperAnswerExample studentPaperAnswerExample = new StudentPaperAnswerExample();
-            StudentPaperAnswerExample.Criteria criteria1 = studentPaperAnswerExample.createCriteria();
+            UserPaperAnswerExample userPaperAnswerExample = new UserPaperAnswerExample();
+            UserPaperAnswerExample.Criteria criteria1 = userPaperAnswerExample.createCriteria();
             criteria1.andQueIdEqualTo(queId);
             criteria1.andUserPhoneEqualTo(userPhone);
-            List<StudentPaperAnswer> studentPaperAnswerList = studentPaperAnswerMapper.selectByExample(studentPaperAnswerExample);
-            StudentPaperAnswer studentPaperAnswer = studentPaperAnswerList.get(0);
-            map.put("answerId",studentPaperAnswer.getAnswerId());
-            map.put("stuAnswer",studentPaperAnswer.getStuAnswer());
-            map.put("isCollect",studentPaperAnswer.getIscollect());
-            map.put("isCorrect",studentPaperAnswer.getIscorrect());
+            List<UserPaperAnswer> userPaperAnswerList = userPaperAnswerMapper.selectByExample(userPaperAnswerExample);
+            UserPaperAnswer userPaperAnswer = userPaperAnswerList.get(0);
+            map.put("answerId", userPaperAnswer.getAnswerId());
+            map.put("stuAnswer", userPaperAnswer.getStuAnswer());
+            map.put("isCollect", userPaperAnswer.getIscollect());
+            map.put("isCorrect", userPaperAnswer.getIscorrect());
 
             map.put("judgeContent",bankJudgeQue.getJudgeContent());
             map.put("judgeAnswer",bankJudgeQue.getJudgeAnswer());
@@ -523,16 +523,16 @@ public class UserExamServiceImpl implements UserExamService {
             Integer queId = paperQue.getQueId();
 
             //通过queId获取试卷答案信息
-            StudentPaperAnswerExample studentPaperAnswerExample = new StudentPaperAnswerExample();
-            StudentPaperAnswerExample.Criteria criteria1 = studentPaperAnswerExample.createCriteria();
+            UserPaperAnswerExample userPaperAnswerExample = new UserPaperAnswerExample();
+            UserPaperAnswerExample.Criteria criteria1 = userPaperAnswerExample.createCriteria();
             criteria1.andQueIdEqualTo(queId);
             criteria1.andUserPhoneEqualTo(userPhone);
-            List<StudentPaperAnswer> studentPaperAnswerList = studentPaperAnswerMapper.selectByExample(studentPaperAnswerExample);
-            StudentPaperAnswer studentPaperAnswer = studentPaperAnswerList.get(0);
-            map.put("answerId",studentPaperAnswer.getAnswerId());
-            map.put("stuAnswer",studentPaperAnswer.getStuAnswer());
-            map.put("isCollect",studentPaperAnswer.getIscollect());
-            map.put("isCorrect",studentPaperAnswer.getIscorrect());
+            List<UserPaperAnswer> userPaperAnswerList = userPaperAnswerMapper.selectByExample(userPaperAnswerExample);
+            UserPaperAnswer userPaperAnswer = userPaperAnswerList.get(0);
+            map.put("answerId", userPaperAnswer.getAnswerId());
+            map.put("stuAnswer", userPaperAnswer.getStuAnswer());
+            map.put("isCollect", userPaperAnswer.getIscollect());
+            map.put("isCorrect", userPaperAnswer.getIscorrect());
 
             map.put("fillContent",bankFillQue.getFillContent());
             map.put("fillAnswer",bankFillQue.getFillAnswer());
@@ -567,16 +567,16 @@ public class UserExamServiceImpl implements UserExamService {
             Integer queId = paperQue.getQueId();
 
             //通过queId获取试卷答案信息
-            StudentPaperAnswerExample studentPaperAnswerExample = new StudentPaperAnswerExample();
-            StudentPaperAnswerExample.Criteria criteria1 = studentPaperAnswerExample.createCriteria();
+            UserPaperAnswerExample userPaperAnswerExample = new UserPaperAnswerExample();
+            UserPaperAnswerExample.Criteria criteria1 = userPaperAnswerExample.createCriteria();
             criteria1.andQueIdEqualTo(queId);
             criteria1.andUserPhoneEqualTo(userPhone);
-            List<StudentPaperAnswer> studentPaperAnswerList = studentPaperAnswerMapper.selectByExample(studentPaperAnswerExample);
-            StudentPaperAnswer studentPaperAnswer = studentPaperAnswerList.get(0);
-            map.put("answerId",studentPaperAnswer.getAnswerId());
-            map.put("stuAnswer",studentPaperAnswer.getStuAnswer());
-            map.put("isCollect",studentPaperAnswer.getIscollect());
-            map.put("isCorrect",studentPaperAnswer.getIscorrect());
+            List<UserPaperAnswer> userPaperAnswerList = userPaperAnswerMapper.selectByExample(userPaperAnswerExample);
+            UserPaperAnswer userPaperAnswer = userPaperAnswerList.get(0);
+            map.put("answerId", userPaperAnswer.getAnswerId());
+            map.put("stuAnswer", userPaperAnswer.getStuAnswer());
+            map.put("isCollect", userPaperAnswer.getIscollect());
+            map.put("isCorrect", userPaperAnswer.getIscorrect());
 
             map.put("fillContent",bankFillQue.getFillContent());
             map.put("fillAnswer",bankFillQue.getFillAnswer());
@@ -593,14 +593,14 @@ public class UserExamServiceImpl implements UserExamService {
        获取试卷排行
     */
     public List<Map<String, Object>> getScoreListByPaperId(Integer paperId){
-        StudentPaperScoreExample studentPaperScoreExample = new StudentPaperScoreExample();
-        StudentPaperScoreExample.Criteria criteria = studentPaperScoreExample.createCriteria();
+        UserPaperScoreExample userPaperScoreExample = new UserPaperScoreExample();
+        UserPaperScoreExample.Criteria criteria = userPaperScoreExample.createCriteria();
         criteria.andPaperIdEqualTo(paperId);
-        studentPaperScoreExample.setOrderByClause("score desc, time_used asc");
-        List<StudentPaperScore> allScoreListResult = studentPaperScoreMapper.selectByExample(studentPaperScoreExample);
+        userPaperScoreExample.setOrderByClause("score desc, time_used asc");
+        List<UserPaperScore> allScoreListResult = userPaperScoreMapper.selectByExample(userPaperScoreExample);
         List<Map<String, Object>> listResult = new ArrayList<>();
 
-        for (StudentPaperScore allScoreList : allScoreListResult){
+        for (UserPaperScore allScoreList : allScoreListResult){
             UserExample userExample = new UserExample();
             UserExample.Criteria criteria2 = userExample.createCriteria();
             criteria2.andUserPhoneEqualTo(allScoreList.getUserPhone());

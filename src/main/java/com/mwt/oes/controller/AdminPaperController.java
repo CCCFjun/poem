@@ -14,14 +14,12 @@ import java.util.Map;
 @CrossOrigin
 @RestController
 @RequestMapping("/api/admin")
-@Api(tags = {"管理员试卷管理Api文档"})
 public class AdminPaperController {
     @Autowired
     private AdminPaperService adminPaperService;
 
     //    获取试卷列表信息
     @RequestMapping("/getAdminPapersList")
-    @ApiOperation(value = "获取试卷列表信息")
     public ServerResponse getAdminPapersList(){
         Map<String, Object> map = new HashMap<>();
         List<Map<String, Object>> papersList = adminPaperService.getPapersList();

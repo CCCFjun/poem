@@ -7,7 +7,7 @@ import java.util.Map;
 
 public interface AdminTypeService {
     public List<Map<String, Object>> getTypesList();
-    public List<Map<String, Object>> searchTypesList(String langName, String isRecommend);
+    public List<Map<String, Object>> searchTypesList(String langName);
     public int insertTypeInfo(QuestionType questionType);
     public int updateTypeInfo(QuestionType questionType);
     public int deleteType(Integer langId);

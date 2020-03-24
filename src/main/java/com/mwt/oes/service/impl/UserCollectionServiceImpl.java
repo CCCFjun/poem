@@ -16,7 +16,7 @@ import java.util.Map;
 public class UserCollectionServiceImpl implements UserCollectionService {
 
     @Autowired
-    StudentPaperAnswerMapper studentPaperAnswerMapper;
+    UserPaperAnswerMapper userPaperAnswerMapper;
     @Autowired
     BankSingleChoiceQueMapper bankSingleChoiceQueMapper;
     @Autowired
@@ -30,8 +30,8 @@ public class UserCollectionServiceImpl implements UserCollectionService {
         请求根据answerId更新学生试卷答案表isCollect字段
      */
     @Override
-    public int updatePaperAnswerIsCollect(StudentPaperAnswer studentPaperAnswer){
-        int result = studentPaperAnswerMapper.updateByPrimaryKeySelective(studentPaperAnswer);
+    public int updatePaperAnswerIsCollect(UserPaperAnswer userPaperAnswer){
+        int result = userPaperAnswerMapper.updateByPrimaryKeySelective(userPaperAnswer);
         return result;
     }
 
@@ -42,16 +42,16 @@ public class UserCollectionServiceImpl implements UserCollectionService {
     public List<Map<String, Object>> getAllCollections(String userPhone) {
         List<Map<String, Object>> resultList = new ArrayList<>();
 
-        StudentPaperAnswerExample studentPaperAnswerExample = new StudentPaperAnswerExample();
-        StudentPaperAnswerExample.Criteria criteria = studentPaperAnswerExample.createCriteria();
+        UserPaperAnswerExample userPaperAnswerExample = new UserPaperAnswerExample();
+        UserPaperAnswerExample.Criteria criteria = userPaperAnswerExample.createCriteria();
         criteria.andUserPhoneEqualTo(userPhone);
         criteria.andIscollectEqualTo("1");
-        List<StudentPaperAnswer> studentPaperAnswerList = studentPaperAnswerMapper.selectByExample(studentPaperAnswerExample);
-        for (StudentPaperAnswer studentPaperAnswer : studentPaperAnswerList){
+        List<UserPaperAnswer> userPaperAnswerList = userPaperAnswerMapper.selectByExample(userPaperAnswerExample);
+        for (UserPaperAnswer userPaperAnswer : userPaperAnswerList){
             Map<String, Object> map = new HashMap<>();
-            Integer queId = studentPaperAnswer.getQueId();
+            Integer queId = userPaperAnswer.getQueId();
             //存储答案id
-            map.put("answerId",studentPaperAnswer.getAnswerId());
+            map.put("answerId", userPaperAnswer.getAnswerId());
             PaperQue paperQue = paperQueMapper.selectByPrimaryKey(queId);
             //存储题目类型
             map.put("queType",paperQue.getQueType());
@@ -79,12 +79,12 @@ public class UserCollectionServiceImpl implements UserCollectionService {
     */
     public Map<String, Object> getSingleByAnswerId(Integer answerId){
         Map<String, Object> map = new HashMap<>();
-        StudentPaperAnswer studentPaperAnswer = studentPaperAnswerMapper.selectByPrimaryKey(answerId);
-        map.put("stuAnswer",studentPaperAnswer.getStuAnswer());
-        map.put("isCorrect",studentPaperAnswer.getIscorrect());
-        map.put("isCollect",studentPaperAnswer.getIscollect());
+        UserPaperAnswer userPaperAnswer = userPaperAnswerMapper.selectByPrimaryKey(answerId);
+        map.put("stuAnswer", userPaperAnswer.getStuAnswer());
+        map.put("isCorrect", userPaperAnswer.getIscorrect());
+        map.put("isCollect", userPaperAnswer.getIscollect());
 
-        PaperQue paperQue = paperQueMapper.selectByPrimaryKey(studentPaperAnswer.getQueId());
+        PaperQue paperQue = paperQueMapper.selectByPrimaryKey(userPaperAnswer.getQueId());
 
         BankSingleChoiceQue bankSingleChoiceQue = bankSingleChoiceQueMapper.selectByPrimaryKey(paperQue.getSingleId());
         Map<String, String> singleContentMap = FindContentWithImage.findContentWithImage(bankSingleChoiceQue.getSingleContent());
@@ -144,12 +144,12 @@ public class UserCollectionServiceImpl implements UserCollectionService {
     public Map<String, Object> getJudgeByAnswerId(Integer answerId){
         Map<String, Object> map = new HashMap<>();
 
-        StudentPaperAnswer studentPaperAnswer = studentPaperAnswerMapper.selectByPrimaryKey(answerId);
-        map.put("stuAnswer",studentPaperAnswer.getStuAnswer());
-        map.put("isCorrect",studentPaperAnswer.getIscorrect());
-        map.put("isCollect",studentPaperAnswer.getIscollect());
+        UserPaperAnswer userPaperAnswer = userPaperAnswerMapper.selectByPrimaryKey(answerId);
+        map.put("stuAnswer", userPaperAnswer.getStuAnswer());
+        map.put("isCorrect", userPaperAnswer.getIscorrect());
+        map.put("isCollect", userPaperAnswer.getIscollect());
 
-        PaperQue paperQue = paperQueMapper.selectByPrimaryKey(studentPaperAnswer.getQueId());
+        PaperQue paperQue = paperQueMapper.selectByPrimaryKey(userPaperAnswer.getQueId());
 
         BankJudgeQue bankJudgeQue = bankJudgeQueMapper.selectByPrimaryKey(paperQue.getJudgeId());
         map.put("judgeContent",bankJudgeQue.getJudgeContent());
@@ -175,12 +175,12 @@ public class UserCollectionServiceImpl implements UserCollectionService {
     public Map<String, Object> getFillByAnswerId(Integer answerId){
         Map<String, Object> map = new HashMap<>();
 
-        StudentPaperAnswer studentPaperAnswer = studentPaperAnswerMapper.selectByPrimaryKey(answerId);
-        map.put("stuAnswer",studentPaperAnswer.getStuAnswer());
-        map.put("isCorrect",studentPaperAnswer.getIscorrect());
-        map.put("isCollect",studentPaperAnswer.getIscollect());
+        UserPaperAnswer userPaperAnswer = userPaperAnswerMapper.selectByPrimaryKey(answerId);
+        map.put("stuAnswer", userPaperAnswer.getStuAnswer());
+        map.put("isCorrect", userPaperAnswer.getIscorrect());
+        map.put("isCollect", userPaperAnswer.getIscollect());
 
-        PaperQue paperQue = paperQueMapper.selectByPrimaryKey(studentPaperAnswer.getQueId());
+        PaperQue paperQue = paperQueMapper.selectByPrimaryKey(userPaperAnswer.getQueId());
 
         BankFillQue bankFillQue = bankFillQueMapper.selectByPrimaryKey(paperQue.getFillId());
 

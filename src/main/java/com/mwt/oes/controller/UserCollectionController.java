@@ -1,6 +1,6 @@
 package com.mwt.oes.controller;
 
-import com.mwt.oes.domain.StudentPaperAnswer;
+import com.mwt.oes.domain.UserPaperAnswer;
 import com.mwt.oes.util.ServerResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,10 +22,10 @@ public class UserCollectionController {
      */
     @RequestMapping(value = "/updatePaperAnswerIsCollect", method = RequestMethod.POST)
     public ServerResponse updatePaperAnswerIsCollect(@RequestBody Map<String, Object> map){
-        StudentPaperAnswer studentPaperAnswer = new StudentPaperAnswer();
-        studentPaperAnswer.setAnswerId((Integer) map.get("answerId"));
-        studentPaperAnswer.setIscollect((String) map.get("isCollect"));
-        int result = userCollectionService.updatePaperAnswerIsCollect(studentPaperAnswer);
+        UserPaperAnswer userPaperAnswer = new UserPaperAnswer();
+        userPaperAnswer.setAnswerId((Integer) map.get("answerId"));
+        userPaperAnswer.setIscollect((String) map.get("isCollect"));
+        int result = userCollectionService.updatePaperAnswerIsCollect(userPaperAnswer);
         if(result != 0){
             return ServerResponse.createBySuccess("更新成功",null);
         }

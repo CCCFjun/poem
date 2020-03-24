@@ -1,6 +1,6 @@
 package com.mwt.oes.domain;
 
-public class StudentPaperAnswer {
+public class UserPaperAnswer {
     private Integer answerId;
 
     private String stuAnswer;

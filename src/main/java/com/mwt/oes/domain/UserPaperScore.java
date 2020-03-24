@@ -2,7 +2,7 @@ package com.mwt.oes.domain;
 
 import java.util.Date;
 
-public class StudentPaperScore {
+public class UserPaperScore {
     private Integer scoreId;
 
     private Integer score;

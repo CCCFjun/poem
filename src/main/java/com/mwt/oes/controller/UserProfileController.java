@@ -34,7 +34,7 @@ public class UserProfileController {
     }
 
     /*
-        学生我的页面反馈留言
+        发送反馈留言
      */
     @RequestMapping(value = "/userSendFeedback", method = RequestMethod.POST)
     public ServerResponse userSendFeedback(@RequestBody Map<String, String> obj) throws IOException {
@@ -71,6 +71,20 @@ public class UserProfileController {
                 }
                 return ServerResponse.createBySuccess("留言成功,请等待管理员回复",null);
             }
+        }
+    }
+
+    /*
+        我的页面顶部右侧管理员回复消息提醒
+     */
+    @RequestMapping(value = "/adminReplyCount", method = RequestMethod.GET)
+    public ServerResponse adminReplyCount(@RequestParam("userPhone") String userPhone){
+        int count = userProfileService.getAdminReplyCount(userPhone, "1");
+        if(count == 0){
+            return ServerResponse.createByError("暂无管理员回复消息");
+        }
+        else {
+            return ServerResponse.createBySuccess("获取管理员回复数目成功",count);
         }
     }
 }
