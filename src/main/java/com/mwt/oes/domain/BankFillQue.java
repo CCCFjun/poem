@@ -13,10 +13,9 @@ public class BankFillQue {
 
     private Integer langId;
 
-
+    private String fillImgSrc;
 
     private PaperQue paperQue;
-    private String fillImgSrc;
 
     public Integer getFillId() {
         return fillId;
@@ -66,7 +65,13 @@ public class BankFillQue {
         this.langId = langId;
     }
 
+    public String getFillImgSrc() {
+        return fillImgSrc;
+    }
 
+    public void setFillImgSrc(String fillImgSrc) {
+        this.fillImgSrc = fillImgSrc == null ? null : fillImgSrc.trim();
+    }
 
     public PaperQue getPaperQue() {
         return paperQue;
@@ -74,13 +79,5 @@ public class BankFillQue {
 
     public void setPaperQue(PaperQue paperQue) {
         this.paperQue = paperQue;
-    }
-
-    public String getFillImgSrc() {
-        return fillImgSrc;
-    }
-
-    public void setFillImgSrc(String fillImgSrc) {
-        this.fillImgSrc = fillImgSrc;
     }
 }

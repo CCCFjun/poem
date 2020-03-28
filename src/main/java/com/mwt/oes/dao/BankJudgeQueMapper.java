@@ -2,9 +2,8 @@ package com.mwt.oes.dao;
 
 import com.mwt.oes.domain.BankJudgeQue;
 import com.mwt.oes.domain.BankJudgeQueExample;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface BankJudgeQueMapper {
     int countByExample(BankJudgeQueExample example);

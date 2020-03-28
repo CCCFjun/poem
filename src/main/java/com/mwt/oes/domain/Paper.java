@@ -90,6 +90,6 @@ public class Paper {
     }
 
     public void setPaperImgSrc(String paperImgSrc) {
-        this.paperImgSrc = paperImgSrc;
+        this.paperImgSrc = paperImgSrc == null ? null : paperImgSrc.trim();
     }
 }

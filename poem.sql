@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 80015
 File Encoding         : 65001
 
-Date: 2020-03-23 20:58:44
+Date: 2020-03-27 15:03:06
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -35,7 +35,7 @@ CREATE TABLE `admin` (
 -- ----------------------------
 INSERT INTO `admin` VALUES ('100000', '123456', '清风', '女', '123456@qq.com', '13358452698', '2019-04-22 01:57:55');
 INSERT INTO `admin` VALUES ('100001', '123456', '明月', '女', '123456@qq.com', '13358452695', null);
-INSERT INTO `admin` VALUES ('123456', '123456', '星辰', '女', '123456@qq.com', '13380544897', '2020-03-23 16:05:26');
+INSERT INTO `admin` VALUES ('123456', '123456', '星辰', '女', '123456@qq.com', '13380544897', '2020-03-26 19:50:00');
 
 -- ----------------------------
 -- Table structure for bank_fill_que
@@ -78,7 +78,7 @@ INSERT INTO `bank_fill_que` VALUES ('53', '_____________，春去夏犹清。(�
 INSERT INTO `bank_fill_que` VALUES ('54', '首夏犹清和，_____________ 。(谢灵运：《游赤石进帆海》)', '芳草亦未歇', '0', null, '10', null);
 INSERT INTO `bank_fill_que` VALUES ('55', '_____________，开轩纳微凉。(杜甫：《夏夜叹》)', '仲夏苦夜短', '0', null, '10', null);
 INSERT INTO `bank_fill_que` VALUES ('56', '农夫方夏耘，_____________ 。(戴复古：《大热》)', '安坐吾敢食', '0', null, '10', null);
-INSERT INTO `bank_fill_que` VALUES ('57', '人皆苦炎热，_____________ 。(李昂：《夏日联句》)', '我爱夏日长', '0', null, '10', null);
+INSERT INTO `bank_fill_que` VALUES ('57', '人皆苦炎热，_____________ 。(李昂：《夏日联句》)', '我爱夏日长', '1', null, '10', null);
 INSERT INTO `bank_fill_que` VALUES ('58', '_____________，新雨带秋岚。(岑参：《水亭送华阴王少府还县》)', '残云收夏暑', '1', null, '10', null);
 INSERT INTO `bank_fill_que` VALUES ('59', '明月不谙离恨苦，_____________  。——晏殊《鹊踏枝》', '斜光到晓穿朱户', '1', null, '10', null);
 INSERT INTO `bank_fill_que` VALUES ('60', '_____________，为伊消得人憔悴。－柳永《凤栖梧》', '衣带渐宽终不悔', '0', null, '10', null);
@@ -177,14 +177,14 @@ CREATE TABLE `bank_single_choice_que` (
   PRIMARY KEY (`single_id`),
   KEY `single_lang_id` (`lang_id`),
   CONSTRAINT `single_lang_id` FOREIGN KEY (`lang_id`) REFERENCES `question_type` (`lang_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of bank_single_choice_que
 -- ----------------------------
 INSERT INTO `bank_single_choice_que` VALUES ('39', '\"拱手而立\"表示对长者的尊敬，一般来说，男子行拱手礼时应该：', 'A、左手在外', 'B、右手在外', null, null, null, null, null, 'A', '1', '解析测试测试测试测试测试测试测试测试', '12');
-INSERT INTO `bank_single_choice_que` VALUES ('40', '《三十六计》是体现我国古代卓越军事思想的一部兵书，下列不属于《三十六计》的是：', 'A、浑水摸鱼', 'B、反戈一击', 'C、笑里藏刀', 'D、反客为主', null, null, null, 'B', '1', null, '12');
-INSERT INTO `bank_single_choice_que` VALUES ('41', '“但使龙城飞将在，不教胡马度阴山”中的“飞将”指像（  ）那样的将士。', 'A、张飞', 'B、李广', 'C、霍去病', 'D、岳飞', null, null, null, 'B', '1', null, '12');
+INSERT INTO `bank_single_choice_que` VALUES ('40', '《三十六计》是体现我国古代卓越军事思想的一部兵书，下列不属于《三十六计》的是：', 'A、浑水摸鱼', 'B、反戈一击', 'C、笑里藏刀', null, null, null, null, 'B', '1', null, '12');
+INSERT INTO `bank_single_choice_que` VALUES ('41', '“但使龙城飞将在，不教胡马度阴山”中的“飞将”指像（  ）那样的将士。', 'A、张飞', 'B、李广', 'C、霍去病', null, null, null, null, 'B', '1', null, '12');
 INSERT INTO `bank_single_choice_que` VALUES ('42', '形容月亮的诗甚多，下列那一句与月亮无关？', 'A、团团冰镜吐清辉', 'B、玉蝉离海上', 'C、大珠小珠落玉盘', null, null, null, null, 'C', '1', null, '12');
 INSERT INTO `bank_single_choice_que` VALUES ('43', '“字字看来都是血，十年辛苦不寻常”是下列哪位名家对自己作品的“自评诗”？', 'A、施耐庵《水浒传》', 'B、吴承恩《西游记》', 'C、曹雪芹《红楼梦》', null, null, null, null, 'C', '0', null, '12');
 INSERT INTO `bank_single_choice_que` VALUES ('44', '诗经的《硕鼠硕鼠，无食我黍》诗中“黍”指的是那种农作物？', 'A、高粱', 'B、黄米', 'C、谷子', null, null, null, null, 'B', '0', null, '12');
@@ -204,6 +204,12 @@ INSERT INTO `bank_single_choice_que` VALUES ('59', '《敕勒歌》是由当时�
 INSERT INTO `bank_single_choice_que` VALUES ('60', '诗经《蒹葭》，蒹葭指的是哪一种植物', 'A、芦苇', 'B、莞荽', 'C、水仙', null, null, null, null, 'A', '0', null, '12');
 INSERT INTO `bank_single_choice_que` VALUES ('61', '诗经《木瓜》“报之以琼琚”，琼琚指的是', 'A、美女', 'B、美食', 'C、美玉', null, null, null, null, 'C', '1', null, '12');
 INSERT INTO `bank_single_choice_que` VALUES ('62', '“春宵一刻值千金”出自宋代哪位名人之手', 'A、柳永', 'B、苏轼', 'C、李煜', null, null, null, null, 'B', '0', null, '12');
+INSERT INTO `bank_single_choice_que` VALUES ('64', '无为在 ___ 路，儿女共沾巾。', '歧', '岐', '骑', '其', '起', '企', null, 'A', '0', '', '14');
+INSERT INTO `bank_single_choice_que` VALUES ('65', '众女嫉余之 ___ 眉兮，谣诼谓余以善淫。', '蛾', '鹅', '娥', '饿', '额', '俄', null, 'A', '0', null, '14');
+INSERT INTO `bank_single_choice_que` VALUES ('66', '秋风 ___ 瑟，洪波涌起', '萧', '潇', '箫', '笑', '消', '肖', null, 'A', '0', null, '14');
+INSERT INTO `bank_single_choice_que` VALUES ('67', '根据以下提示词，写出所描述的诗人', '女性', '宋朝', '赌书', null, null, null, null, '李清照', '0', null, '15');
+INSERT INTO `bank_single_choice_que` VALUES ('78', '根据以下提示词，写出所描述的诗人', '长安', '酒', '诗仙', null, null, null, null, '李白', '0', '', '15');
+INSERT INTO `bank_single_choice_que` VALUES ('79', '根据以下提示词，写出所描述的诗人', '婉约', '第七', '蓦然回首', null, null, null, null, '柳永', '0', '', '15');
 
 -- ----------------------------
 -- Table structure for feedback
@@ -266,11 +272,6 @@ CREATE TABLE `paper` (
   `paper_difficulty` int(11) DEFAULT NULL COMMENT '试卷难度',
   `paper_attention` varchar(255) DEFAULT NULL COMMENT '考试注意事项',
   `paper_type` int(11) DEFAULT NULL COMMENT '组卷机制，1为随机，2为固定',
-  `single_score` int(11) DEFAULT NULL COMMENT '单选题分配分数',
-  `multiple_score` int(11) DEFAULT NULL COMMENT '多选题分配分数',
-  `judge_score` int(11) DEFAULT NULL COMMENT '判断题分配分数',
-  `fill_score` int(11) DEFAULT NULL COMMENT '填空题分配分数',
-  `lang_id` int(11) DEFAULT NULL COMMENT '试卷所属编程语言',
   `participate_num` int(11) DEFAULT '0' COMMENT '已参加人数',
   `paper_img_src` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`paper_id`)
@@ -279,9 +280,9 @@ CREATE TABLE `paper` (
 -- ----------------------------
 -- Records of paper
 -- ----------------------------
-INSERT INTO `paper` VALUES ('12', '哈哈哈哈哈', '2020-03-04 10:33:55', '6000', '4', '', '2', '1', null, '1', '1', null, '40', 'http://q6b41spn5.bkt.clouddn.com/3.png');
-INSERT INTO `paper` VALUES ('13', '啊啊啊啊啊啊啊啊', '2020-03-04 10:52:29', '600', '5', '', '1', '1', null, '1', '1', null, '2', 'http://q6b41spn5.bkt.clouddn.com/2.png');
-INSERT INTO `paper` VALUES ('14', '惊蛰 · 诗词大会', '2020-03-12 16:26:52', '1800', '5', '', '1', '1', null, '1', '1', null, '6', 'http://q6b41spn5.bkt.clouddn.com/4.png');
+INSERT INTO `paper` VALUES ('12', '春分 · 诗词大会', '2020-03-04 10:33:55', '6000', '4', '', '2', '40', 'http://q6b41spn5.bkt.clouddn.com/3.png');
+INSERT INTO `paper` VALUES ('13', '女生节 · 诗词大会', '2020-03-04 10:52:29', '600', '5', '', '1', '2', 'http://q6b41spn5.bkt.clouddn.com/2.png');
+INSERT INTO `paper` VALUES ('14', '惊蛰 · 诗词大会', '2020-03-12 16:26:52', '1800', '5', '', '1', '8', 'http://q6b41spn5.bkt.clouddn.com/4.png');
 
 -- ----------------------------
 -- Table structure for paper_que
@@ -306,7 +307,7 @@ CREATE TABLE `paper_que` (
   CONSTRAINT `que_multiple_id` FOREIGN KEY (`multiple_id`) REFERENCES `bank_multiple_choice_que` (`multiple_id`),
   CONSTRAINT `que_paper_id` FOREIGN KEY (`paper_id`) REFERENCES `paper` (`paper_id`),
   CONSTRAINT `que_single_id` FOREIGN KEY (`single_id`) REFERENCES `bank_single_choice_que` (`single_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=238 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=246 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of paper_que
@@ -347,7 +348,7 @@ CREATE TABLE `question_type` (
   `lang_created_by` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '题型被创建者',
   `lang_change_time` datetime DEFAULT NULL COMMENT '题型最近修改时间',
   `lang_last_changer` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '题型最近被修改者',
-  `lang_en_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT '0' COMMENT '是否显示推荐，默认为0不推荐，1为推荐',
+  `lang_en_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT '' COMMENT '题型英文名，匹配前端图标',
   PRIMARY KEY (`lang_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
@@ -357,171 +358,9 @@ CREATE TABLE `question_type` (
 INSERT INTO `question_type` VALUES ('10', '承上启下', '写出题目诗句的上句或下句', 'http://q6b41spn5.bkt.clouddn.com/1.png', '2020-03-04 10:06:23', null, null, null, 'fill1');
 INSERT INTO `question_type` VALUES ('11', '画中有话', '根据图片写出所描绘的诗句', 'http://q6b41spn5.bkt.clouddn.com/2.png', '2020-03-04 10:07:08', null, null, null, 'fill2');
 INSERT INTO `question_type` VALUES ('12', '百里挑一', '从选项中选出唯一正确的选项', 'http://q6b41spn5.bkt.clouddn.com/1.png', null, null, null, null, 'single1');
-INSERT INTO `question_type` VALUES ('13', '分秒必争', '判断对错，每题5秒', 'http://q6b41spn5.bkt.clouddn.com/2.png', null, null, '2020-03-13 16:25:25', null, 'judge1');
-
--- ----------------------------
--- Table structure for student
--- ----------------------------
-DROP TABLE IF EXISTS `student`;
-CREATE TABLE `student` (
-  `sno` char(12) NOT NULL COMMENT '主键，学生学号',
-  `stu_psw` varchar(255) NOT NULL DEFAULT '123456' COMMENT '登录密码，默认为123456',
-  `stu_name` varchar(255) NOT NULL COMMENT '学生姓名',
-  `stu_img_src` varchar(255) DEFAULT NULL COMMENT '头像链接',
-  `stu_sex` varchar(255) NOT NULL DEFAULT '男' COMMENT '学生性别',
-  `stu_email` varchar(255) DEFAULT NULL COMMENT '学生邮箱',
-  `stu_phone` char(11) DEFAULT NULL COMMENT '学生手机号码',
-  `stu_create_time` datetime NOT NULL COMMENT '学生注册时间',
-  `stu_last_login_time` datetime DEFAULT NULL COMMENT '学生最近登录时间',
-  `stu_status` char(1) NOT NULL DEFAULT '1' COMMENT '学生登录状态',
-  `stu_security_code` varchar(255) NOT NULL DEFAULT '123456' COMMENT '安全码用于密码找回',
-  PRIMARY KEY (`sno`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of student
--- ----------------------------
-INSERT INTO `student` VALUES ('201511314001', '123456', '小四', null, '男', '1234@qq.com', '13458956478', '2019-04-28 01:20:39', null, '1', '123456');
-INSERT INTO `student` VALUES ('201511314002', '123456', '小五', null, '男', '1234@qq.com', '13458956478', '2019-04-28 01:21:10', null, '1', '123456');
-INSERT INTO `student` VALUES ('201511314003', '123456', '小刘', null, '男', '12345@qq.com', '13565895641', '2019-04-28 01:21:45', '2019-04-28 01:21:47', '1', '123456');
-INSERT INTO `student` VALUES ('201511314301', '123456', '小三', 'http://qiniu.maweitao.top/profiles/c721b496-fb54-4fc0-96a8-4a5095584bfd', '男', '123456789@qq.com', '13526459823', '2019-04-28 00:46:29', '2019-04-28 00:47:27', '1', '123456');
-INSERT INTO `student` VALUES ('201511314321', '123456', '小马', 'http://qiniu.maweitao.top/profiles/e52b0c14-afe5-46dd-8433-01aa5a667753', '男', '1234567@qq.com', '13658952365', '2019-04-28 00:57:25', '2019-04-28 00:57:28', '1', '123456');
-INSERT INTO `student` VALUES ('201521314301', '123456', '谢永宁', 'http://qiniu.maweitao.top/profiles/e67db9be-0faa-4118-abe5-d618f2561108', '男', '123456@qq.com', '13254896548', '2019-03-10 20:15:37', '2019-04-28 01:44:43', '1', '123456');
-INSERT INTO `student` VALUES ('201521314302', '123456', '李四', 'http://qiniu.maweitao.top/profiles/bca36eb8-118a-4f16-9e51-e2f8bfa16e5c', '男', '123456@qq.com', '13625498549', '2019-03-11 18:37:18', '2019-04-15 20:16:00', '0', '123456');
-INSERT INTO `student` VALUES ('201521314303', '123456', '马瑞欣', 'http://qiniu.maweitao.top/profiles/00b54bf8-dbfe-4952-80b7-045e42e8b11d', '女', '123456@qq.com', '13625894562', '2019-03-31 21:19:19', '2019-04-15 20:17:15', '1', '123456');
-INSERT INTO `student` VALUES ('201521314304', '123456', '阿水', 'http://qiniu.maweitao.top/profiles/fd5fb96d-bd08-499f-9092-75699fba9adf', '男', '123456@qq.com', '13652485962', '2019-03-31 22:48:05', '2019-04-15 20:17:35', '0', '123456');
-INSERT INTO `student` VALUES ('201521314305', '123456', '马导', 'http://qiniu.maweitao.top/profiles/30db92f7-6fef-401d-b756-765a21e31a2b', '女', '123456@qq.com', '13452685942', '2019-03-31 22:59:39', '2019-04-15 20:18:05', '1', '123456');
-INSERT INTO `student` VALUES ('201521314310', '123456', '叶国冲', 'http://qiniu.maweitao.top/profiles/eadb0262-e703-4d66-a3ce-27ce5874a12b', '男', '1234567@qq.com', '13754695862', '2019-03-11 01:10:22', '2019-04-15 20:18:14', '1', '123456');
-INSERT INTO `student` VALUES ('201521314316', '123456', '汤梓豪', 'http://qiniu.maweitao.top/profiles/1f987c0f-9af5-46c8-bc8f-1129abb13b22', '男', '123456@qq.com', '13225849856', '2019-03-03 18:59:47', '2019-04-15 20:18:29', '1', '123456');
-INSERT INTO `student` VALUES ('201521314318', '123456', '张家豪', 'http://qiniu.maweitao.top/profiles/318dc134-5261-4bac-bde6-e7ea67c7dc53', '男', '123456@qq.com', '13632289756', '2019-03-10 20:10:30', '2019-04-15 20:19:25', '1', '123456');
-INSERT INTO `student` VALUES ('201521314319', '123456', '罗建宏', 'http://qiniu.maweitao.top/profiles/9ed8e71c-d67f-4e80-8054-3172e124f41e', '男', '123456@qq.com', '13545687959', '2019-03-10 20:12:14', '2019-04-15 20:20:19', '1', '123456');
-INSERT INTO `student` VALUES ('201521314321', '123456', '马伟涛', 'http://qiniu.maweitao.top/profiles/59665a0e-4387-45c9-91c3-0b307c7f0951', '男', '815699563@qq.com', '13602890590', '2019-03-01 18:35:26', '2019-05-07 16:31:01', '1', '123456');
-INSERT INTO `student` VALUES ('201521314322', '123456', '杨铎', 'http://qiniu.maweitao.top/profiles/26a86525-916e-429f-afc6-e34450c66316', '男', '123456@qq.com', '13225849856', '2019-03-03 18:25:42', '2019-04-15 20:20:33', '1', '123456');
-INSERT INTO `student` VALUES ('201521314323', '123456', '陈国', 'http://qiniu.maweitao.top/profiles/b3d029f1-0237-4595-bdf4-12e8f00cf1d9', '男', '123456@136.com', '15524752689', '2019-03-03 17:20:56', '2019-04-15 20:20:48', '1', '123456');
-INSERT INTO `student` VALUES ('201521314330', '123456', '魏伟康', 'http://qiniu.maweitao.top/profiles/560662e3-d83f-43d0-bbcc-d3b830ad5d68', '男', '12345678@qq.com', '18054687965', '2019-03-10 20:17:37', '2019-04-15 20:21:27', '1', '123456');
-INSERT INTO `student` VALUES ('201521314332', '123456', '陈荣涛', 'http://qiniu.maweitao.top/profiles/5d1435fb-ca6f-4a20-91bc-f6e79535a45b', '男', '123456@qq.com', '13456987532', '2019-03-10 20:20:32', '2019-04-15 20:22:01', '1', '123456');
-INSERT INTO `student` VALUES ('201521314501', '123456', '小明', 'http://qiniu.maweitao.top/profiles/6431fa5d-9307-49f4-93fe-835866d50cca', '男', '123456@qq.com', '13625248596', '2019-04-08 03:32:29', '2019-04-15 20:22:45', '1', '123456');
-INSERT INTO `student` VALUES ('201521314502', '123456', '小红', 'http://qiniu.maweitao.top/profiles/20a95a11-7af6-4e9f-ae52-1e0c068ed361', '女', '123456@qq.com', '13456258956', '2019-04-08 03:33:00', '2019-04-15 20:22:59', '1', '123456');
-INSERT INTO `student` VALUES ('201521314503', '123456', '小黄', 'http://qiniu.maweitao.top/profiles/1cbc7613-0646-4d37-99e7-dbd5a10890d9', '男', '123456@qq.com', '13456258958', '2019-04-08 03:33:20', '2019-04-15 20:23:15', '1', '123456');
-INSERT INTO `student` VALUES ('201521314505', '123456', '小飞', 'http://qiniu.maweitao.top/profiles/c34d8251-a0d7-4f67-a4fd-57719e5548dd', '男', '123456@qq.com', '13895487596', '2019-04-08 03:33:50', '2019-04-15 20:23:38', '1', '123456');
-INSERT INTO `student` VALUES ('201521314506', '123456', '小亮', 'http://qiniu.maweitao.top/profiles/a4de68f1-adae-4087-a670-a0b5bce14a05', '男', '123456@qq.com', '13895487599', '2019-04-08 03:34:21', '2019-04-15 20:24:03', '1', '123456');
-INSERT INTO `student` VALUES ('201521314507', '123456', '红苹果', 'http://qiniu.maweitao.top/profiles/23026bbc-2e85-4c14-ad8d-8d70094bea56', '女', '123456@qq.com', '13895487545', '2019-04-08 03:34:35', '2019-04-15 20:24:19', '1', '123456');
-INSERT INTO `student` VALUES ('201521314508', '123456', '小敏', 'http://qiniu.maweitao.top/profiles/d6511ad5-ece1-43aa-ad69-c385dbe51104', '女', '123456@qq.com', '13895487548', '2019-04-08 03:34:46', '2019-04-15 20:24:33', '1', '123456');
-INSERT INTO `student` VALUES ('201521314610', '123456', '飘雪国', 'http://qiniu.maweitao.top/profiles/007f6b62-5af8-4067-924c-ac9c0fe4f24a', '男', '123456@qq.com', '13526489523', '2019-04-08 03:48:40', '2019-04-15 20:24:54', '1', '123456');
-INSERT INTO `student` VALUES ('201521314700', '123456', '咸蛋超人', 'http://qiniu.maweitao.top/profiles/9159e950-c550-4594-b15d-e33018eb70b5', '男', '8954233@qq.com', '18952484562', '2019-04-08 15:42:49', '2019-04-15 20:25:09', '1', '123456');
-INSERT INTO `student` VALUES ('201521314701', '123456', '泽泽', 'http://qiniu.maweitao.top/profiles/407594a5-b296-4a48-b60b-63985b574218', '男', '123456@qq.com', '13526458952', '2019-04-08 15:44:36', '2019-04-15 20:25:22', '1', '123456');
-INSERT INTO `student` VALUES ('201521314900', '123456', '张阿三', null, '男', null, null, '2019-04-16 22:40:19', '2019-04-28 01:45:49', '1', '123456');
-INSERT INTO `student` VALUES ('201521314901', '123456', '张小红', null, '女', null, null, '2019-04-16 22:40:19', null, '1', '123456');
-INSERT INTO `student` VALUES ('201521314902', '123456', '李阿四', null, '男', null, null, '2019-04-16 22:40:19', null, '1', '123456');
-
--- ----------------------------
--- Table structure for student_paper_answer
--- ----------------------------
-DROP TABLE IF EXISTS `student_paper_answer`;
-CREATE TABLE `student_paper_answer` (
-  `answer_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '学生答卷答案id',
-  `stu_answer` varchar(255) DEFAULT NULL COMMENT '学生答卷答案',
-  `isCorrect` varchar(255) DEFAULT NULL COMMENT '答案是否正确',
-  `que_id` int(11) DEFAULT NULL COMMENT '问题id',
-  `paper_id` int(11) DEFAULT NULL COMMENT '试卷id',
-  `isCollect` varchar(255) DEFAULT '0' COMMENT '是否被收藏,0为否，1为是',
-  `user_phone` char(11) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  PRIMARY KEY (`answer_id`),
-  KEY `answer_que_id` (`que_id`),
-  KEY `answer_paper_id` (`paper_id`),
-  KEY `user_phone` (`user_phone`) USING BTREE,
-  CONSTRAINT `answer_paper_id` FOREIGN KEY (`paper_id`) REFERENCES `paper` (`paper_id`),
-  CONSTRAINT `answer_que_id` FOREIGN KEY (`que_id`) REFERENCES `paper_que` (`que_id`),
-  CONSTRAINT `user_phone` FOREIGN KEY (`user_phone`) REFERENCES `user` (`user_phone`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE=InnoDB AUTO_INCREMENT=784 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of student_paper_answer
--- ----------------------------
-INSERT INTO `student_paper_answer` VALUES ('710', 'A', '1', '162', '12', '0', '11112222222');
-INSERT INTO `student_paper_answer` VALUES ('711', 'A', '0', '163', '12', '0', '11112222222');
-INSERT INTO `student_paper_answer` VALUES ('712', 'A', '0', '164', '12', '0', '11112222222');
-INSERT INTO `student_paper_answer` VALUES ('713', 'F', '1', '165', '12', '0', '11112222222');
-INSERT INTO `student_paper_answer` VALUES ('714', 'F', '0', '166', '12', '0', '11112222222');
-INSERT INTO `student_paper_answer` VALUES ('715', 'T', '1', '167', '12', '0', '11112222222');
-INSERT INTO `student_paper_answer` VALUES ('716', '咕咕咕', '0', '168', '12', '0', '11112222222');
-INSERT INTO `student_paper_answer` VALUES ('717', '疯疯癫癫', '0', '169', '12', '0', '11112222222');
-INSERT INTO `student_paper_answer` VALUES ('718', '芳芳菲菲', '0', '170', '12', '0', '11112222222');
-INSERT INTO `student_paper_answer` VALUES ('719', '噢噢噢噢', '0', '171', '12', '0', '11112222222');
-INSERT INTO `student_paper_answer` VALUES ('730', 'A', '1', '162', '12', '0', '11111111113');
-INSERT INTO `student_paper_answer` VALUES ('731', 'A', '0', '163', '12', '0', '11111111113');
-INSERT INTO `student_paper_answer` VALUES ('732', 'B', '1', '164', '12', '0', '11111111113');
-INSERT INTO `student_paper_answer` VALUES ('733', 'T', '0', '165', '12', '1', '11111111113');
-INSERT INTO `student_paper_answer` VALUES ('734', 'F', '0', '166', '12', '0', '11111111113');
-INSERT INTO `student_paper_answer` VALUES ('735', 'T', '1', '167', '12', '0', '11111111113');
-INSERT INTO `student_paper_answer` VALUES ('736', '疑是地上霜', '1', '168', '12', '1', '11111111113');
-INSERT INTO `student_paper_answer` VALUES ('737', '举头望明月', '0', '169', '12', '0', '11111111113');
-INSERT INTO `student_paper_answer` VALUES ('738', '白日依山尽', '0', '170', '12', '0', '11111111113');
-INSERT INTO `student_paper_answer` VALUES ('739', '欲穷千里目', '1', '171', '12', '1', '11111111113');
-INSERT INTO `student_paper_answer` VALUES ('740', 'A', '1', '177', '13', '0', '11111111113');
-INSERT INTO `student_paper_answer` VALUES ('741', 'T', '0', '178', '13', '0', '11111111113');
-INSERT INTO `student_paper_answer` VALUES ('742', '疑是地上霜', '1', '179', '13', '0', '11111111113');
-INSERT INTO `student_paper_answer` VALUES ('743', '黄河入海流', '0', '180', '13', '0', '11111111113');
-INSERT INTO `student_paper_answer` VALUES ('776', null, '0', '181', '14', '0', '11111111113');
-INSERT INTO `student_paper_answer` VALUES ('777', '', '0', '182', '14', '0', '11111111113');
-INSERT INTO `student_paper_answer` VALUES ('778', '', '0', '183', '14', '0', '11111111113');
-INSERT INTO `student_paper_answer` VALUES ('779', '', '0', '184', '14', '0', '11111111113');
-INSERT INTO `student_paper_answer` VALUES ('780', null, '0', '185', '14', '0', '11111111113');
-INSERT INTO `student_paper_answer` VALUES ('781', null, '0', '186', '14', '0', '11111111113');
-INSERT INTO `student_paper_answer` VALUES ('782', null, '0', '187', '14', '0', '11111111113');
-INSERT INTO `student_paper_answer` VALUES ('783', null, '0', '188', '14', '0', '11111111113');
-
--- ----------------------------
--- Table structure for student_paper_score
--- ----------------------------
-DROP TABLE IF EXISTS `student_paper_score`;
-CREATE TABLE `student_paper_score` (
-  `score_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '学生答卷分数id',
-  `score` int(11) DEFAULT NULL COMMENT '学生答卷总分',
-  `time_used` int(11) DEFAULT NULL COMMENT '答题花费时间，单位毫秒',
-  `start_time` datetime DEFAULT NULL COMMENT '答题开始时间',
-  `end_time` datetime DEFAULT NULL COMMENT '答题结束时间',
-  `sno` char(12) DEFAULT NULL COMMENT '学号',
-  `paper_id` int(11) DEFAULT NULL COMMENT '试卷id',
-  `user_phone` char(11) DEFAULT NULL,
-  PRIMARY KEY (`score_id`),
-  KEY `score_sno` (`sno`),
-  KEY `score_paper_id` (`paper_id`),
-  CONSTRAINT `score_paper_id` FOREIGN KEY (`paper_id`) REFERENCES `paper` (`paper_id`),
-  CONSTRAINT `score_sno` FOREIGN KEY (`sno`) REFERENCES `student` (`sno`)
-) ENGINE=InnoDB AUTO_INCREMENT=104 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of student_paper_score
--- ----------------------------
-INSERT INTO `student_paper_score` VALUES ('80', '3', '67189', '2020-03-05 15:27:05', '2020-03-05 15:28:12', null, '12', '11112222222');
-INSERT INTO `student_paper_score` VALUES ('86', '5', '109005', '2020-03-07 10:57:40', '2020-03-07 10:59:29', null, '12', '11111111113');
-INSERT INTO `student_paper_score` VALUES ('87', '2', '28297', '2020-03-07 18:26:59', '2020-03-07 18:27:27', null, '13', '11111111113');
-
--- ----------------------------
--- Table structure for teacher
--- ----------------------------
-DROP TABLE IF EXISTS `teacher`;
-CREATE TABLE `teacher` (
-  `tno` char(6) NOT NULL COMMENT '教工号',
-  `tea_psw` varchar(255) NOT NULL DEFAULT '123456' COMMENT '登录密码，默认为123456',
-  `tea_name` varchar(255) NOT NULL COMMENT '教师姓名',
-  `tea_sex` varchar(255) NOT NULL DEFAULT '男' COMMENT '教师性别',
-  `tea_email` varchar(255) DEFAULT NULL COMMENT '教师邮箱',
-  `tea_phone` char(11) DEFAULT NULL COMMENT '教师手机号码',
-  `tea_last_login_time` datetime DEFAULT NULL COMMENT '教师最近登录时间',
-  PRIMARY KEY (`tno`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of teacher
--- ----------------------------
-INSERT INTO `teacher` VALUES ('100000', '123456', '杨老师', '男', '123456@qq.com', '13524569875', null);
-INSERT INTO `teacher` VALUES ('100001', '123456', '高老师', '男', '123456@qq.com', '13658426951', null);
-INSERT INTO `teacher` VALUES ('100100', '123456', '侯老师', '男', '123456@qq.com', '13658245962', null);
-INSERT INTO `teacher` VALUES ('100860', '123456', '王老师', '男', '123456@qq.com', '13254859621', null);
-INSERT INTO `teacher` VALUES ('123456', '123456', '胡老师', '男', '123456@qq.com', '13229622789', '2020-03-14 19:18:39');
-INSERT INTO `teacher` VALUES ('654321', '123456', '鸡你太美', '女', null, null, null);
+INSERT INTO `question_type` VALUES ('13', '分秒必争', '判断对错', 'http://q6b41spn5.bkt.clouddn.com/2.png', null, null, '2020-03-24 10:30:07', null, 'judge1');
+INSERT INTO `question_type` VALUES ('14', '眼花缭乱', '选择正确的汉字', null, null, null, null, null, 'single2');
+INSERT INTO `question_type` VALUES ('15', '剥丝抽茧', '根据依次给出的提示，填写诗人姓名', null, null, null, null, null, 'single3');
 
 -- ----------------------------
 -- Table structure for user
@@ -544,6 +383,81 @@ INSERT INTO `user` VALUES ('11111111112', '121212', '咕咕咕', 'http://q6b41sp
 INSERT INTO `user` VALUES ('11111111113', '131313', '哈哈', null, '停云霭霭', '男');
 INSERT INTO `user` VALUES ('11111111114', '123456', '测试', null, null, '女');
 INSERT INTO `user` VALUES ('11112222222', '123456', '羲兮', 'http://q6b41spn5.bkt.clouddn.com/1.png', null, '女');
+
+-- ----------------------------
+-- Table structure for user_paper_answer
+-- ----------------------------
+DROP TABLE IF EXISTS `user_paper_answer`;
+CREATE TABLE `user_paper_answer` (
+  `answer_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '学生答卷答案id',
+  `stu_answer` varchar(255) DEFAULT NULL COMMENT '学生答卷答案',
+  `isCorrect` varchar(255) DEFAULT NULL COMMENT '答案是否正确',
+  `que_id` int(11) DEFAULT NULL COMMENT '问题id',
+  `paper_id` int(11) DEFAULT NULL COMMENT '试卷id',
+  `isCollect` varchar(255) DEFAULT '0' COMMENT '是否被收藏,0为否，1为是',
+  `user_phone` char(11) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  PRIMARY KEY (`answer_id`),
+  KEY `answer_que_id` (`que_id`),
+  KEY `answer_paper_id` (`paper_id`),
+  KEY `user_phone` (`user_phone`) USING BTREE,
+  CONSTRAINT `answer_paper_id` FOREIGN KEY (`paper_id`) REFERENCES `paper` (`paper_id`),
+  CONSTRAINT `answer_que_id` FOREIGN KEY (`que_id`) REFERENCES `paper_que` (`que_id`),
+  CONSTRAINT `user_phone` FOREIGN KEY (`user_phone`) REFERENCES `user` (`user_phone`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE=InnoDB AUTO_INCREMENT=800 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of user_paper_answer
+-- ----------------------------
+INSERT INTO `user_paper_answer` VALUES ('710', 'A', '1', '162', '12', '0', '11112222222');
+INSERT INTO `user_paper_answer` VALUES ('711', 'A', '0', '163', '12', '0', '11112222222');
+INSERT INTO `user_paper_answer` VALUES ('712', 'A', '0', '164', '12', '0', '11112222222');
+INSERT INTO `user_paper_answer` VALUES ('713', 'F', '1', '165', '12', '0', '11112222222');
+INSERT INTO `user_paper_answer` VALUES ('714', 'F', '0', '166', '12', '0', '11112222222');
+INSERT INTO `user_paper_answer` VALUES ('715', 'T', '1', '167', '12', '0', '11112222222');
+INSERT INTO `user_paper_answer` VALUES ('716', '咕咕咕', '0', '168', '12', '0', '11112222222');
+INSERT INTO `user_paper_answer` VALUES ('717', '疯疯癫癫', '0', '169', '12', '0', '11112222222');
+INSERT INTO `user_paper_answer` VALUES ('718', '芳芳菲菲', '0', '170', '12', '0', '11112222222');
+INSERT INTO `user_paper_answer` VALUES ('719', '噢噢噢噢', '0', '171', '12', '0', '11112222222');
+INSERT INTO `user_paper_answer` VALUES ('730', 'A', '1', '162', '12', '0', '11111111113');
+INSERT INTO `user_paper_answer` VALUES ('731', 'A', '0', '163', '12', '0', '11111111113');
+INSERT INTO `user_paper_answer` VALUES ('732', 'B', '1', '164', '12', '0', '11111111113');
+INSERT INTO `user_paper_answer` VALUES ('733', 'T', '0', '165', '12', '1', '11111111113');
+INSERT INTO `user_paper_answer` VALUES ('734', 'F', '0', '166', '12', '0', '11111111113');
+INSERT INTO `user_paper_answer` VALUES ('735', 'T', '1', '167', '12', '0', '11111111113');
+INSERT INTO `user_paper_answer` VALUES ('736', '疑是地上霜', '1', '168', '12', '1', '11111111113');
+INSERT INTO `user_paper_answer` VALUES ('737', '举头望明月', '0', '169', '12', '0', '11111111113');
+INSERT INTO `user_paper_answer` VALUES ('738', '白日依山尽', '0', '170', '12', '0', '11111111113');
+INSERT INTO `user_paper_answer` VALUES ('739', '欲穷千里目', '1', '171', '12', '1', '11111111113');
+INSERT INTO `user_paper_answer` VALUES ('740', 'A', '1', '177', '13', '0', '11111111113');
+INSERT INTO `user_paper_answer` VALUES ('741', 'T', '0', '178', '13', '0', '11111111113');
+INSERT INTO `user_paper_answer` VALUES ('742', '疑是地上霜', '1', '179', '13', '0', '11111111113');
+INSERT INTO `user_paper_answer` VALUES ('743', '黄河入海流', '0', '180', '13', '0', '11111111113');
+
+-- ----------------------------
+-- Table structure for user_paper_score
+-- ----------------------------
+DROP TABLE IF EXISTS `user_paper_score`;
+CREATE TABLE `user_paper_score` (
+  `score_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '学生答卷分数id',
+  `score` int(11) DEFAULT NULL COMMENT '学生答卷总分',
+  `time_used` int(11) DEFAULT NULL COMMENT '答题花费时间，单位毫秒',
+  `start_time` datetime DEFAULT NULL COMMENT '答题开始时间',
+  `end_time` datetime DEFAULT NULL COMMENT '答题结束时间',
+  `paper_id` int(11) DEFAULT NULL COMMENT '试卷id',
+  `user_phone` char(11) DEFAULT NULL,
+  PRIMARY KEY (`score_id`),
+  KEY `score_paper_id` (`paper_id`),
+  KEY `score_user_phone` (`user_phone`),
+  CONSTRAINT `score_paper_id` FOREIGN KEY (`paper_id`) REFERENCES `paper` (`paper_id`),
+  CONSTRAINT `score_user_phone` FOREIGN KEY (`user_phone`) REFERENCES `user` (`user_phone`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE=InnoDB AUTO_INCREMENT=106 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of user_paper_score
+-- ----------------------------
+INSERT INTO `user_paper_score` VALUES ('80', '3', '67189', '2020-03-05 15:27:05', '2020-03-05 15:28:12', '12', '11112222222');
+INSERT INTO `user_paper_score` VALUES ('86', '5', '109005', '2020-03-07 10:57:40', '2020-03-07 10:59:29', '12', '11111111113');
+INSERT INTO `user_paper_score` VALUES ('87', '2', '28297', '2020-03-07 18:26:59', '2020-03-07 18:27:27', '13', '11111111113');
 
 -- ----------------------------
 -- Table structure for user_rotation_img

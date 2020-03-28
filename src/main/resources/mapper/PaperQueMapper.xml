@@ -86,7 +86,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from paper_que
     where que_id = #{queId,jdbcType=INTEGER}
@@ -102,11 +102,11 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.mwt.oes.domain.PaperQue" >
-    insert into paper_que (que_id, que_type, single_id, 
-      multiple_id, judge_id, fill_id, 
+    insert into paper_que (que_id, que_type, single_id,
+      multiple_id, judge_id, fill_id,
       paper_id)
     values (#{queId,jdbcType=INTEGER}, #{queType,jdbcType=INTEGER}, #{singleId,jdbcType=INTEGER},
-      #{multipleId,jdbcType=INTEGER}, #{judgeId,jdbcType=INTEGER}, #{fillId,jdbcType=INTEGER}, 
+      #{multipleId,jdbcType=INTEGER}, #{judgeId,jdbcType=INTEGER}, #{fillId,jdbcType=INTEGER},
       #{paperId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.mwt.oes.domain.PaperQue" >
@@ -196,12 +196,12 @@
   <update id="updateByExample" parameterType="map" >
     update paper_que
     set que_id = #{record.queId,jdbcType=INTEGER},
-      que_type = #{record.queType,jdbcType=INTEGER},
-      single_id = #{record.singleId,jdbcType=INTEGER},
-      multiple_id = #{record.multipleId,jdbcType=INTEGER},
-      judge_id = #{record.judgeId,jdbcType=INTEGER},
-      fill_id = #{record.fillId,jdbcType=INTEGER},
-      paper_id = #{record.paperId,jdbcType=INTEGER}
+    que_type = #{record.queType,jdbcType=INTEGER},
+    single_id = #{record.singleId,jdbcType=INTEGER},
+    multiple_id = #{record.multipleId,jdbcType=INTEGER},
+    judge_id = #{record.judgeId,jdbcType=INTEGER},
+    fill_id = #{record.fillId,jdbcType=INTEGER},
+    paper_id = #{record.paperId,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>

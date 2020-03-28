@@ -2,9 +2,8 @@ package com.mwt.oes.dao;
 
 import com.mwt.oes.domain.BankMultipleChoiceQue;
 import com.mwt.oes.domain.BankMultipleChoiceQueExample;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface BankMultipleChoiceQueMapper {
     int countByExample(BankMultipleChoiceQueExample example);
@@ -28,8 +27,4 @@ public interface BankMultipleChoiceQueMapper {
     int updateByPrimaryKeySelective(BankMultipleChoiceQue record);
 
     int updateByPrimaryKey(BankMultipleChoiceQue record);
-
-    List<BankMultipleChoiceQue> getMultipleQueListByPaperId(Integer paperId);
-
-    List<BankMultipleChoiceQue> getRandomMultipleByCountAndLangId(@Param("langId") Integer langId, @Param("multipleNum")Integer multipleNum);
 }

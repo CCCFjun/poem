@@ -45,9 +45,9 @@ public class UserPracticeServiceImpl implements UserPracticeService {
     }
 
     @Override
-    public List<Map<String, Object>> getRandomSingleList(Integer num) {
+    public List<Map<String, Object>> getRandomSingleList(Integer num, Integer kindId) {
         List<Map<String, Object>> resultList = new ArrayList<>();
-        List<BankSingleChoiceQue> bankSingleChoiceQueList = bankSingleChoiceQueMapper.getRandomSingleByCountAndLangId(num,12);
+        List<BankSingleChoiceQue> bankSingleChoiceQueList = bankSingleChoiceQueMapper.getRandomSingleByCountAndLangId(num,kindId);
         for (BankSingleChoiceQue bankSingleChoiceQue : bankSingleChoiceQueList) {
             Map<String, Object> map = new HashMap<>();
             map.put("id", bankSingleChoiceQueList.indexOf(bankSingleChoiceQue) + 1);

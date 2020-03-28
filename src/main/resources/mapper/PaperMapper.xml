@@ -71,7 +71,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    paper_id, paper_name, paper_create_time, paper_duration, paper_difficulty, paper_attention, 
+    paper_id, paper_name, paper_create_time, paper_duration, paper_difficulty, paper_attention,
     paper_type, participate_num,paper_img_src
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mwt.oes.domain.PaperExample" >
@@ -89,7 +89,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from paper
     where paper_id = #{paperId,jdbcType=INTEGER}
@@ -110,12 +110,12 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.mwt.oes.domain.Paper" >
-    insert into paper (paper_id, paper_name, paper_create_time, 
-      paper_duration, paper_difficulty, paper_attention, 
+    insert into paper (paper_id, paper_name, paper_create_time,
+      paper_duration, paper_difficulty, paper_attention,
       paper_type,
       participate_num)
-    values (#{paperId,jdbcType=INTEGER}, #{paperName,jdbcType=VARCHAR}, #{paperCreateTime,jdbcType=TIMESTAMP}, 
-      #{paperDuration,jdbcType=INTEGER}, #{paperDifficulty,jdbcType=INTEGER}, #{paperAttention,jdbcType=VARCHAR}, 
+    values (#{paperId,jdbcType=INTEGER}, #{paperName,jdbcType=VARCHAR}, #{paperCreateTime,jdbcType=TIMESTAMP},
+      #{paperDuration,jdbcType=INTEGER}, #{paperDifficulty,jdbcType=INTEGER}, #{paperAttention,jdbcType=VARCHAR},
       #{paperType,jdbcType=INTEGER},
       #{participateNum,jdbcType=INTEGER})
   </insert>
@@ -215,13 +215,13 @@
   <update id="updateByExample" parameterType="map" >
     update paper
     set paper_id = #{record.paperId,jdbcType=INTEGER},
-      paper_name = #{record.paperName,jdbcType=VARCHAR},
-      paper_create_time = #{record.paperCreateTime,jdbcType=TIMESTAMP},
-      paper_duration = #{record.paperDuration,jdbcType=INTEGER},
-      paper_difficulty = #{record.paperDifficulty,jdbcType=INTEGER},
-      paper_attention = #{record.paperAttention,jdbcType=VARCHAR},
-      paper_type = #{record.paperType,jdbcType=INTEGER},
-      participate_num = #{record.participateNum,jdbcType=INTEGER}
+    paper_name = #{record.paperName,jdbcType=VARCHAR},
+    paper_create_time = #{record.paperCreateTime,jdbcType=TIMESTAMP},
+    paper_duration = #{record.paperDuration,jdbcType=INTEGER},
+    paper_difficulty = #{record.paperDifficulty,jdbcType=INTEGER},
+    paper_attention = #{record.paperAttention,jdbcType=VARCHAR},
+    paper_type = #{record.paperType,jdbcType=INTEGER},
+    participate_num = #{record.participateNum,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>

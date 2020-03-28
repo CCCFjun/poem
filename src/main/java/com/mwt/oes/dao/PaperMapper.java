@@ -2,9 +2,8 @@ package com.mwt.oes.dao;
 
 import com.mwt.oes.domain.Paper;
 import com.mwt.oes.domain.PaperExample;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface PaperMapper {
     int countByExample(PaperExample example);

@@ -58,10 +58,11 @@ public class UserPracticeController {
 
     //  选择题请求随机出题
     @RequestMapping(value = "/getSinglePractice")
-    public ServerResponse getSinglePractice(@RequestParam("queNum")Integer num){
-        List<Map<String, Object>> resultList = userPracticeService.getRandomSingleList(num);
+    public ServerResponse getSinglePractice(@RequestParam("queNum")Integer num, @RequestParam("kindId")Integer kindId){
+        List<Map<String, Object>> resultList = userPracticeService.getRandomSingleList(num, kindId);
         return ServerResponse.createBySuccess("题目发布成功",resultList);
     }
+
 
     //  判断题请求随机出题
     @RequestMapping(value = "/getJudgePractice")

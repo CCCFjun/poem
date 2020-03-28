@@ -90,7 +90,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from bank_judge_que
     where judge_id = #{judgeId,jdbcType=INTEGER}
@@ -123,10 +123,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.mwt.oes.domain.BankJudgeQue" >
-    insert into bank_judge_que (judge_id, judge_content, judge_answer, 
+    insert into bank_judge_que (judge_id, judge_content, judge_answer,
       compose_flag, answer_explain, lang_id
       )
-    values (#{judgeId,jdbcType=INTEGER}, #{judgeContent,jdbcType=VARCHAR}, #{judgeAnswer,jdbcType=VARCHAR}, 
+    values (#{judgeId,jdbcType=INTEGER}, #{judgeContent,jdbcType=VARCHAR}, #{judgeAnswer,jdbcType=VARCHAR},
       #{composeFlag,jdbcType=VARCHAR}, #{answerExplain,jdbcType=VARCHAR}, #{langId,jdbcType=INTEGER}
       )
   </insert>
@@ -208,11 +208,11 @@
   <update id="updateByExample" parameterType="map" >
     update bank_judge_que
     set judge_id = #{record.judgeId,jdbcType=INTEGER},
-      judge_content = #{record.judgeContent,jdbcType=VARCHAR},
-      judge_answer = #{record.judgeAnswer,jdbcType=VARCHAR},
-      compose_flag = #{record.composeFlag,jdbcType=VARCHAR},
-      answer_explain = #{record.answerExplain,jdbcType=VARCHAR},
-      lang_id = #{record.langId,jdbcType=INTEGER}
+    judge_content = #{record.judgeContent,jdbcType=VARCHAR},
+    judge_answer = #{record.judgeAnswer,jdbcType=VARCHAR},
+    compose_flag = #{record.composeFlag,jdbcType=VARCHAR},
+    answer_explain = #{record.answerExplain,jdbcType=VARCHAR},
+    lang_id = #{record.langId,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>

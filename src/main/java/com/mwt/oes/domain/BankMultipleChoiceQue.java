@@ -27,8 +27,6 @@ public class BankMultipleChoiceQue {
 
     private Integer langId;
 
-    private PaperQue paperQue;
-
     public Integer getMultipleId() {
         return multipleId;
     }
@@ -131,13 +129,5 @@ public class BankMultipleChoiceQue {
 
     public void setLangId(Integer langId) {
         this.langId = langId;
-    }
-
-    public PaperQue getPaperQue() {
-        return paperQue;
-    }
-
-    public void setPaperQue(PaperQue paperQue) {
-        this.paperQue = paperQue;
     }
 }

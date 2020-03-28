@@ -85,7 +85,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from user_rotation_img
     where img_id = #{imgId,jdbcType=INTEGER}
@@ -101,10 +101,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.mwt.oes.domain.UserRotationImg" >
-    insert into user_rotation_img (img_id, img_title, img_src, 
+    insert into user_rotation_img (img_id, img_title, img_src,
       img_create_time, ano, adm_name
       )
-    values (#{imgId,jdbcType=INTEGER}, #{imgTitle,jdbcType=VARCHAR}, #{imgSrc,jdbcType=VARCHAR}, 
+    values (#{imgId,jdbcType=INTEGER}, #{imgTitle,jdbcType=VARCHAR}, #{imgSrc,jdbcType=VARCHAR},
       #{imgCreateTime,jdbcType=TIMESTAMP}, #{ano,jdbcType=INTEGER}, #{admName,jdbcType=VARCHAR}
       )
   </insert>
@@ -186,11 +186,11 @@
   <update id="updateByExample" parameterType="map" >
     update user_rotation_img
     set img_id = #{record.imgId,jdbcType=INTEGER},
-      img_title = #{record.imgTitle,jdbcType=VARCHAR},
-      img_src = #{record.imgSrc,jdbcType=VARCHAR},
-      img_create_time = #{record.imgCreateTime,jdbcType=TIMESTAMP},
-      ano = #{record.ano,jdbcType=INTEGER},
-      adm_name = #{record.admName,jdbcType=VARCHAR}
+    img_title = #{record.imgTitle,jdbcType=VARCHAR},
+    img_src = #{record.imgSrc,jdbcType=VARCHAR},
+    img_create_time = #{record.imgCreateTime,jdbcType=TIMESTAMP},
+    ano = #{record.ano,jdbcType=INTEGER},
+    adm_name = #{record.admName,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>

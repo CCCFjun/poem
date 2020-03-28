@@ -1,13 +1,16 @@
 package com.mwt.oes.domain;
 
-import java.util.Date;
-
 public class User {
     private String userPhone;
+
     private String userPsw;
+
     private String userName;
+
     private String userImgSrc;
+
     private String userIntroduction;
+
     private String userSex;
 
     public String getUserPhone() {
@@ -57,5 +60,4 @@ public class User {
     public void setUserSex(String userSex) {
         this.userSex = userSex == null ? null : userSex.trim();
     }
-
 }

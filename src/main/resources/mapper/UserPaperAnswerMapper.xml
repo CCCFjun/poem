@@ -131,9 +131,9 @@
       <if test="iscollect != null" >
         isCollect,
       </if>
-        <if test="userPhone != null" >
-            user_phone,
-        </if>
+      <if test="userPhone != null" >
+        user_phone,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="answerId != null" >
@@ -154,9 +154,9 @@
       <if test="iscollect != null" >
         #{iscollect,jdbcType=VARCHAR},
       </if>
-        <if test="userPhone != null" >
-            #{userPhone,jdbcType=CHAR},
-        </if>
+      <if test="userPhone != null" >
+        #{userPhone,jdbcType=CHAR},
+      </if>
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.mwt.oes.domain.UserPaperAnswerExample" resultType="java.lang.Integer" >
@@ -194,11 +194,11 @@
   <update id="updateByExample" parameterType="map" >
     update user_paper_answer
     set answer_id = #{record.answerId,jdbcType=INTEGER},
-      stu_answer = #{record.stuAnswer,jdbcType=VARCHAR},
-      isCorrect = #{record.iscorrect,jdbcType=VARCHAR},
-      que_id = #{record.queId,jdbcType=INTEGER},
-      paper_id = #{record.paperId,jdbcType=INTEGER},
-      isCollect = #{record.iscollect,jdbcType=VARCHAR}
+    stu_answer = #{record.stuAnswer,jdbcType=VARCHAR},
+    isCorrect = #{record.iscorrect,jdbcType=VARCHAR},
+    que_id = #{record.queId,jdbcType=INTEGER},
+    paper_id = #{record.paperId,jdbcType=INTEGER},
+    isCollect = #{record.iscollect,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>

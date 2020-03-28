@@ -91,7 +91,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from bank_fill_que
     where fill_id = #{fillId,jdbcType=INTEGER}
@@ -124,10 +124,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.mwt.oes.domain.BankFillQue" >
-    insert into bank_fill_que (fill_id, fill_content, fill_answer, 
+    insert into bank_fill_que (fill_id, fill_content, fill_answer,
       compose_flag, answer_explain, lang_id, fill_img_src
       )
-    values (#{fillId,jdbcType=INTEGER}, #{fillContent,jdbcType=VARCHAR}, #{fillAnswer,jdbcType=VARCHAR}, 
+    values (#{fillId,jdbcType=INTEGER}, #{fillContent,jdbcType=VARCHAR}, #{fillAnswer,jdbcType=VARCHAR},
       #{composeFlag,jdbcType=VARCHAR}, #{answerExplain,jdbcType=VARCHAR}, #{langId,jdbcType=INTEGER},
       #{fillImgSrc,jdbcType=VARCHAR}
       )
@@ -153,9 +153,9 @@
       <if test="langId != null" >
         lang_id,
       </if>
-        <if test="fillImgSrc != null" >
-          fill_img_src,
-        </if>
+      <if test="fillImgSrc != null" >
+        fill_img_src,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="fillId != null" >
@@ -176,9 +176,9 @@
       <if test="langId != null" >
         #{langId,jdbcType=INTEGER},
       </if>
-        <if test="fillImgSrc != null" >
-            #{fillImgSrc,jdbcType=VARCHAR},
-        </if>
+      <if test="fillImgSrc != null" >
+        #{fillImgSrc,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.mwt.oes.domain.BankFillQueExample" resultType="java.lang.Integer" >
@@ -208,9 +208,9 @@
       <if test="record.langId != null" >
         lang_id = #{record.langId,jdbcType=INTEGER},
       </if>
-        <if test="record.fillImgSrc != null" >
-            fill_img_src = #{record.fillImgSrc,jdbcType=VARCHAR},
-        </if>
+      <if test="record.fillImgSrc != null" >
+        fill_img_src = #{record.fillImgSrc,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -219,12 +219,12 @@
   <update id="updateByExample" parameterType="map" >
     update bank_fill_que
     set fill_id = #{record.fillId,jdbcType=INTEGER},
-      fill_content = #{record.fillContent,jdbcType=VARCHAR},
-      fill_answer = #{record.fillAnswer,jdbcType=VARCHAR},
-      compose_flag = #{record.composeFlag,jdbcType=VARCHAR},
-      answer_explain = #{record.answerExplain,jdbcType=VARCHAR},
-      lang_id = #{record.langId,jdbcType=INTEGER},
-      fill_img_src = #{record.fillImgSrc,jdbcType=VARCHAR}
+    fill_content = #{record.fillContent,jdbcType=VARCHAR},
+    fill_answer = #{record.fillAnswer,jdbcType=VARCHAR},
+    compose_flag = #{record.composeFlag,jdbcType=VARCHAR},
+    answer_explain = #{record.answerExplain,jdbcType=VARCHAR},
+    lang_id = #{record.langId,jdbcType=INTEGER},
+    fill_img_src = #{record.fillImgSrc,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -247,9 +247,9 @@
       <if test="langId != null" >
         lang_id = #{langId,jdbcType=INTEGER},
       </if>
-        <if test="fillImgSrc != null" >
-          fill_img_src = #{fillImgSrc,jdbcType=VARCHAR},
-        </if>
+      <if test="fillImgSrc != null" >
+        fill_img_src = #{fillImgSrc,jdbcType=VARCHAR},
+      </if>
     </set>
     where fill_id = #{fillId,jdbcType=INTEGER}
   </update>

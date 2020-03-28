@@ -13,8 +13,6 @@ public class UserPaperScore {
 
     private Date endTime;
 
-    private String sno;
-
     private Integer paperId;
 
     private String userPhone;
@@ -59,14 +57,6 @@ public class UserPaperScore {
         this.endTime = endTime;
     }
 
-    public String getSno() {
-        return sno;
-    }
-
-    public void setSno(String sno) {
-        this.sno = sno == null ? null : sno.trim();
-    }
-
     public Integer getPaperId() {
         return paperId;
     }
@@ -80,6 +70,6 @@ public class UserPaperScore {
     }
 
     public void setUserPhone(String userPhone) {
-        this.userPhone = userPhone;
+        this.userPhone = userPhone == null ? null : userPhone.trim();
     }
 }

@@ -85,7 +85,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from user
     where user_phone = #{userPhone,jdbcType=CHAR}
@@ -101,7 +101,7 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.mwt.oes.domain.User" >
-    insert into user (user_phone, user_psw, user_name, 
+    insert into user (user_phone, user_psw, user_name,
       user_img_src, user_sex, user_introduction)
     values (#{usePhone,jdbcType=CHAR}, #{userPsw,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR},
       #{userImgSrc,jdbcType=VARCHAR}, #{userSex,jdbcType=VARCHAR}, #{userIntroduction,jdbcType=VARCHAR})
@@ -184,11 +184,11 @@
   <update id="updateByExample" parameterType="map" >
     update user
     set user_phone = #{record.userPhone,jdbcType=CHAR},
-      user_psw = #{record.userPsw,jdbcType=VARCHAR},
-      user_name = #{record.userName,jdbcType=VARCHAR},
-      user_img_src = #{record.userImgSrc,jdbcType=VARCHAR},
-      user_sex = #{record.userSex,jdbcType=VARCHAR},
-      user_introduction = #{record.userIntroduction,jdbcType=VARCHAR}
+    user_psw = #{record.userPsw,jdbcType=VARCHAR},
+    user_name = #{record.userName,jdbcType=VARCHAR},
+    user_img_src = #{record.userImgSrc,jdbcType=VARCHAR},
+    user_sex = #{record.userSex,jdbcType=VARCHAR},
+    user_introduction = #{record.userIntroduction,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>

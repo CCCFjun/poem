@@ -2,9 +2,8 @@ package com.mwt.oes.dao;
 
 import com.mwt.oes.domain.UserPaperAnswer;
 import com.mwt.oes.domain.UserPaperAnswerExample;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface UserPaperAnswerMapper {
     int countByExample(UserPaperAnswerExample example);
@@ -28,12 +27,4 @@ public interface UserPaperAnswerMapper {
     int updateByPrimaryKeySelective(UserPaperAnswer record);
 
     int updateByPrimaryKey(UserPaperAnswer record);
-
-    int selectSingleCorrectCount(UserPaperAnswer record);
-
-    int selectMultipleCorrectCount(UserPaperAnswer record);
-
-    int selectJudgeCorrectCount(UserPaperAnswer record);
-
-    int selectFillCorrectCount(UserPaperAnswer record);
 }

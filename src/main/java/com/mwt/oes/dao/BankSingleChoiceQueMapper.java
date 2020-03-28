@@ -2,9 +2,8 @@ package com.mwt.oes.dao;
 
 import com.mwt.oes.domain.BankSingleChoiceQue;
 import com.mwt.oes.domain.BankSingleChoiceQueExample;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface BankSingleChoiceQueMapper {
     int countByExample(BankSingleChoiceQueExample example);

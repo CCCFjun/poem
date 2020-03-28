@@ -3,7 +3,6 @@ package com.mwt.oes.dao;
 import com.mwt.oes.domain.QuestionType;
 import com.mwt.oes.domain.QuestionTypeExample;
 import java.util.List;
-
 import org.apache.ibatis.annotations.Param;
 
 public interface QuestionTypeMapper {

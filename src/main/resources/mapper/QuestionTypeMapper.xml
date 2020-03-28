@@ -71,7 +71,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    lang_id, lang_name, lang_desc, lang_img_src, lang_create_time, lang_created_by, lang_change_time, 
+    lang_id, lang_name, lang_desc, lang_img_src, lang_create_time, lang_created_by, lang_change_time,
     lang_last_changer, lang_en_name
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mwt.oes.domain.QuestionTypeExample" >
@@ -89,7 +89,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from question_type
     where lang_id = #{langId,jdbcType=INTEGER}
@@ -105,12 +105,12 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.mwt.oes.domain.QuestionType" >
-    insert into question_type (lang_id, lang_name, lang_desc, 
-      lang_img_src, lang_create_time, lang_created_by, 
+    insert into question_type (lang_id, lang_name, lang_desc,
+      lang_img_src, lang_create_time, lang_created_by,
       lang_change_time, lang_last_changer, lang_en_name
       )
-    values (#{langId,jdbcType=INTEGER}, #{langName,jdbcType=VARCHAR}, #{langDesc,jdbcType=VARCHAR}, 
-      #{langImgSrc,jdbcType=VARCHAR}, #{langCreateTime,jdbcType=TIMESTAMP}, #{langCreatedBy,jdbcType=VARCHAR}, 
+    values (#{langId,jdbcType=INTEGER}, #{langName,jdbcType=VARCHAR}, #{langDesc,jdbcType=VARCHAR},
+      #{langImgSrc,jdbcType=VARCHAR}, #{langCreateTime,jdbcType=TIMESTAMP}, #{langCreatedBy,jdbcType=VARCHAR},
       #{langChangeTime,jdbcType=TIMESTAMP}, #{langLastChanger,jdbcType=VARCHAR}, #{langEnName,jdbcType=VARCHAR}
       )
   </insert>
@@ -219,14 +219,14 @@
   <update id="updateByExample" parameterType="map" >
     update question_type
     set lang_id = #{record.langId,jdbcType=INTEGER},
-      lang_name = #{record.langName,jdbcType=VARCHAR},
-      lang_desc = #{record.langDesc,jdbcType=VARCHAR},
-      lang_img_src = #{record.langImgSrc,jdbcType=VARCHAR},
-      lang_create_time = #{record.langCreateTime,jdbcType=TIMESTAMP},
-      lang_created_by = #{record.langCreatedBy,jdbcType=VARCHAR},
-      lang_change_time = #{record.langChangeTime,jdbcType=TIMESTAMP},
-      lang_last_changer = #{record.langLastChanger,jdbcType=VARCHAR},
-      lang_en_name = #{record.langEnName,jdbcType=VARCHAR}
+    lang_name = #{record.langName,jdbcType=VARCHAR},
+    lang_desc = #{record.langDesc,jdbcType=VARCHAR},
+    lang_img_src = #{record.langImgSrc,jdbcType=VARCHAR},
+    lang_create_time = #{record.langCreateTime,jdbcType=TIMESTAMP},
+    lang_created_by = #{record.langCreatedBy,jdbcType=VARCHAR},
+    lang_change_time = #{record.langChangeTime,jdbcType=TIMESTAMP},
+    lang_last_changer = #{record.langLastChanger,jdbcType=VARCHAR},
+    lang_en_name = #{record.langEnName,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
