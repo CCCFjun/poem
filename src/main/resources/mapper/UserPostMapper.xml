@@ -7,7 +7,7 @@
     <result column="title" property="title" jdbcType="VARCHAR" />
     <result column="init_time" property="initTime" jdbcType="TIMESTAMP" />
     <result column="label_id" property="labelId" jdbcType="INTEGER" />
-    <result column="replay_count" property="replayCount" jdbcType="VARCHAR" />
+    <result column="replay_count" property="replayCount" jdbcType="INTEGER" />
     <result column="top" property="top" jdbcType="INTEGER" />
     <result column="good" property="good" jdbcType="INTEGER" />
     <result column="user_phone" property="userPhone" jdbcType="CHAR" />
@@ -108,7 +108,7 @@
       init_time, label_id, replay_count, 
       top, good, user_phone)
     values (#{pid,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
-      #{initTime,jdbcType=TIMESTAMP}, #{labelId,jdbcType=INTEGER}, #{replayCount,jdbcType=VARCHAR}, 
+      #{initTime,jdbcType=TIMESTAMP}, #{labelId,jdbcType=INTEGER}, #{replayCount,jdbcType=INTEGER},
       #{top,jdbcType=INTEGER}, #{good,jdbcType=INTEGER}, #{userPhone,jdbcType=CHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.mwt.oes.domain.UserPost" >
@@ -197,7 +197,7 @@
         label_id = #{record.labelId,jdbcType=INTEGER},
       </if>
       <if test="record.replayCount != null" >
-        replay_count = #{record.replayCount,jdbcType=VARCHAR},
+        replay_count = #{record.replayCount,jdbcType=INTEGER},
       </if>
       <if test="record.top != null" >
         top = #{record.top,jdbcType=INTEGER},
@@ -220,7 +220,7 @@
       title = #{record.title,jdbcType=VARCHAR},
       init_time = #{record.initTime,jdbcType=TIMESTAMP},
       label_id = #{record.labelId,jdbcType=INTEGER},
-      replay_count = #{record.replayCount,jdbcType=VARCHAR},
+      replay_count = #{record.replayCount,jdbcType=INTEGER},
       top = #{record.top,jdbcType=INTEGER},
       good = #{record.good,jdbcType=INTEGER},
       user_phone = #{record.userPhone,jdbcType=CHAR}
@@ -244,7 +244,7 @@
         label_id = #{labelId,jdbcType=INTEGER},
       </if>
       <if test="replayCount != null" >
-        replay_count = #{replayCount,jdbcType=VARCHAR},
+        replay_count = #{replayCount,jdbcType=INTEGER},
       </if>
       <if test="top != null" >
         top = #{top,jdbcType=INTEGER},
@@ -264,7 +264,7 @@
       title = #{title,jdbcType=VARCHAR},
       init_time = #{initTime,jdbcType=TIMESTAMP},
       label_id = #{labelId,jdbcType=INTEGER},
-      replay_count = #{replayCount,jdbcType=VARCHAR},
+      replay_count = #{replayCount,jdbcType=INTEGER},
       top = #{top,jdbcType=INTEGER},
       good = #{good,jdbcType=INTEGER},
       user_phone = #{userPhone,jdbcType=CHAR}

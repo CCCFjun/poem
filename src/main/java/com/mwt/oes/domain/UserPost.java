@@ -13,7 +13,7 @@ public class UserPost {
 
     private Integer labelId;
 
-    private String replayCount;
+    private Integer replayCount;
 
     private Integer top;
 
@@ -61,12 +61,12 @@ public class UserPost {
         this.labelId = labelId;
     }
 
-    public String getReplayCount() {
+    public Integer getReplayCount() {
         return replayCount;
     }
 
-    public void setReplayCount(String replayCount) {
-        this.replayCount = replayCount == null ? null : replayCount.trim();
+    public void setReplayCount(Integer replayCount) {
+        this.replayCount = replayCount;
     }
 
     public Integer getTop() {

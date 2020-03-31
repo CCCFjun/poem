@@ -9,7 +9,7 @@ import java.util.concurrent.CopyOnWriteArraySet;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/api/websocket")
+@RequestMapping("/api/websocket/")
 public class WebSocketController {
 
     @RequestMapping(value = "/pushMsgToHtml",method = RequestMethod.GET)

@@ -7,6 +7,7 @@ import com.mwt.oes.service.AdminSystemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Base64;
 import java.util.List;
 
 @Service
@@ -15,6 +16,7 @@ public class AdminSystemServiceImpl implements AdminSystemService {
     @Autowired
     AdminMapper adminMapper;
 
+    public static final Base64.Decoder DECODER = Base64.getDecoder();
     /*
         校验管理员登录
      */

@@ -9,7 +9,7 @@ import java.util.concurrent.CopyOnWriteArraySet;
 
 
 //@ServerEndpoint("/websocket/{user}")
-@ServerEndpoint(value = "/websocket")
+@ServerEndpoint(value = "/websocket/{user}")
 @Component
 public class WebSocketServer {
     //静态变量，用来记录当前在线连接数。应该把它设计成线程安全的。

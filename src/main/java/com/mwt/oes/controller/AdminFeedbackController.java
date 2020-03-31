@@ -33,14 +33,10 @@ public class AdminFeedbackController {
         return ServerResponse.createBySuccess("获取未回复留言条数成功",result);
     }
 
-    //    获取全部留言信息
+    //    搜索
     @RequestMapping("/searchFeedbacksList")
-    public ServerResponse searchFeedbacksList(@RequestParam("feedbackContent")String feedbackContent,
-                                              @RequestParam("userName")String userName,
-                                              @RequestParam("admAnswer")String admAnswer,
-                                              @RequestParam("admName")String admName,
-                                              @RequestParam("feedbackStatus")String feedbackStatus){
-        List<Map<String, Object>> resultList = adminFeedbackService.searchFeedbacksList(feedbackContent, userName, admAnswer, admName, feedbackStatus);
+    public ServerResponse searchFeedbacksList(@RequestParam("feedbackContent")String feedbackContent){
+        List<Map<String, Object>> resultList = adminFeedbackService.searchFeedbacksList(feedbackContent);
         return ServerResponse.createBySuccess("获取全部轮播图信息成功",resultList);
     }
 
@@ -57,23 +53,14 @@ public class AdminFeedbackController {
     }
 
     // 回复留言
-    @RequestMapping(value = "/replyFeedback",method = RequestMethod.POST)
-    public ServerResponse replyFeedback(@RequestBody(required = false) Feedback feedback) throws IOException {
-        int result = adminFeedbackService.replyFeedback(feedback);
+    @RequestMapping(value = "/readFeedback",method = RequestMethod.POST)
+    public ServerResponse readFeedback(@RequestBody Map<String, Object> obj) throws IOException {
+        Integer feedbackId = (Integer) obj.get("fid");
+        int result = adminFeedbackService.readFeedback(feedbackId);
         if(result > 0){
-            String userPhone = feedback.getUserPhone();
-            ConcurrentHashMap<String, WebSocketDemo> webSocketSet = WebSocketDemo.getWebSocketDemo();
-            if(webSocketSet.get(userPhone) != null) {
-                webSocketSet.get(userPhone).sendMessage("留言");
-            }
-            for (String key : webSocketSet.keySet()) {
-                if (key.length() == 6) {
-                    webSocketSet.get(key).sendMessage("留言");
-                }
-            }
-            return ServerResponse.createBySuccess("回复成功",null);
+            return ServerResponse.createBySuccess("已读成功",null);
         } else {
-            return ServerResponse.createByError("数据库错误，插入回复信息失败");
+            return ServerResponse.createByError("数据库错误，已读失败");
         }
     }
 }

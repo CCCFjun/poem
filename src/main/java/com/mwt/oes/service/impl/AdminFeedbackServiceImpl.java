@@ -55,31 +55,12 @@ public class AdminFeedbackServiceImpl implements AdminFeedbackService {
     }
 
     @Override
-    public List<Map<String, Object>> searchFeedbacksList(String feedbackContent, String userName, String admAnswer, String admName, String feedbackStatus) {
+    public List<Map<String, Object>> searchFeedbacksList(String feedbackContent) {
         List<Map<String, Object>> resultList = new ArrayList<>();
         FeedbackExample feedbackExample = new FeedbackExample();
         FeedbackExample.Criteria criteria = feedbackExample.createCriteria();
         if (!feedbackContent.equals("undefined")) {
             criteria.andFeedbackContentLike("%" + feedbackContent + "%");
-        }
-        if (!userName.equals("undefined")) {
-            criteria.andUserNameLike("%" + userName + "%");
-        }
-        if (!admAnswer.equals("undefined")) {
-            criteria.andAdmAnswerLike("%" + admAnswer + "%");
-        }
-        if (!admName.equals("undefined")) {
-            criteria.andAdmNameLike("%" + admName + "%");
-        }
-        if (!feedbackStatus.equals("undefined")) {
-            if (feedbackStatus.equals("0")) {
-                criteria.andFeedbackStatusEqualTo("0");
-            } else {
-                List<String> value = new ArrayList<>();
-                value.add("1");
-                value.add("2");
-                criteria.andFeedbackStatusIn(value);
-            }
         }
         feedbackExample.setOrderByClause("feedback_status asc");
         List<Feedback> feedbackList = feedbackMapper.selectByExample(feedbackExample);
@@ -110,8 +91,8 @@ public class AdminFeedbackServiceImpl implements AdminFeedbackService {
     }
 
     @Override
-    public int replyFeedback(Feedback feedback) {
-        feedback.setReplyTime(new Date());
+    public int readFeedback(Integer feedbackId) {
+        Feedback feedback = feedbackMapper.selectByPrimaryKey(feedbackId);
         feedback.setFeedbackStatus("1");
         int result = feedbackMapper.updateByPrimaryKeySelective(feedback);
         return result;

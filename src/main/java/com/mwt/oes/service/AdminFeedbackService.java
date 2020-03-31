@@ -8,11 +8,7 @@ import java.util.Map;
 public interface AdminFeedbackService {
     public List<Map<String, Object>> getFeedbacksList();
     public int getUnReplyCount();
-    public List<Map<String, Object>> searchFeedbacksList(String feedbackContent,
-                                                         String userName,
-                                                         String admAnswer,
-                                                         String admName,
-                                                         String feedbackStatus);
+    public List<Map<String, Object>> searchFeedbacksList(String feedbackContent);
     public int deleteFeedback(Integer feedbackId);
-    public int replyFeedback(Feedback feedback);
+    public int readFeedback(Integer feedbackId);
 }

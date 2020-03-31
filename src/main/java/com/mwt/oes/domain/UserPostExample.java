@@ -435,62 +435,62 @@ public class UserPostExample {
             return (Criteria) this;
         }
 
-        public Criteria andReplayCountEqualTo(String value) {
+        public Criteria andReplayCountEqualTo(Integer value) {
             addCriterion("replay_count =", value, "replayCount");
             return (Criteria) this;
         }
 
-        public Criteria andReplayCountNotEqualTo(String value) {
+        public Criteria andReplayCountNotEqualTo(Integer value) {
             addCriterion("replay_count <>", value, "replayCount");
             return (Criteria) this;
         }
 
-        public Criteria andReplayCountGreaterThan(String value) {
+        public Criteria andReplayCountGreaterThan(Integer value) {
             addCriterion("replay_count >", value, "replayCount");
             return (Criteria) this;
         }
 
-        public Criteria andReplayCountGreaterThanOrEqualTo(String value) {
+        public Criteria andReplayCountGreaterThanOrEqualTo(Integer value) {
             addCriterion("replay_count >=", value, "replayCount");
             return (Criteria) this;
         }
 
-        public Criteria andReplayCountLessThan(String value) {
+        public Criteria andReplayCountLessThan(Integer value) {
             addCriterion("replay_count <", value, "replayCount");
             return (Criteria) this;
         }
 
-        public Criteria andReplayCountLessThanOrEqualTo(String value) {
+        public Criteria andReplayCountLessThanOrEqualTo(Integer value) {
             addCriterion("replay_count <=", value, "replayCount");
             return (Criteria) this;
         }
 
-        public Criteria andReplayCountLike(String value) {
+        public Criteria andReplayCountLike(Integer value) {
             addCriterion("replay_count like", value, "replayCount");
             return (Criteria) this;
         }
 
-        public Criteria andReplayCountNotLike(String value) {
+        public Criteria andReplayCountNotLike(Integer value) {
             addCriterion("replay_count not like", value, "replayCount");
             return (Criteria) this;
         }
 
-        public Criteria andReplayCountIn(List<String> values) {
+        public Criteria andReplayCountIn(List<Integer> values) {
             addCriterion("replay_count in", values, "replayCount");
             return (Criteria) this;
         }
 
-        public Criteria andReplayCountNotIn(List<String> values) {
+        public Criteria andReplayCountNotIn(List<Integer> values) {
             addCriterion("replay_count not in", values, "replayCount");
             return (Criteria) this;
         }
 
-        public Criteria andReplayCountBetween(String value1, String value2) {
+        public Criteria andReplayCountBetween(Integer value1, Integer value2) {
             addCriterion("replay_count between", value1, value2, "replayCount");
             return (Criteria) this;
         }
 
-        public Criteria andReplayCountNotBetween(String value1, String value2) {
+        public Criteria andReplayCountNotBetween(Integer value1, Integer value2) {
             addCriterion("replay_count not between", value1, value2, "replayCount");
             return (Criteria) this;
         }

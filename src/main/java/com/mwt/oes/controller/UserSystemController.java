@@ -41,11 +41,9 @@ public class UserSystemController {
     @RequestMapping(value = "/checkUserLogin", method = RequestMethod.POST)
     public ServerResponse checkUserLogin(@RequestBody(required = false)User user,
                                             HttpServletRequest request){
-//        @RequestBody Map<String, String> jsonObject,
         String userPhone = user.getUserPhone();
         String userPsw = user.getUserPsw();
-//        log.info(userPhone+"  "+userPsw);
-        HttpSession session = request.getSession();
+//        HttpSession session = request.getSession();
 
         if(userPhone.equals(""))
             return ServerResponse.createByError("手机号为空");
@@ -61,7 +59,7 @@ public class UserSystemController {
         List<User> resultList = userSystemService.checkUserPsw(userPhone, userPsw);
         if (resultList != null && resultList.size() > 0){
             //将登录成功后的用户信息存入session
-            session.setAttribute("userObj",resultList.get(0));
+//            session.setAttribute("userObj",resultList.get(0));
             //返回给前台json数据
             return ServerResponse.createBySuccess("登录成功",resultList.get(0));
         }
@@ -227,4 +225,17 @@ public class UserSystemController {
         return ServerResponse.createBySuccess("退出登录成功",null);
     }
 
+    /*
+        通过phone获取用户信息
+     */
+    @RequestMapping("/getUserDetailByUserp")
+    public ServerResponse getUserDetailByUserp(@RequestParam("userPhone")String userPhone ){
+        User user = userSystemService.getUserInfoByUserPhone(userPhone);
+        if(user != null){
+            return ServerResponse.createBySuccess("pid为" + userPhone + "的帖子信息获取成功", user);
+        }
+        else {
+            return ServerResponse.createByError("pid为" + userPhone + "的帖子信息获取失败");
+        }
+    }
 }
