@@ -565,73 +565,73 @@ public class QuestionTypeExample {
             return (Criteria) this;
         }
 
-        public Criteria andLangLastChangerIsNull() {
-            addCriterion("lang_last_changer is null");
+        public Criteria andLangMainTypeIsNull() {
+            addCriterion("lang_main_type is null");
             return (Criteria) this;
         }
 
-        public Criteria andLangLastChangerIsNotNull() {
-            addCriterion("lang_last_changer is not null");
+        public Criteria andLangMainTypeIsNotNull() {
+            addCriterion("lang_main_type is not null");
             return (Criteria) this;
         }
 
-        public Criteria andLangLastChangerEqualTo(String value) {
-            addCriterion("lang_last_changer =", value, "langLastChanger");
+        public Criteria andLangMainTypeEqualTo(Integer value) {
+            addCriterion("lang_main_type =", value, "langMainType");
             return (Criteria) this;
         }
 
-        public Criteria andLangLastChangerNotEqualTo(String value) {
-            addCriterion("lang_last_changer <>", value, "langLastChanger");
+        public Criteria andLangMainTypeNotEqualTo(Integer value) {
+            addCriterion("lang_main_type <>", value, "langMainType");
             return (Criteria) this;
         }
 
-        public Criteria andLangLastChangerGreaterThan(String value) {
-            addCriterion("lang_last_changer >", value, "langLastChanger");
+        public Criteria andLangMainTypeGreaterThan(Integer value) {
+            addCriterion("lang_main_type >", value, "langMainType");
             return (Criteria) this;
         }
 
-        public Criteria andLangLastChangerGreaterThanOrEqualTo(String value) {
-            addCriterion("lang_last_changer >=", value, "langLastChanger");
+        public Criteria andLangMainTypeGreaterThanOrEqualTo(Integer value) {
+            addCriterion("lang_main_type >=", value, "langMainType");
             return (Criteria) this;
         }
 
-        public Criteria andLangLastChangerLessThan(String value) {
-            addCriterion("lang_last_changer <", value, "langLastChanger");
+        public Criteria andLangMainTypeLessThan(Integer value) {
+            addCriterion("lang_main_type <", value, "langMainType");
             return (Criteria) this;
         }
 
-        public Criteria andLangLastChangerLessThanOrEqualTo(String value) {
-            addCriterion("lang_last_changer <=", value, "langLastChanger");
+        public Criteria andLangMainTypeLessThanOrEqualTo(Integer value) {
+            addCriterion("lang_main_type <=", value, "langMainType");
             return (Criteria) this;
         }
 
-        public Criteria andLangLastChangerLike(String value) {
-            addCriterion("lang_last_changer like", value, "langLastChanger");
+        public Criteria andLangMainTypeLike(Integer value) {
+            addCriterion("lang_main_type like", value, "langMainType");
             return (Criteria) this;
         }
 
-        public Criteria andLangLastChangerNotLike(String value) {
-            addCriterion("lang_last_changer not like", value, "langLastChanger");
+        public Criteria andLangMainTypeNotLike(Integer value) {
+            addCriterion("lang_main_type not like", value, "langMainType");
             return (Criteria) this;
         }
 
-        public Criteria andLangLastChangerIn(List<String> values) {
-            addCriterion("lang_last_changer in", values, "langLastChanger");
+        public Criteria andLangMainTypeIn(List<Integer> values) {
+            addCriterion("lang_main_type in", values, "langMainType");
             return (Criteria) this;
         }
 
-        public Criteria andLangLastChangerNotIn(List<String> values) {
-            addCriterion("lang_last_changer not in", values, "langLastChanger");
+        public Criteria andLangMainTypeNotIn(List<Integer> values) {
+            addCriterion("lang_main_type not in", values, "langMainType");
             return (Criteria) this;
         }
 
-        public Criteria andLangLastChangerBetween(String value1, String value2) {
-            addCriterion("lang_last_changer between", value1, value2, "langLastChanger");
+        public Criteria andLangMainTypeBetween(Integer value1, Integer value2) {
+            addCriterion("lang_main_type between", value1, value2, "langMainType");
             return (Criteria) this;
         }
 
-        public Criteria andLangLastChangerNotBetween(String value1, String value2) {
-            addCriterion("lang_last_changer not between", value1, value2, "langLastChanger");
+        public Criteria andLangMainTypeNotBetween(Integer value1, Integer value2) {
+            addCriterion("lang_main_type not between", value1, value2, "langMainType");
             return (Criteria) this;
         }
 

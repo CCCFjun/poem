@@ -23,6 +23,15 @@ public class AdminTypeServiceImpl implements AdminTypeService {
     BankSingleChoiceQueMapper bankSingleChoiceQueMapper;
 
     @Override
+    public List<QuestionType> getLangOptionByType(Integer type){
+        QuestionTypeExample questionTypeExample = new QuestionTypeExample();
+        QuestionTypeExample.Criteria criteria= questionTypeExample.createCriteria();
+        criteria.andLangMainTypeEqualTo(type);
+        List<QuestionType> questionTypeList = queTypeMapper.selectByExample(questionTypeExample);
+        return questionTypeList;
+    }
+
+    @Override
     public List<Map<String, Object>> getTypesList() {
         List<Map<String, Object>> resultList = new ArrayList<>();
         QuestionTypeExample questionTypeExample = new QuestionTypeExample();
@@ -38,7 +47,7 @@ public class AdminTypeServiceImpl implements AdminTypeService {
             map.put("langImgSrc", questionType.getLangImgSrc());
             map.put("langCreatedBy", questionType.getLangCreatedBy());
             map.put("langChangeTime", questionType.getLangChangeTime());
-            map.put("langLastChanger", questionType.getLangLastChanger());
+            map.put("langMainType", questionType.getLangMainType());
             map.put("langEnName", questionType.getLangEnName());
 //            PaperExample paperExample = new PaperExample();
 //            PaperExample.Criteria criteria = paperExample.createCriteria();
@@ -92,7 +101,7 @@ public class AdminTypeServiceImpl implements AdminTypeService {
             map.put("langCreatedBy", questionType.getLangCreatedBy());
             map.put("langImgSrc", questionType.getLangImgSrc());
             map.put("langChangeTime", questionType.getLangChangeTime());
-            map.put("langLastChanger", questionType.getLangLastChanger());
+            map.put("langMainType", questionType.getLangMainType());
             BankFillQueExample bankFillQueExample = new BankFillQueExample();
             BankFillQueExample.Criteria criteria1 = bankFillQueExample.createCriteria();
             criteria1.andLangIdEqualTo(questionType.getLangId());

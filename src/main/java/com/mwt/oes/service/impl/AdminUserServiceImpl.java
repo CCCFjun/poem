@@ -3,6 +3,7 @@ package com.mwt.oes.service.impl;
 import com.mwt.oes.dao.UserMapper;
 import com.mwt.oes.domain.*;
 import com.mwt.oes.service.AdminUserService;
+import com.mwt.oes.util.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,8 @@ public class AdminUserServiceImpl implements AdminUserService {
 
     @Autowired
     UserMapper userMapper;
+
+    public static final Base64.Decoder DECODER = Base64.getDecoder();
 
     @Override
     public List<User> getUserList() {
@@ -48,6 +51,9 @@ public class AdminUserServiceImpl implements AdminUserService {
 
     @Override
     public int updateUserInfo(User user) {
+        //解密
+        String depassword = new String(DECODER.decode(user.getUserPsw()));
+        user.setUserPsw(MD5Util.md5(depassword, depassword));
         int result = userMapper.updateByPrimaryKeySelective(user);
         return result;
     }

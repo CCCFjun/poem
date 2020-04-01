@@ -11,4 +11,5 @@ public interface AdminTypeService {
     public int insertTypeInfo(QuestionType questionType);
     public int updateTypeInfo(QuestionType questionType);
     public int deleteType(Integer langId);
+    public List<QuestionType> getLangOptionByType(Integer type);
 }

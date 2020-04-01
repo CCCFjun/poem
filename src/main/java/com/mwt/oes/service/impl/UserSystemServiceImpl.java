@@ -4,10 +4,12 @@ import com.mwt.oes.dao.UserMapper;
 import com.mwt.oes.domain.User;
 import com.mwt.oes.domain.UserExample;
 import com.mwt.oes.service.UserSystemService;
-import com.mwt.oes.util.Md5Util;
+import com.mwt.oes.util.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.UnsupportedEncodingException;
+import java.util.Base64;
 import java.util.Date;
 import java.util.List;
 
@@ -16,6 +18,8 @@ public class UserSystemServiceImpl implements UserSystemService {
 
     @Autowired
     UserMapper userMapper;
+
+    public static final Base64.Decoder DECODER = Base64.getDecoder();
 
     /*
         根据手机号查找用户信息
@@ -31,7 +35,9 @@ public class UserSystemServiceImpl implements UserSystemService {
     public List<User> checkUserPsw(String userPhone, String userPsw) {
         UserExample example = new UserExample();
         UserExample.Criteria criteria = example.createCriteria();
-        criteria.andUserPhoneEqualTo(userPhone).andUserPswEqualTo(Md5Util.StringInMd5(userPsw));
+        //解密
+        String depassword = new String(DECODER.decode(userPsw));
+        criteria.andUserPhoneEqualTo(userPhone).andUserPswEqualTo(MD5Util.md5(depassword, depassword));
         List<User> result = userMapper.selectByExample(example);
         return result;
     }
@@ -56,10 +62,12 @@ public class UserSystemServiceImpl implements UserSystemService {
      */
     @Override
     public int registerUser(String newUserPhone, String newUserPsw, String newUserName,
-                               String userSex) {
+                               String userSex)  {
         User user = new User();
+        //解密
+        String depassword = new String(DECODER.decode(newUserPsw));
         user.setUserPhone(newUserPhone);
-        user.setUserPsw(Md5Util.StringInMd5(newUserPsw));
+        user.setUserPsw(MD5Util.md5(depassword, depassword));
         user.setUserName(newUserName);
         user.setUserSex(userSex);
         int result = userMapper.insertSelective(user);
@@ -70,6 +78,9 @@ public class UserSystemServiceImpl implements UserSystemService {
         更新用户信息
      */
     public boolean updateUser(User user){
+        //解密
+        String depassword = new String(DECODER.decode(user.getUserPsw()));
+        user.setUserPsw(MD5Util.md5(depassword, depassword));
         int result = userMapper.updateByPrimaryKey(user);
         if (result > 0){
             return true;

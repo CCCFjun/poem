@@ -36,7 +36,7 @@ public class AdminPaperServiceImpl implements AdminPaperService {
     public List<Map<String, Object>> getPapersList() {
         List<Map<String, Object>> resultList = new ArrayList<>();
         PaperExample paperExample = new PaperExample();
-        paperExample.setOrderByClause("paper_id asc");
+        paperExample.setOrderByClause("paper_create_time desc");
         List<Paper> paperList = paperMapper.selectByExample(paperExample);
         for (Paper paper : paperList) {
             Map<String, Object> map = new HashMap<>();

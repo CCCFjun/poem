@@ -1,7 +1,9 @@
 package com.mwt.oes.controller;
 
+import com.mwt.oes.domain.QuestionType;
 import com.mwt.oes.service.AdminBankManageService;
 import com.mwt.oes.service.AdminPaperService;
+import com.mwt.oes.service.AdminTypeService;
 import com.mwt.oes.util.QiniuCloudUtil;
 import com.mwt.oes.util.ServerResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,15 @@ public class AdminBankManageController {
     private AdminPaperService adminPaperService;
     @Autowired
     private AdminBankManageService adminBankManageService;
+    @Autowired
+    private AdminTypeService adminTypeService;
+
+    //根据单判填选出题型
+    @RequestMapping("/getLangOptionByType")
+    public ServerResponse getLangOptionByType(@RequestParam("type")Integer type){
+        List<QuestionType> resultList = adminTypeService.getLangOptionByType(type);
+        return ServerResponse.createBySuccess("获取部分题型信息成功",resultList);
+    }
 
     //    获取全部单选题信息
     @RequestMapping("/getSingleList")

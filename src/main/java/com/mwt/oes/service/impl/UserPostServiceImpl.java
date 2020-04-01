@@ -1,9 +1,6 @@
 package com.mwt.oes.service.impl;
 
-import com.mwt.oes.dao.PostLabelMapper;
-import com.mwt.oes.dao.UserMapper;
-import com.mwt.oes.dao.UserPostMapper;
-import com.mwt.oes.dao.UserReplayMapper;
+import com.mwt.oes.dao.*;
 import com.mwt.oes.domain.*;
 import com.mwt.oes.service.UserPostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +18,8 @@ public class UserPostServiceImpl implements UserPostService {
     UserReplayMapper userReplayMapper;
     @Autowired
     PostLabelMapper postLabelMapper;
+    @Autowired
+    UserLikePostMapper userLikePostMapper;
 
     /*
         发帖
@@ -34,6 +33,7 @@ public class UserPostServiceImpl implements UserPostService {
         userPost.setInitTime(createTime);
         userPost.setLabelId(labelId);
         userPost.setReplayCount(0);
+        userPost.setGood(0);
         int result = userPostMapper.insertSelective(userPost);
         //该类型帖子数+1
         PostLabel postLabel = postLabelMapper.selectByPrimaryKey(labelId);
@@ -53,6 +53,7 @@ public class UserPostServiceImpl implements UserPostService {
         List<Map<String, Object>> twoPostData = new ArrayList<>();
 
         UserPostExample userPostExampleAll = new UserPostExample();
+        userPostExampleAll.setOrderByClause("init_time desc");
         List<UserPost> userPostListAll = userPostMapper.selectByExample(userPostExampleAll);
         for (UserPost userPost : userPostListAll) {
             Map<String, Object> allMap = new HashMap<>();
@@ -73,6 +74,7 @@ public class UserPostServiceImpl implements UserPostService {
         }
 
         UserPostExample userPostExampleOne = new UserPostExample();
+        userPostExampleOne.setOrderByClause("init_time desc");
         UserPostExample.Criteria criteriaOne = userPostExampleOne.createCriteria();
         criteriaOne.andLabelIdEqualTo(1);
         List<UserPost> userPostListOne = userPostMapper.selectByExample(userPostExampleOne);
@@ -96,6 +98,7 @@ public class UserPostServiceImpl implements UserPostService {
 
         UserPostExample userPostExampleTwo = new UserPostExample();
         UserPostExample.Criteria criteriaTwo = userPostExampleTwo.createCriteria();
+        userPostExampleTwo.setOrderByClause("init_time desc");
         criteriaTwo.andLabelIdEqualTo(2);
         List<UserPost> userPostListTwo = userPostMapper.selectByExample(userPostExampleTwo);
         for (UserPost userPost : userPostListTwo) {
@@ -178,5 +181,84 @@ public class UserPostServiceImpl implements UserPostService {
         userPost.setReplayCount(count);
         userPostMapper.updateByPrimaryKeySelective(userPost);
         return result;
+    }
+
+    /*
+        喜欢帖子
+     */
+    @Override
+    public int updateLikePost(Integer pid, String userPhone) {
+        UserLikePostExample userLikePostExample = new UserLikePostExample();
+        UserLikePostExample.Criteria criteria = userLikePostExample.createCriteria();
+        criteria.andUserPhoneEqualTo(userPhone).andPidEqualTo(pid);
+        List<UserLikePost> likeList = userLikePostMapper.selectByExample(userLikePostExample);
+        UserPost userPost = userPostMapper.selectByPrimaryKey(pid);
+        if(likeList.size() == 0){  //没有喜欢过这个帖子，现在喜欢+1
+            UserLikePost userLikePost = new UserLikePost();
+            userLikePost.setPid(pid);
+            userLikePost.setUserPhone(userPhone);
+            userLikePostMapper.insertSelective(userLikePost);
+            //帖子喜欢数+1
+            int count = userPost.getGood() + 1;
+            userPost.setGood(count);
+        }else{   //取消喜欢-1
+            userLikePostMapper.deleteByExample(userLikePostExample);
+            int count = userPost.getGood() - 1;
+            userPost.setGood(count);
+        }
+        int result = userPostMapper.updateByPrimaryKeySelective(userPost);
+        return result;
+    }
+
+    /*
+        q全部喜欢帖子
+     */
+    @Override
+    public List<Map<String, Object>> getAllLikePost(String userPhone){
+        List<Map<String, Object>> resultList = new ArrayList<>();
+
+        UserLikePostExample userLikePostExample = new UserLikePostExample();
+        UserLikePostExample.Criteria criteria = userLikePostExample.createCriteria();
+        criteria.andUserPhoneEqualTo(userPhone);
+
+        List<UserLikePost> userLikePostsList = userLikePostMapper.selectByExample(userLikePostExample);
+        for (UserLikePost userLikePost : userLikePostsList){
+            Map<String, Object> map = new HashMap<>();
+            int pid = userLikePost.getPid();
+            map.put("pid", userLikePost.getPid());
+            UserPost userPost = userPostMapper.selectByPrimaryKey(pid);
+            UserExample userExample = new UserExample();
+            UserExample.Criteria criteria2 = userExample.createCriteria();
+            criteria2.andUserPhoneEqualTo(userPost.getUserPhone());
+            List<User> userInfo = userMapper.selectByExample(userExample);
+            map.put("userInfo",userInfo);
+            map.put("content", userPost.getContent());
+            map.put("title", userPost.getTitle());
+            map.put("initTime", userPost.getInitTime());
+            map.put("replayCount", userPost.getReplayCount());
+            map.put("good", userPost.getGood());
+            resultList.add(map);
+        }
+
+        return resultList;
+    }
+
+    /*
+        q全部喜欢帖子pid
+     */
+    @Override
+    public List getAllLikePostOnlyPid(String userPhone){
+        List pidList = new ArrayList<>();
+
+        UserLikePostExample userLikePostExample = new UserLikePostExample();
+        UserLikePostExample.Criteria criteria = userLikePostExample.createCriteria();
+        criteria.andUserPhoneEqualTo(userPhone);
+
+        List<UserLikePost> userLikePostsList = userLikePostMapper.selectByExample(userLikePostExample);
+        for (UserLikePost userLikePost : userLikePostsList){
+            pidList.add(userLikePost.getPid());
+        }
+
+        return pidList;
     }
 }

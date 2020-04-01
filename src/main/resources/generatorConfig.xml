@@ -31,22 +31,6 @@
             <property name="enableSubPackages" value="true"/>  
         </javaClientGenerator>  
         <!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名-->  
-        <table tableName="admin" domainObjectName="Admin"></table>
-        <table tableName="bank_fill_que" domainObjectName="BankFillQue"></table>
-		<table tableName="bank_judge_que" domainObjectName="BankJudgeQue"></table>
-		<table tableName="bank_multiple_choice_que" domainObjectName="BankMultipleChoiceQue"></table>
-		<table tableName="bank_single_choice_que" domainObjectName="BankSingleChoiceQue"></table>
-		<table tableName="paper" domainObjectName="Paper"></table>
-		<table tableName="paper_que" domainObjectName="PaperQue"></table>
-		<table tableName="question_type" domainObjectName="QuestionType"></table>
-		<table tableName="feedback" domainObjectName="Feedback"></table>
-		<table tableName="user_rotation_img" domainObjectName="UserRotationImg"></table>
-		<table tableName="user_paper_answer" domainObjectName="UserPaperAnswer"></table>
-		<table tableName="user_paper_score" domainObjectName="UserPaperScore"></table>
-		<table tableName="notice" domainObjectName="Notice"></table>
-        <table tableName="user" domainObjectName="User"></table>
-        <table tableName="post_label" domainObjectName="PostLabel"></table>
-        <table tableName="user_post" domainObjectName="UserPost"></table>
-        <table tableName="user_replay" domainObjectName="UserReplay"></table>
+        <table tableName="user_like_post" domainObjectName="UserLikePost"></table>
     </context>  
 </generatorConfiguration>  

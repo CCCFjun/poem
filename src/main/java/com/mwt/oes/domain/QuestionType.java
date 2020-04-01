@@ -17,7 +17,7 @@ public class QuestionType {
 
     private Date langChangeTime;
 
-    private String langLastChanger;
+    private Integer langMainType;
 
     private String langEnName;
 
@@ -77,12 +77,12 @@ public class QuestionType {
         this.langChangeTime = langChangeTime;
     }
 
-    public String getLangLastChanger() {
-        return langLastChanger;
+    public Integer getLangMainType() {
+        return langMainType;
     }
 
-    public void setLangLastChanger(String langLastChanger) {
-        this.langLastChanger = langLastChanger == null ? null : langLastChanger.trim();
+    public void setLangMainType(Integer langMainType) {
+        this.langMainType = langMainType;
     }
 
     public String getLangEnName() {

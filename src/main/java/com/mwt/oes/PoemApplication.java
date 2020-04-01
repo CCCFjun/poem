@@ -7,7 +7,6 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.MultipartConfigFactory;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 import javax.servlet.MultipartConfigElement;
@@ -16,15 +15,15 @@ import javax.servlet.MultipartConfigElement;
 @Configuration
 @MapperScan("com.mwt.oes.dao")//与dao层的@Mapper二选一写上即可(主要作用是扫包)
 //@ComponentScan("com.mwt.oes.config")
-public class OesApplication extends SpringBootServletInitializer {
+public class PoemApplication extends SpringBootServletInitializer {
 
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-		return application.sources(OesApplication.class);
+		return application.sources(PoemApplication.class);
 	}
 
 	public static void main(String[] args) {
-		SpringApplication.run(OesApplication.class, args);
+		SpringApplication.run(PoemApplication.class, args);
 	}
 
 	/**

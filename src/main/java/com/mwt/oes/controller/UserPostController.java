@@ -130,4 +130,39 @@ public class UserPostController {
             }
         }
     }
+
+    /*
+        更新帖子喜欢
+     */
+    @RequestMapping(value = "/updateLikePost", method = RequestMethod.POST)
+    public ServerResponse updateLikePost(@RequestBody Map<String, Object> map){
+        UserPost userPost = new UserPost();
+        Integer pid = (Integer) map.get("pid");
+        String userPhone = (String) map.get("userPhone");
+        int result = userPostService.updateLikePost(pid, userPhone);
+        if(result != 0){
+            return ServerResponse.createBySuccess("更新成功",null);
+        }
+        else {
+            return ServerResponse.createByError("更新失败");
+        }
+    }
+
+    /*
+       获取全部喜欢
+    */
+    @RequestMapping("/getAllLikePost")
+    public ServerResponse getAllLikePost(@RequestParam("userPhone")String userPhone){
+        List<Map<String, Object>> resultList = userPostService.getAllLikePost(userPhone);
+        return ServerResponse.createBySuccess("获取全部收藏题目成功",resultList);
+    }
+
+    /*
+       获取全部喜欢
+    */
+    @RequestMapping("/getAllLikePostOnlyPid")
+    public ServerResponse getAllLikePostOnlyPid(@RequestParam("userPhone")String userPhone){
+        List resultList = userPostService.getAllLikePostOnlyPid(userPhone);
+        return ServerResponse.createBySuccess("获取全部收藏题目成功",resultList);
+    }
 }

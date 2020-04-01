@@ -2,10 +2,7 @@ package com.mwt.oes.controller;
 
 import com.mwt.oes.domain.User;
 import com.mwt.oes.service.UserSystemService;
-import com.mwt.oes.util.EmailUtil;
-import com.mwt.oes.util.MobilePhoneUtil;
-import com.mwt.oes.util.ProfileImageSavaUtil;
-import com.mwt.oes.util.ServerResponse;
+import com.mwt.oes.util.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Base64;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -30,6 +28,7 @@ public class UserSystemController {
 
     @Autowired
     private UserSystemService userSystemService;
+    public static final Base64.Decoder DECODER = Base64.getDecoder();
 
     //Log4j日志处理
     public static Logger log = LoggerFactory.getLogger(UserSystemController.class);
@@ -173,6 +172,9 @@ public class UserSystemController {
             return ServerResponse.createByError("会话失效，请重新登录");
         }*/
         String oldUserPsw = jsonObject.get("password");
+        String depassword = new String(DECODER.decode(oldUserPsw));
+        log.info("修改密码");
+        oldUserPsw = MD5Util.md5(depassword, depassword);
         String userPsw = jsonObject.get("newPassword");
         String userPswConfirm = jsonObject.get("newPasswordConfirm");
         String userPhone = jsonObject.get("userPhone");

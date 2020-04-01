@@ -69,7 +69,7 @@ public class UserProfileController {
                         webSocketSet.get(key).sendMessage("留言");
                     }
                 }
-                return ServerResponse.createBySuccess("留言成功,请等待管理员回复",null);
+                return ServerResponse.createBySuccess("留言成功",null);
             }
         }
     }

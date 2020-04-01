@@ -16,7 +16,6 @@ public class AdminSystemServiceImpl implements AdminSystemService {
     @Autowired
     AdminMapper adminMapper;
 
-    public static final Base64.Decoder DECODER = Base64.getDecoder();
     /*
         校验管理员登录
      */
