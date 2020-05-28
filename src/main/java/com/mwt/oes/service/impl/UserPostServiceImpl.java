@@ -25,7 +25,8 @@ public class UserPostServiceImpl implements UserPostService {
         发帖
      */
     @Override
-    public int userAddPost(String userPhone, String content, String title, Date createTime,  Integer labelId) {
+    public int userAddPost(String userPhone, String content, String title,
+                           Date createTime,  Integer labelId) {
         UserPost userPost = new UserPost();
         userPost.setUserPhone(userPhone);
         userPost.setContent(content);

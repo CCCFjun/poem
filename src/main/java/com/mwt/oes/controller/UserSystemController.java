@@ -76,13 +76,10 @@ public class UserSystemController {
         String newUserPhone = obj.get("newUserPhone");
         String newUserPsw = obj.get("newUserPsw");
         String newUserPswConfirm = obj.get("newUserPswConfirm");
-        //性别默认为男
         String userSex = "男";
-
         if(newUserPhone.isEmpty()){
             return ServerResponse.createByError("手机号为空");
         }
-
         boolean isRegistered = userSystemService.userPhoneIsExist(newUserPhone);
         if(isRegistered){
             return ServerResponse.createByError("此手机号已被注册");

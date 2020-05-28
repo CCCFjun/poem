@@ -265,7 +265,22 @@ public class UserExamServiceImpl implements UserExamService {
         //每题都是1分，分数即答对题数
         //设置初始分数为0
         int score = 0;
-
+        //计算判断题分数
+        List<BankJudgeQue> judgeQueList = bankJudgeQueMapper.getJudgeQueListByPaperIdAndLangId(paperId,13);
+        for (int i = 0;i < judgeQueList.size();i++){
+            String isCorrect = "0";
+            if(judgeQueList.get(i).getJudgeAnswer().equals(judgeAnswers.get(i))){
+                score++;
+                isCorrect = "1";
+            }
+            UserPaperAnswer userPaperAnswer = new UserPaperAnswer();
+            userPaperAnswer.setStuAnswer(judgeAnswers.get(i));
+            userPaperAnswer.setIscorrect(isCorrect);
+            userPaperAnswer.setQueId(judgeQueList.get(i).getPaperQue().getQueId());
+            userPaperAnswer.setPaperId(paperId);
+            userPaperAnswer.setUserPhone(userPhone);
+            int insertResult = userPaperAnswerMapper.insertSelective(userPaperAnswer);
+        }
         //计算单选题yi分数
         List<BankSingleChoiceQue> singleChoiceQueList = bankSingleChoiceQueMapper.getSingleQueListByPaperIdAndLangId(paperId,12);
         for (int i = 0;i < singleChoiceQueList.size();i++){
@@ -283,22 +298,7 @@ public class UserExamServiceImpl implements UserExamService {
             int insertResult = userPaperAnswerMapper.insertSelective(userPaperAnswer);
         }
 
-        //计算判断题分数
-        List<BankJudgeQue> judgeQueList = bankJudgeQueMapper.getJudgeQueListByPaperIdAndLangId(paperId,13);
-        for (int i = 0;i < judgeQueList.size();i++){
-            String isCorrect = "0";
-            if(judgeQueList.get(i).getJudgeAnswer().equals(judgeAnswers.get(i))){
-                score++;
-                isCorrect = "1";
-            }
-            UserPaperAnswer userPaperAnswer = new UserPaperAnswer();
-            userPaperAnswer.setStuAnswer(judgeAnswers.get(i));
-            userPaperAnswer.setIscorrect(isCorrect);
-            userPaperAnswer.setQueId(judgeQueList.get(i).getPaperQue().getQueId());
-            userPaperAnswer.setPaperId(paperId);
-            userPaperAnswer.setUserPhone(userPhone);
-            int insertResult = userPaperAnswerMapper.insertSelective(userPaperAnswer);
-        }
+
 
         //计算填空题分数
         List<BankFillQue> fillQueList = bankFillQueMapper.getFillQueListByPaperIdAndLangId(paperId,10);
@@ -359,6 +359,7 @@ public class UserExamServiceImpl implements UserExamService {
         List<Map<String, Object>> listResult = new ArrayList<>();
 
         List<BankSingleChoiceQue> singleChoiceQueList = bankSingleChoiceQueMapper.getSingleQueListByPaperIdAndLangId(paperId,12);
+
         for (BankSingleChoiceQue bankSingleChoiceQue : singleChoiceQueList){
             Map<String, Object> map = new HashMap<>();
 
@@ -368,7 +369,7 @@ public class UserExamServiceImpl implements UserExamService {
             //通过singleId获取paperQue对象
             PaperQueExample paperQueExample = new PaperQueExample();
             PaperQueExample.Criteria criteria = paperQueExample.createCriteria();
-            criteria.andSingleIdEqualTo(bankSingleChoiceQue.getSingleId());
+            criteria.andSingleIdEqualTo(bankSingleChoiceQue.getSingleId()).andPaperIdEqualTo(paperId);
             List<PaperQue> paperQueList = paperQueMapper.selectByExample(paperQueExample);
             PaperQue paperQue = paperQueList.get(0);
             map.put("queType",paperQue.getQueType());
@@ -387,9 +388,10 @@ public class UserExamServiceImpl implements UserExamService {
             map.put("isCollect", userPaperAnswer.getIscollect());
             map.put("isCorrect", userPaperAnswer.getIscorrect());
 
+
             //获取单选题题目内容
-            Map<String, String> singleContentMap = FindContentWithImage.findContentWithImage(bankSingleChoiceQue.getSingleContent());
-            map.put("singleContent",singleContentMap.get("content"));
+//            Map<String, String> singleContentMap = FindContentWithImage.findContentWithImage(bankSingleChoiceQue.getSingleContent());
+            map.put("singleContent",bankSingleChoiceQue.getSingleContent());
 
             //获取单选题答案
             map.put("singleAnswer",bankSingleChoiceQue.getSingleAnswer());
@@ -454,11 +456,10 @@ public class UserExamServiceImpl implements UserExamService {
             Map<String, Object> map = new HashMap<>();
 
             map.put("judgeId",bankJudgeQue.getJudgeId());
-
             //通过judgeId获取paperQue对象
             PaperQueExample paperQueExample = new PaperQueExample();
             PaperQueExample.Criteria criteria = paperQueExample.createCriteria();
-            criteria.andJudgeIdEqualTo(bankJudgeQue.getJudgeId());
+            criteria.andJudgeIdEqualTo(bankJudgeQue.getJudgeId()).andPaperIdEqualTo(paperId);
             List<PaperQue> paperQueList = paperQueMapper.selectByExample(paperQueExample);
             PaperQue paperQue = paperQueList.get(0);
             map.put("queType",paperQue.getQueType());
@@ -467,8 +468,7 @@ public class UserExamServiceImpl implements UserExamService {
             //通过queId获取试卷答案信息
             UserPaperAnswerExample userPaperAnswerExample = new UserPaperAnswerExample();
             UserPaperAnswerExample.Criteria criteria1 = userPaperAnswerExample.createCriteria();
-            criteria1.andQueIdEqualTo(queId);
-            criteria1.andUserPhoneEqualTo(userPhone);
+            criteria1.andQueIdEqualTo(queId).andUserPhoneEqualTo(userPhone);
             List<UserPaperAnswer> userPaperAnswerList = userPaperAnswerMapper.selectByExample(userPaperAnswerExample);
             UserPaperAnswer userPaperAnswer = userPaperAnswerList.get(0);
             map.put("answerId", userPaperAnswer.getAnswerId());
@@ -506,23 +506,17 @@ public class UserExamServiceImpl implements UserExamService {
     @Override
     public List<Map<String, Object>> getFillQueListByJoinedPaperId(String userPhone, Integer paperId) {
         List<Map<String, Object>> listResult = new ArrayList<>();
-
         List<BankFillQue> fillQueList = bankFillQueMapper.getFillQueListByPaperIdAndLangId(paperId,10);
         for (BankFillQue bankFillQue : fillQueList){
             Map<String, Object> map = new HashMap<>();
-
             map.put("fillId",bankFillQue.getFillId());
-
-            //通过fillId获取paperQue对象
             PaperQueExample paperQueExample = new PaperQueExample();
             PaperQueExample.Criteria criteria = paperQueExample.createCriteria();
-            criteria.andFillIdEqualTo(bankFillQue.getFillId());
+            criteria.andFillIdEqualTo(bankFillQue.getFillId()).andPaperIdEqualTo(paperId);
             List<PaperQue> paperQueList = paperQueMapper.selectByExample(paperQueExample);
             PaperQue paperQue = paperQueList.get(0);
             map.put("queType",paperQue.getQueType());
             Integer queId = paperQue.getQueId();
-
-            //通过queId获取试卷答案信息
             UserPaperAnswerExample userPaperAnswerExample = new UserPaperAnswerExample();
             UserPaperAnswerExample.Criteria criteria1 = userPaperAnswerExample.createCriteria();
             criteria1.andQueIdEqualTo(queId);
@@ -533,14 +527,11 @@ public class UserExamServiceImpl implements UserExamService {
             map.put("stuAnswer", userPaperAnswer.getStuAnswer());
             map.put("isCollect", userPaperAnswer.getIscollect());
             map.put("isCorrect", userPaperAnswer.getIscorrect());
-
             map.put("fillContent",bankFillQue.getFillContent());
             map.put("fillAnswer",bankFillQue.getFillAnswer());
             map.put("explain",bankFillQue.getAnswerExplain());
-
             listResult.add(map);
         }
-
         return listResult;
     }
 
@@ -560,7 +551,7 @@ public class UserExamServiceImpl implements UserExamService {
             //通过fillId获取paperQue对象
             PaperQueExample paperQueExample = new PaperQueExample();
             PaperQueExample.Criteria criteria = paperQueExample.createCriteria();
-            criteria.andFillIdEqualTo(bankFillQue.getFillId());
+            criteria.andFillIdEqualTo(bankFillQue.getFillId()).andPaperIdEqualTo(paperId);
             List<PaperQue> paperQueList = paperQueMapper.selectByExample(paperQueExample);
             PaperQue paperQue = paperQueList.get(0);
             map.put("queType",paperQue.getQueType());

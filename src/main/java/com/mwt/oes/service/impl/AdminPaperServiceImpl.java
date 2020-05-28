@@ -356,6 +356,7 @@ public class AdminPaperServiceImpl implements AdminPaperService {
         Integer paperDuration = (Integer) obj.get("paperDuration");
         Integer paperDifficulty = (Integer) obj.get("paperDifficulty");
         String paperAttention = (String) obj.get("paperAttention");
+        String paperImgSrc = (String) obj.get("paperImgSrc");
         Integer singleNum = (Integer) obj.get("singleNum");
         Integer judgeNum = (Integer) obj.get("judgeNum");
         Integer fillNum = (Integer) obj.get("fillNum");
@@ -366,6 +367,7 @@ public class AdminPaperServiceImpl implements AdminPaperService {
         paper.setPaperDifficulty(paperDifficulty);
         paper.setPaperAttention(paperAttention);
         paper.setPaperCreateTime(new Date());
+        paper.setPaperImgSrc(paperImgSrc);
         paper.setPaperType(1);
         int paperId = paperMapper.selectMaxPaperId() + 1;
         paper.setPaperId(paperId);
@@ -567,24 +569,23 @@ public class AdminPaperServiceImpl implements AdminPaperService {
         Integer paperDuration = (Integer) obj.get("paperDuration");
         Integer paperDifficulty = (Integer) obj.get("paperDifficulty");
         String paperAttention = (String) obj.get("paperAttention");
+        String paperImgSrc = (String) obj.get("paperImgSrc");
         List<Integer> singleNum = (List<Integer>) obj.get("singleNum");
         List<Integer> judgeNum = (List<Integer>) obj.get("judgeNum");
         List<Integer> fillNum = (List<Integer>) obj.get("fillNum");
         List<Integer> fillTwoNum = (List<Integer>) obj.get("fillTwoNum");
-//        Integer langId = (Integer) obj.get("langId");
         Paper paper = new Paper();
         paper.setPaperName(paperName);
         paper.setPaperDuration(paperDuration);
         paper.setPaperDifficulty(paperDifficulty);
         paper.setPaperAttention(paperAttention);
         paper.setPaperCreateTime(new Date());
+        paper.setPaperImgSrc(paperImgSrc);
         paper.setPaperType(2);
         int paperId = paperMapper.selectMaxPaperId() + 1;
         paper.setPaperId(paperId);
-
         //  插入试卷信息到paper表
         int result = paperMapper.insertSelective(paper);
-
         //单选题百里挑一
         for (Integer singleId : singleNum) {
             PaperQue paperQue = new PaperQue();

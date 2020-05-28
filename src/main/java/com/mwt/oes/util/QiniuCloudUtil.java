@@ -17,7 +17,7 @@ public class QiniuCloudUtil {
     private static final String SECRET_KEY = "39UWfmWCgB9qbLUM9hf9pDOQxHqhHyamt_YUKBA1";
 
     // 要上传的空间
-    private static final String bucketname = "cfpoem";
+    private static final String bucketname = "poemcf";
 
     // 密钥
     private static final Auth auth = Auth.create(ACCESS_KEY, SECRET_KEY);
@@ -25,7 +25,7 @@ public class QiniuCloudUtil {
     //base64方式上传
     public static String put64image(byte[] data, String key){
         //图片的外链地址
-        StringBuffer imgUrl  = new StringBuffer("http://q823tffg3.bkt.clouddn.com/");
+        StringBuffer imgUrl  = new StringBuffer("http://qa3asqugo.bkt.clouddn.com/");
 
         //构造一个带指定Zone对象的配置类
         Configuration cfg = new Configuration(Zone.zone0());
@@ -60,7 +60,6 @@ public class QiniuCloudUtil {
     public static void deleteImage(String imgSrc) {
         try {
             //图片的外链地址
-//            StringBuffer imgUrl  = new StringBuffer("http://qiniu.maweitao.top/");
 
             //构造一个带指定Zone对象的配置类
             Configuration cfg = new Configuration(Zone.zone0());

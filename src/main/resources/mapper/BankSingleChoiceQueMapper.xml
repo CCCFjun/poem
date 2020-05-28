@@ -116,7 +116,7 @@
     WHERE paper_id=#{paperId,jdbcType=INTEGER} AND q.single_id=s.single_id
   </select>
 
-    <select id="getRandomSingleByCountAndLangId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+  <select id="getRandomSingleByCountAndLangId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
     SELECT * FROM bank_single_choice_que where lang_id = #{langId,jdbcType=INTEGER} order by rand() LIMIT #{singleNum,jdbcType=INTEGER}
   </select>
 

@@ -146,6 +146,9 @@
       <if test="participateNum != null" >
         participate_num,
       </if>
+      <if test="paperImgSrc != null" >
+        paper_img_src,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="paperId != null" >
@@ -171,6 +174,9 @@
       </if>
       <if test="participateNum != null" >
         #{participateNum,jdbcType=INTEGER},
+      </if>
+      <if test="paperImgSrc != null" >
+        #{paperImgSrc,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
